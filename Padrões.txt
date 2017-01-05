@@ -1,0 +1,10 @@
+Padrões 
+
+Variáveis de componentes: abrevInformacoesRelevantes
+ex: ctObservacaoSala
+
+Métodos: Relacionados com função
+
+Pacotes: NomePacote / NomePacote.NomeSegundoPacote
+
+Tamanho Tela: Mínimo 800x600 - Expansível
