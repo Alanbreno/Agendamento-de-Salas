@@ -1,0 +1,21 @@
+Principais comandos git:
+
+git init --> Para iniciar um repositório git.
+
+git clone ... --> Para clonar um repositório de um servidor para uma pasta local. (Substitua "..." pelo link do repositorio).
+
+git status --> Para verificar em qual branch você está trabalhando e se tem novos arquivos e/ou arquivos editados que falta fazer commit.
+
+git add ... --> Para adicionar um arquivos ou uma edição de um arquivo ao rastreamento do git (Substituir "..." pelo endereço do arquivo. Caso queira adicionar todas as edições feitas no repositório, substituir "..." por "." apenas.
+
+git commit -m "..." --> Para fazer commit do arquivo. É nesse momento que o git realmente valida a edição. (Substituir "..." pela mensagem sobre a edição feita. Colocar a mensagem entre as aspas.
+
+git push origin branch --> Para enviar as edições para o servidor remoto. (Substituir branch pelo ramo que você está trabalhando. Caso seja o ramo principal, usar master).
+
+git pull origin branch --> Para baixar para o seu diretório local as alterações feitas no projeto por outros participantes. (Substituir "branch" pelo ramo que se quer atualizar).
+
+git checkout "..." --> Para trocar de branch. (Substituir o "..." pelo branch que se quer editar).
+
+git branch -d "..." --> Para excluir um branch.
+
+git checkout -b "..." --> Para criar um branch.
