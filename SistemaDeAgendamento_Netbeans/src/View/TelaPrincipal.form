@@ -163,9 +163,6 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Sistema de Aloca&#xe7;&#xe3;o"/>
     <Property name="extendedState" type="int" value="6"/>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1024, 768]"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 600]"/>
     </Property>
@@ -193,12 +190,12 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jButton1" min="-2" pref="90" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" pref="90" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jButton2" pref="90" max="32767" attributes="0"/>
                   <Component id="jLabel5" max="32767" attributes="0"/>
@@ -226,12 +223,12 @@
               <EmptySpace type="unrelated" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jButton8" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
-                  <Component id="jLabel11" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
+                  <Component id="jLabel11" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="82" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="84" max="32767" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -241,7 +238,7 @@
                   </Group>
                   <Component id="jLabel1" min="-2" pref="440" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="84" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -267,15 +264,9 @@
                                   <Component id="jLabel5" min="-2" pref="112" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel7" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jButton1" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" min="-2" pref="112" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                  <Component id="jButton3" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="jButton4" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jButton3" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="1" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="jButton4" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel11" alignment="1" min="-2" pref="112" max="-2" attributes="0"/>
                           <Component id="jButton8" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
@@ -287,6 +278,8 @@
                   </Group>
                   <Component id="jLabel9" alignment="1" min="-2" pref="112" max="-2" attributes="0"/>
                   <Component id="jButton6" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="1" min="-2" pref="112" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
           </Group>
@@ -405,7 +398,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Documentos&#xa; Recentes"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;Documentos&lt;br /&gt;&lt;center&gt;Recentes&lt;center/&gt;&lt;/html&gt;"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true" thickness="2"/>
@@ -442,7 +435,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gest&#xe3;o de turmas"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Gest&#xe3;o&lt;br /&gt;de turmas&lt;center/&gt;&lt;/html&gt;"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true" thickness="2"/>
@@ -476,7 +469,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gest&#xe3;o de salas"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Gest&#xe3;o&lt;br /&gt;de salas&lt;center/&gt;&lt;/html&gt;"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true" thickness="2"/>
