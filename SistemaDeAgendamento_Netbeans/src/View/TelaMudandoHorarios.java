@@ -29,14 +29,14 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        labelTitulo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaHorariosSalas = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        tabelaMudandoHorarioDisciplina = new javax.swing.JTable();
+        botaoAlocarDisciplina = new javax.swing.JButton();
+        botaoCancelar = new javax.swing.JButton();
+        botaoSalvar = new javax.swing.JButton();
         menuBarra = new javax.swing.JMenuBar();
         menuTabela = new javax.swing.JMenu();
         menuTabelaNovoProjeto = new javax.swing.JMenuItem();
@@ -68,16 +68,16 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
         setExtendedState(6);
         setMinimumSize(new java.awt.Dimension(800, 600));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Sala 4");
-        jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        labelTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitulo.setText("Sala 4");
+        labelTitulo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        labelTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jTable2.setAutoCreateRowSorter(true);
-        jTable2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaHorariosSalas.setAutoCreateRowSorter(true);
+        tabelaHorariosSalas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabelaHorariosSalas.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        tabelaHorariosSalas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -85,13 +85,13 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
                 "07:30", "07:30", "07:30", "07:30", "07:30"
             }
         ));
-        jTable2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
-        jTable2.setColumnSelectionAllowed(true);
-        jTable2.setMaximumSize(new java.awt.Dimension(2147483647, 1));
-        jTable2.setMinimumSize(new java.awt.Dimension(75, 30));
-        jScrollPane2.setViewportView(jTable2);
+        tabelaHorariosSalas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        tabelaHorariosSalas.setColumnSelectionAllowed(true);
+        tabelaHorariosSalas.setMaximumSize(new java.awt.Dimension(2147483647, 1));
+        tabelaHorariosSalas.setMinimumSize(new java.awt.Dimension(75, 30));
+        jScrollPane2.setViewportView(tabelaHorariosSalas);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaMudandoHorarioDisciplina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -99,21 +99,21 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
                 "Disciplina", "Carga Horária", "Professor"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaMudandoHorarioDisciplina);
 
-        jButton1.setText("Alocar Discplina");
+        botaoAlocarDisciplina.setText("Alocar Discplina");
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botaoCancelar.setText("Cancelar");
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botaoCancelarActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Salvar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        botaoSalvar.setText("Salvar");
+        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botaoSalvarActionPerformed(evt);
             }
         });
 
@@ -229,32 +229,32 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(botaoAlocarDisciplina)
                         .addGap(217, 217, 217)
-                        .addComponent(jButton2)
+                        .addComponent(botaoCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
+                        .addComponent(botaoSalvar))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(labelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(botaoAlocarDisciplina)
+                    .addComponent(botaoCancelar)
+                    .addComponent(botaoSalvar))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -282,13 +282,13 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuTabelaNovoProjetoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botaoCancelarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_botaoSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,16 +329,14 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton botaoAlocarDisciplina;
+    private javax.swing.JButton botaoCancelar;
+    private javax.swing.JButton botaoSalvar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel labelTitulo;
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenuItem menuAjudaAtalhos;
     private javax.swing.JMenuItem menuAjudaDocumentacao;
@@ -362,5 +360,7 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuTabelaSair;
     private javax.swing.JMenuItem menuTabelaSalvarProjeto;
     private javax.swing.JMenuItem menuTabelaSalvarProjetoComo;
+    private javax.swing.JTable tabelaHorariosSalas;
+    private javax.swing.JTable tabelaMudandoHorarioDisciplina;
     // End of variables declaration//GEN-END:variables
 }
