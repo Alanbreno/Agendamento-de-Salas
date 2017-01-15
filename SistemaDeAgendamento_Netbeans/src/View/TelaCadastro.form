@@ -2,6 +2,8 @@
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="grupoBotaoHora">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="menuBarra">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuTabela">
@@ -260,10 +262,10 @@
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="0">
                         <Column editable="true" title="Disciplina" type="java.lang.Object"/>
-                        <Column editable="true" title="Professor" type="java.lang.Object"/>
-                        <Column editable="true" title="Sala" type="java.lang.Object"/>
-                        <Column editable="true" title="Turma" type="java.lang.Object"/>
-                        <Column editable="true" title="Hor&#xe1;rio" type="java.lang.Object"/>
+                        <Column editable="true" title="Semestre" type="java.lang.Object"/>
+                        <Column editable="true" title="Carga Hor&#xe1;ria" type="java.lang.Object"/>
+                        <Column editable="true" title="N&#xb0; de Alunos" type="java.lang.Object"/>
+                        <Column editable="true" title="Subturmas" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -306,6 +308,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Adicionar disciplina"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAdicionarDisciplinaActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -367,8 +372,8 @@
                       <Table columnCount="4" rowCount="0">
                         <Column editable="true" title="Professor" type="java.lang.Object"/>
                         <Column editable="true" title="T&#xed;tulo" type="java.lang.Object"/>
-                        <Column editable="true" title="&#xc0;rea de conhecimento" type="java.lang.Object"/>
-                        <Column editable="true" title="Carga Hor&#xe1;ria cumprida" type="java.lang.Object"/>
+                        <Column editable="true" title="&#xc1;rea de conhecimento" type="java.lang.Object"/>
+                        <Column editable="true" title="Carga hor&#xe1;ria cumprida" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -379,17 +384,17 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
-                          <Title value="Semestre"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="true">
-                          <Title value="N&#xb0; de alunos"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Status"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
@@ -465,7 +470,7 @@
                       <Table columnCount="4" rowCount="0">
                         <Column editable="true" title="Sala" type="java.lang.Object"/>
                         <Column editable="true" title="Capacidade" type="java.lang.Object"/>
-                        <Column editable="true" title="Bloco" type="java.lang.Object"/>
+                        <Column editable="true" title="bloco" type="java.lang.Object"/>
                         <Column editable="true" title="Observa&#xe7;&#xe3;o" type="java.lang.Object"/>
                       </Table>
                     </Property>
@@ -477,17 +482,17 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
-                          <Title value="Semestre"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="true">
-                          <Title value="N&#xb0; de alunos"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Status"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
@@ -630,9 +635,9 @@
                               <Component id="botaoRadio12h" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="botaoRadio24h" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
+                              <EmptySpace pref="241" max="32767" attributes="0"/>
                               <Component id="botaoAdicionarHorarios" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="343" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane5" pref="775" max="32767" attributes="0"/>
@@ -699,11 +704,17 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="botaoRadio12h">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="grupoBotaoHora"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="12h"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="botaoRadio24h">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="grupoBotaoHora"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="24h"/>
               </Properties>
             </Component>

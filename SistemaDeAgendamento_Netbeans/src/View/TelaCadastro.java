@@ -5,6 +5,9 @@
  */
 package View;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Alan Breno
@@ -27,6 +30,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoBotaoHora = new javax.swing.ButtonGroup();
         painelComGuiasCadastro = new javax.swing.JTabbedPane();
         painelDisciplina = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -89,7 +93,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Disciplina", "Professor", "Sala", "Turma", "Horário"
+                "Disciplina", "Semestre", "Carga Horária", "N° de Alunos", "Subturmas"
             }
         ));
         jScrollPane1.setViewportView(tabelaDisciplina);
@@ -101,6 +105,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         }
 
         botaoAdicionarDisciplina.setText("Adicionar disciplina");
+        botaoAdicionarDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAdicionarDisciplinaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelDisciplinaLayout = new javax.swing.GroupLayout(painelDisciplina);
         painelDisciplina.setLayout(painelDisciplinaLayout);
@@ -134,16 +143,13 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Professor", "Título", "Àrea de conhecimento", "Carga Horária cumprida"
+                "Professor", "Título", "Área de conhecimento", "Carga horária cumprida"
             }
         ));
         jScrollPane2.setViewportView(tabelaProfessores);
         if (tabelaProfessores.getColumnModel().getColumnCount() > 0) {
             tabelaProfessores.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tabelaProfessores.getColumnModel().getColumn(1).setHeaderValue("Semestre");
             tabelaProfessores.getColumnModel().getColumn(2).setPreferredWidth(80);
-            tabelaProfessores.getColumnModel().getColumn(2).setHeaderValue("N° de alunos");
-            tabelaProfessores.getColumnModel().getColumn(3).setHeaderValue("Status");
         }
 
         botaoAdicionarProfessor.setText("Adicionar profesor");
@@ -183,16 +189,13 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Sala", "Capacidade", "Bloco", "Observação"
+                "Sala", "Capacidade", "bloco", "Observação"
             }
         ));
         jScrollPane3.setViewportView(tabelaSalas);
         if (tabelaSalas.getColumnModel().getColumnCount() > 0) {
             tabelaSalas.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tabelaSalas.getColumnModel().getColumn(1).setHeaderValue("Semestre");
             tabelaSalas.getColumnModel().getColumn(2).setPreferredWidth(80);
-            tabelaSalas.getColumnModel().getColumn(2).setHeaderValue("N° de alunos");
-            tabelaSalas.getColumnModel().getColumn(3).setHeaderValue("Status");
         }
 
         botaoAdicionarSala.setText("Adicionar sala");
@@ -293,8 +296,10 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        grupoBotaoHora.add(botaoRadio12h);
         botaoRadio12h.setText("12h");
 
+        grupoBotaoHora.add(botaoRadio24h);
         botaoRadio24h.setText("24h");
 
         javax.swing.GroupLayout painelHorarioLayout = new javax.swing.GroupLayout(painelHorario);
@@ -308,9 +313,9 @@ public class TelaCadastro extends javax.swing.JFrame {
                         .addComponent(botaoRadio12h)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botaoRadio24h)
-                        .addGap(243, 243, 243)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
                         .addComponent(botaoAdicionarHorarios)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(343, Short.MAX_VALUE))
                     .addGroup(painelHorarioLayout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                         .addGap(10, 10, 10))))
@@ -470,20 +475,39 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_menuGestaoSalaActionPerformed
 
     private void botaoAdicionarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProfessorActionPerformed
-        // TODO add your handling code here:
+       
+        TelaAdicionarProfessores telaAdicionarProfessores = new TelaAdicionarProfessores(this,true);
+        telaAdicionarProfessores.setVisible(true);
+        
     }//GEN-LAST:event_botaoAdicionarProfessorActionPerformed
 
     private void botaoAdicionarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarSalaActionPerformed
-        // TODO add your handling code here:
+        
+        TelaAdicionarSalas telaAdicionarSalas = new TelaAdicionarSalas(this,true);
+        telaAdicionarSalas.setVisible(true);
+        
     }//GEN-LAST:event_botaoAdicionarSalaActionPerformed
 
     private void botaoAdicionarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarTurmaActionPerformed
-        // TODO add your handling code here:
+        
+        TelaAdicionarTurmas telaAdicionarTurmas = new TelaAdicionarTurmas(this,true);
+        telaAdicionarTurmas.setVisible(true);
+        
     }//GEN-LAST:event_botaoAdicionarTurmaActionPerformed
 
     private void botaoAdicionarHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarHorariosActionPerformed
-        // TODO add your handling code here:
+        
+        TelaAdicionarHorarios telaAdicionarHorarios = new TelaAdicionarHorarios(this,true);
+        telaAdicionarHorarios.setVisible(true);
+        
     }//GEN-LAST:event_botaoAdicionarHorariosActionPerformed
+
+    private void botaoAdicionarDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarDisciplinaActionPerformed
+            
+        TelaAdicionarDisciplinas telaAdicionar = new TelaAdicionarDisciplinas(this,true);
+        telaAdicionar.setVisible(true);
+        
+    }//GEN-LAST:event_botaoAdicionarDisciplinaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -528,6 +552,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton botaoAdicionarTurma;
     private javax.swing.JRadioButton botaoRadio12h;
     private javax.swing.JRadioButton botaoRadio24h;
+    private javax.swing.ButtonGroup grupoBotaoHora;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

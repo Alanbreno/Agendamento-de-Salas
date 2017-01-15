@@ -5,21 +5,17 @@
  */
 package View;
 
-import java.awt.Component;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-
 /**
  *
  * @author Alan Breno
  */
-public class TelaAlocarDisciplinas extends javax.swing.JFrame {
+public class TelaAlocarDisciplinas extends javax.swing.JDialog {
 
     /**
-     * Creates new form TelaAlocarDisciplinas
+     * Creates new form TelaAlocarDisciplinasM
      */
-    public TelaAlocarDisciplinas() {
+    public TelaAlocarDisciplinas(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -77,7 +73,7 @@ public class TelaAlocarDisciplinas extends javax.swing.JFrame {
         menuAjudaExemploDeTabela = new javax.swing.JMenuItem();
         menuAjudaSobreNos = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alocar Disciplinas");
 
         labelDias.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -315,7 +311,7 @@ public class TelaAlocarDisciplinas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(txtNomeDaDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -371,7 +367,7 @@ public class TelaAlocarDisciplinas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
                     .addComponent(botaoAlocar))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -398,6 +394,10 @@ public class TelaAlocarDisciplinas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuGestaoSalaActionPerformed
 
+    private void txtNomeDaDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeDaDisciplinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeDaDisciplinaActionPerformed
+
     private void botaoRadioQuartaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioQuartaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoRadioQuartaActionPerformed
@@ -414,13 +414,9 @@ public class TelaAlocarDisciplinas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoRadioQuintaActionPerformed
 
-    private void txtNomeDaDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeDaDisciplinaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeDaDisciplinaActionPerformed
+    private void botaoAdicionarHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarHorariosActionPerformed
 
-    private void combo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo5ActionPerformed
+    }//GEN-LAST:event_botaoAdicionarHorariosActionPerformed
 
     private void combo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo3ActionPerformed
         // TODO add your handling code here:
@@ -430,9 +426,9 @@ public class TelaAlocarDisciplinas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo4ActionPerformed
 
-    private void botaoAdicionarHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarHorariosActionPerformed
-                      
-    }//GEN-LAST:event_botaoAdicionarHorariosActionPerformed
+    private void combo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -460,11 +456,19 @@ public class TelaAlocarDisciplinas extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaAlocarDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaAlocarDisciplinas().setVisible(true);
+                TelaAlocarDisciplinas dialog = new TelaAlocarDisciplinas(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

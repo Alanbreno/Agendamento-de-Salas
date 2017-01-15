@@ -5,16 +5,18 @@
  */
 package View;
 
+import javax.swing.JDialog;
+
 /**
  *
  * @author Alan Breno
  */
-public class HorárioCadastrado extends javax.swing.JDialog {
+public class TelaDisciplinaSalva extends javax.swing.JDialog {
 
     /**
      * Creates new form DisciplinaSalva
      */
-    public HorárioCadastrado(java.awt.Frame parent, boolean modal) {
+    public TelaDisciplinaSalva(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -28,16 +30,16 @@ public class HorárioCadastrado extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        painelHorarioCadastrado = new javax.swing.JPanel();
-        labelCadastroComSucesso = new javax.swing.JLabel();
+        painelDisciplinaSalva = new javax.swing.JPanel();
+        labelSalvaComSucesso = new javax.swing.JLabel();
         botaoOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Disciplina Salva");
 
-        labelCadastroComSucesso.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        labelCadastroComSucesso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelCadastroComSucesso.setText("O horário foi criado com sucesso");
+        labelSalvaComSucesso.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        labelSalvaComSucesso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelSalvaComSucesso.setText("A disciplina foi salva com sucesso");
 
         botaoOK.setText("OK");
         botaoOK.addActionListener(new java.awt.event.ActionListener() {
@@ -46,25 +48,25 @@ public class HorárioCadastrado extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout painelHorarioCadastradoLayout = new javax.swing.GroupLayout(painelHorarioCadastrado);
-        painelHorarioCadastrado.setLayout(painelHorarioCadastradoLayout);
-        painelHorarioCadastradoLayout.setHorizontalGroup(
-            painelHorarioCadastradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelHorarioCadastradoLayout.createSequentialGroup()
-                .addGroup(painelHorarioCadastradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelHorarioCadastradoLayout.createSequentialGroup()
+        javax.swing.GroupLayout painelDisciplinaSalvaLayout = new javax.swing.GroupLayout(painelDisciplinaSalva);
+        painelDisciplinaSalva.setLayout(painelDisciplinaSalvaLayout);
+        painelDisciplinaSalvaLayout.setHorizontalGroup(
+            painelDisciplinaSalvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelDisciplinaSalvaLayout.createSequentialGroup()
+                .addGroup(painelDisciplinaSalvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelDisciplinaSalvaLayout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(botaoOK, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelHorarioCadastradoLayout.createSequentialGroup()
+                    .addGroup(painelDisciplinaSalvaLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(labelCadastroComSucesso)))
-                .addContainerGap(80, Short.MAX_VALUE))
+                        .addComponent(labelSalvaComSucesso)))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
-        painelHorarioCadastradoLayout.setVerticalGroup(
-            painelHorarioCadastradoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelHorarioCadastradoLayout.createSequentialGroup()
+        painelDisciplinaSalvaLayout.setVerticalGroup(
+            painelDisciplinaSalvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelDisciplinaSalvaLayout.createSequentialGroup()
                 .addGap(71, 71, 71)
-                .addComponent(labelCadastroComSucesso, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelSalvaComSucesso, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(botaoOK, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(110, Short.MAX_VALUE))
@@ -74,11 +76,11 @@ public class HorárioCadastrado extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelHorarioCadastrado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelDisciplinaSalva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelHorarioCadastrado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelDisciplinaSalva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -106,13 +108,13 @@ public class HorárioCadastrado extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HorárioCadastrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDisciplinaSalva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HorárioCadastrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDisciplinaSalva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HorárioCadastrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDisciplinaSalva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HorárioCadastrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDisciplinaSalva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -120,7 +122,7 @@ public class HorárioCadastrado extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                HorárioCadastrado dialog = new HorárioCadastrado(new javax.swing.JFrame(), true);
+                TelaDisciplinaSalva dialog = new TelaDisciplinaSalva(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -134,7 +136,7 @@ public class HorárioCadastrado extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoOK;
-    private javax.swing.JLabel labelCadastroComSucesso;
-    private javax.swing.JPanel painelHorarioCadastrado;
+    private javax.swing.JLabel labelSalvaComSucesso;
+    private javax.swing.JPanel painelDisciplinaSalva;
     // End of variables declaration//GEN-END:variables
 }

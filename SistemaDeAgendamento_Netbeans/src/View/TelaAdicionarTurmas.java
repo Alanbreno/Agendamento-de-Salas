@@ -9,18 +9,14 @@ package View;
  *
  * @author Alan Breno
  */
-public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
+public class TelaAdicionarTurmas extends javax.swing.JDialog {
 
     /**
-     * Creates new form TelaAdicionarDisciplinas
+     * Creates new form TelaAdicionarTurmas
      */
-    public TelaAdicionarDisciplinas(java.awt.Frame parent, boolean modal) {
+    public TelaAdicionarTurmas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-    }
-
-    TelaAdicionarDisciplinas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -32,17 +28,15 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotoesSubTurmas = new javax.swing.ButtonGroup();
-        painelAdicionarDisiciplinas = new javax.swing.JPanel();
+        grupoBotoesStatus = new javax.swing.ButtonGroup();
+        painelAdicionarTurmas = new javax.swing.JPanel();
         labelInformacoes = new javax.swing.JLabel();
         labelNome = new javax.swing.JLabel();
         labelSemestre = new javax.swing.JLabel();
-        labelCargaHoraria = new javax.swing.JLabel();
         labelNumeroDeAlunos = new javax.swing.JLabel();
-        labeloPossuiSubTurmas = new javax.swing.JLabel();
+        labelStatus = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtSemestre = new javax.swing.JTextField();
-        txtCargaHoraria = new javax.swing.JTextField();
         txtNumeroDeAlunos = new javax.swing.JTextField();
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
@@ -50,11 +44,11 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
         botaoRadioSim = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Adicionar Disciplinas");
+        setTitle("Adicionar Turmas");
         setResizable(false);
 
         labelInformacoes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelInformacoes.setText("Informações Disciplinas ");
+        labelInformacoes.setText("Informações Turmas");
 
         labelNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelNome.setText("Nome");
@@ -62,14 +56,11 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
         labelSemestre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelSemestre.setText("Semestre");
 
-        labelCargaHoraria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelCargaHoraria.setText("Carga Horária");
-
         labelNumeroDeAlunos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelNumeroDeAlunos.setText("Nº de Alunos");
 
-        labeloPossuiSubTurmas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labeloPossuiSubTurmas.setText("Possui sub-turmas?");
+        labelStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelStatus.setText("Status");
 
         txtSemestre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +77,7 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
             }
         });
 
-        grupoBotoesSubTurmas.add(botaoRadioNao);
+        grupoBotoesStatus.add(botaoRadioNao);
         botaoRadioNao.setText("Não");
         botaoRadioNao.setBorderPainted(true);
         botaoRadioNao.addActionListener(new java.awt.event.ActionListener() {
@@ -95,74 +86,67 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
             }
         });
 
-        grupoBotoesSubTurmas.add(botaoRadioSim);
+        grupoBotoesStatus.add(botaoRadioSim);
         botaoRadioSim.setText("Sim");
         botaoRadioSim.setBorderPainted(true);
 
-        javax.swing.GroupLayout painelAdicionarDisiciplinasLayout = new javax.swing.GroupLayout(painelAdicionarDisiciplinas);
-        painelAdicionarDisiciplinas.setLayout(painelAdicionarDisiciplinasLayout);
-        painelAdicionarDisiciplinasLayout.setHorizontalGroup(
-            painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelAdicionarDisiciplinasLayout.createSequentialGroup()
-                .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelAdicionarDisiciplinasLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labeloPossuiSubTurmas)
-                            .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelCargaHoraria)
-                                .addComponent(labelNumeroDeAlunos, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(labelSemestre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(labelNome, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(txtSemestre)
-                            .addComponent(txtCargaHoraria)
-                            .addComponent(txtNumeroDeAlunos)
-                            .addGroup(painelAdicionarDisiciplinasLayout.createSequentialGroup()
-                                .addComponent(botaoRadioSim)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(botaoRadioNao))))
-                    .addGroup(painelAdicionarDisiciplinasLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(botaoCancelar)
-                        .addGap(99, 99, 99)
-                        .addComponent(botaoSalvar)))
-                .addContainerGap(80, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAdicionarDisiciplinasLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(labelInformacoes)
-                .addGap(139, 139, 139))
+        javax.swing.GroupLayout painelAdicionarTurmasLayout = new javax.swing.GroupLayout(painelAdicionarTurmas);
+        painelAdicionarTurmas.setLayout(painelAdicionarTurmasLayout);
+        painelAdicionarTurmasLayout.setHorizontalGroup(
+            painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
+                .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
+                                .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelStatus)
+                                    .addComponent(labelNumeroDeAlunos)
+                                    .addComponent(labelSemestre)
+                                    .addComponent(labelNome))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNome)
+                                    .addComponent(txtSemestre)
+                                    .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
+                                        .addComponent(botaoRadioSim)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(botaoRadioNao))))
+                            .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
+                                .addComponent(botaoCancelar)
+                                .addGap(99, 99, 99)
+                                .addComponent(botaoSalvar))))
+                    .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(labelInformacoes)))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
-        painelAdicionarDisiciplinasLayout.setVerticalGroup(
-            painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelAdicionarDisiciplinasLayout.createSequentialGroup()
+        painelAdicionarTurmasLayout.setVerticalGroup(
+            painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(labelInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSemestre)
                     .addComponent(txtSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCargaHoraria)
-                    .addComponent(txtCargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNumeroDeAlunos)
                     .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
-                .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labeloPossuiSubTurmas, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoRadioSim)
                     .addComponent(botaoRadioNao))
-                .addGap(45, 45, 45)
-                .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(76, 76, 76)
+                .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
                     .addComponent(botaoSalvar))
                 .addContainerGap(84, Short.MAX_VALUE))
@@ -172,11 +156,11 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelAdicionarDisiciplinas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelAdicionarTurmas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelAdicionarDisiciplinas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelAdicionarTurmas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -187,13 +171,13 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSemestreActionPerformed
 
-    private void botaoRadioNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioNaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRadioNaoActionPerformed
-
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoSalvarActionPerformed
+
+    private void botaoRadioNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioNaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoRadioNaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,20 +196,20 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaAdicionarDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAdicionarTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaAdicionarDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAdicionarTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaAdicionarDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAdicionarTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaAdicionarDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAdicionarTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaAdicionarDisciplinas dialog = new TelaAdicionarDisciplinas(new javax.swing.JFrame(), true);
+                TelaAdicionarTurmas dialog = new TelaAdicionarTurmas(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -242,15 +226,13 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
     private javax.swing.JRadioButton botaoRadioNao;
     private javax.swing.JRadioButton botaoRadioSim;
     private javax.swing.JButton botaoSalvar;
-    private javax.swing.ButtonGroup grupoBotoesSubTurmas;
-    private javax.swing.JLabel labelCargaHoraria;
+    private javax.swing.ButtonGroup grupoBotoesStatus;
     private javax.swing.JLabel labelInformacoes;
     private javax.swing.JLabel labelNome;
     private javax.swing.JLabel labelNumeroDeAlunos;
     private javax.swing.JLabel labelSemestre;
-    private javax.swing.JLabel labeloPossuiSubTurmas;
-    private javax.swing.JPanel painelAdicionarDisiciplinas;
-    private javax.swing.JTextField txtCargaHoraria;
+    private javax.swing.JLabel labelStatus;
+    private javax.swing.JPanel painelAdicionarTurmas;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumeroDeAlunos;
     private javax.swing.JTextField txtSemestre;

@@ -5,6 +5,8 @@
  */
 package View;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Alan Breno
@@ -449,7 +451,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoGestaoDeSalasActionPerformed
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
-        // TODO add your handling code here:
+        
+        JFrame telaCadastro = new TelaCadastro();
+        telaCadastro.setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_botaoCadastrarActionPerformed
 
     private void botaoGerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarPDFActionPerformed
