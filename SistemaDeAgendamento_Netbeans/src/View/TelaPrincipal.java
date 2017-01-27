@@ -6,6 +6,7 @@
 package View;
 
 import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -77,8 +78,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Alocação");
         setExtendedState(6);
-        setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(1024, 768));
+        setPreferredSize(new java.awt.Dimension(1024, 768));
 
         labelNomeDoPrograma1.setBackground(new java.awt.Color(255, 255, 255));
         labelNomeDoPrograma1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 36)); // NOI18N
@@ -373,14 +374,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(labelNomeDoPrograma1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(labelNomeDoPrograma2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelLogoDoPrograma, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoNovoProjeto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelNovoProjeto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -390,7 +391,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(botaoCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelGerarPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoGerarPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 38, Short.MAX_VALUE)
+                .addGap(18, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(labelVizualizarProfessores, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -403,7 +404,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(labelGestaoDeTurmas, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botaoGestaoDeTurmas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(816, 639));
@@ -447,7 +448,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoVizualizarProfessoresActionPerformed
 
     private void botaoGestaoDeSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGestaoDeSalasActionPerformed
-        // TODO add your handling code here:
+        
+        TelaGestao telaGestao = new TelaGestao();
+        telaGestao.setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_botaoGestaoDeSalasActionPerformed
 
     private void botaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarActionPerformed
@@ -463,7 +468,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoGerarPDFActionPerformed
 
     private void botaoGestaoDeTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGestaoDeTurmasActionPerformed
-        // TODO add your handling code here:
+        
+        TelaGestao telaGestao = new TelaGestao();
+        telaGestao.setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_botaoGestaoDeTurmasActionPerformed
 
     /**

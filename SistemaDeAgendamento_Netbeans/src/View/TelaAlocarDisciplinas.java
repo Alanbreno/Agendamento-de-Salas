@@ -31,11 +31,6 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
         labelDias = new javax.swing.JLabel();
         txtNomeDaDisciplina = new javax.swing.JTextField();
         labelNomeDaDisciplina = new javax.swing.JLabel();
-        botaoRadioQuarta = new javax.swing.JRadioButton();
-        botaoRadioSegunda = new javax.swing.JRadioButton();
-        botaoRadioTerca = new javax.swing.JRadioButton();
-        botaoRadioSexta = new javax.swing.JRadioButton();
-        botaoRadioQuinta = new javax.swing.JRadioButton();
         labelHorarios = new javax.swing.JLabel();
         botaoAdicionarHorarios = new javax.swing.JButton();
         painelComboBox = new javax.swing.JPanel();
@@ -47,34 +42,15 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
         barraDeRolagemPainelComboBox = new javax.swing.JScrollBar();
         botaoCancelar = new javax.swing.JButton();
         botaoAlocar = new javax.swing.JButton();
-        menuBarra = new javax.swing.JMenuBar();
-        menuTabela = new javax.swing.JMenu();
-        menuTabelaNovoProjeto = new javax.swing.JMenuItem();
-        menuTabelaAbrirArquivo = new javax.swing.JMenuItem();
-        menuTabelaProjetosRecentes = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        menuTabelaSalvarProjeto = new javax.swing.JMenuItem();
-        menuTabelaSalvarProjetoComo = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        menuTabelaExportar = new javax.swing.JMenuItem();
-        menuTabelaSair = new javax.swing.JMenuItem();
-        menuCadastro = new javax.swing.JMenu();
-        menuCadastroProfessores = new javax.swing.JMenuItem();
-        menuCadastroDisciplina = new javax.swing.JMenuItem();
-        menuCadastroSalas = new javax.swing.JMenuItem();
-        menuCadastroTurmas = new javax.swing.JMenuItem();
-        menuCadastroHorarios = new javax.swing.JMenuItem();
-        menuGestao = new javax.swing.JMenu();
-        menuGestaoTurma = new javax.swing.JMenuItem();
-        menuGestaoSala = new javax.swing.JMenuItem();
-        menuAjuda = new javax.swing.JMenu();
-        menuAjudaDocumentacao = new javax.swing.JMenuItem();
-        menuAjudaAtalhos = new javax.swing.JMenuItem();
-        menuAjudaExemploDeTabela = new javax.swing.JMenuItem();
-        menuAjudaSobreNos = new javax.swing.JMenuItem();
+        caixaSelecaoSegunda = new javax.swing.JCheckBox();
+        caixaSelecaoTerca = new javax.swing.JCheckBox();
+        caixaSelecaoQuarta = new javax.swing.JCheckBox();
+        caixaSelecaoSexta = new javax.swing.JCheckBox();
+        caixaSelecaoQuinta = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alocar Disciplinas");
+        setResizable(false);
 
         labelDias.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         labelDias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -91,41 +67,6 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
         labelNomeDaDisciplina.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNomeDaDisciplina.setText("Digite o nome da disciplina:");
         labelNomeDaDisciplina.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        botaoRadioQuarta.setText("Quarta");
-        botaoRadioQuarta.setPreferredSize(new java.awt.Dimension(60, 23));
-        botaoRadioQuarta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoRadioQuartaActionPerformed(evt);
-            }
-        });
-
-        botaoRadioSegunda.setText("Segunda");
-        botaoRadioSegunda.setPreferredSize(new java.awt.Dimension(60, 23));
-
-        botaoRadioTerca.setText("Terça");
-        botaoRadioTerca.setPreferredSize(new java.awt.Dimension(60, 23));
-        botaoRadioTerca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoRadioTercaActionPerformed(evt);
-            }
-        });
-
-        botaoRadioSexta.setText("Sexta");
-        botaoRadioSexta.setPreferredSize(new java.awt.Dimension(60, 23));
-        botaoRadioSexta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoRadioSextaActionPerformed(evt);
-            }
-        });
-
-        botaoRadioQuinta.setText("Quinta");
-        botaoRadioQuinta.setPreferredSize(new java.awt.Dimension(60, 23));
-        botaoRadioQuinta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoRadioQuintaActionPerformed(evt);
-            }
-        });
 
         labelHorarios.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         labelHorarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -200,109 +141,15 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
 
         botaoAlocar.setText("Alocar");
 
-        menuTabela.setText("Tabela");
+        caixaSelecaoSegunda.setText("Segunda");
 
-        menuTabelaNovoProjeto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        menuTabelaNovoProjeto.setText("Novo Projeto");
-        menuTabelaNovoProjeto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuTabelaNovoProjetoActionPerformed(evt);
-            }
-        });
-        menuTabela.add(menuTabelaNovoProjeto);
+        caixaSelecaoTerca.setText("Terça");
 
-        menuTabelaAbrirArquivo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        menuTabelaAbrirArquivo.setText("Abrir Arquivo");
-        menuTabelaAbrirArquivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuTabelaAbrirArquivoActionPerformed(evt);
-            }
-        });
-        menuTabela.add(menuTabelaAbrirArquivo);
+        caixaSelecaoQuarta.setText("Quarta");
 
-        menuTabelaProjetosRecentes.setText("Projetos Recentes");
-        menuTabela.add(menuTabelaProjetosRecentes);
-        menuTabela.add(jSeparator1);
+        caixaSelecaoSexta.setText("Sexta");
 
-        menuTabelaSalvarProjeto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        menuTabelaSalvarProjeto.setText("Salvar Projeto");
-        menuTabela.add(menuTabelaSalvarProjeto);
-
-        menuTabelaSalvarProjetoComo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        menuTabelaSalvarProjetoComo.setText("Salvar Projeto Como");
-        menuTabelaSalvarProjetoComo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuTabelaSalvarProjetoComoActionPerformed(evt);
-            }
-        });
-        menuTabela.add(menuTabelaSalvarProjetoComo);
-        menuTabela.add(jSeparator2);
-
-        menuTabelaExportar.setText("Exportar");
-        menuTabela.add(menuTabelaExportar);
-
-        menuTabelaSair.setText("Sair");
-        menuTabela.add(menuTabelaSair);
-
-        menuBarra.add(menuTabela);
-
-        menuCadastro.setText("Cadastro");
-
-        menuCadastroProfessores.setText("Cadastro de Professores");
-        menuCadastro.add(menuCadastroProfessores);
-
-        menuCadastroDisciplina.setText("Cadastro de Disciplinas");
-        menuCadastro.add(menuCadastroDisciplina);
-
-        menuCadastroSalas.setText("Cadastro de Salas");
-        menuCadastro.add(menuCadastroSalas);
-
-        menuCadastroTurmas.setText("Cadastro de Turmas");
-        menuCadastroTurmas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCadastroTurmasActionPerformed(evt);
-            }
-        });
-        menuCadastro.add(menuCadastroTurmas);
-
-        menuCadastroHorarios.setText("Cadastro de Horários");
-        menuCadastro.add(menuCadastroHorarios);
-
-        menuBarra.add(menuCadastro);
-
-        menuGestao.setText("Gestão");
-
-        menuGestaoTurma.setText("Turma");
-        menuGestao.add(menuGestaoTurma);
-
-        menuGestaoSala.setText("Sala");
-        menuGestaoSala.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuGestaoSalaActionPerformed(evt);
-            }
-        });
-        menuGestao.add(menuGestaoSala);
-
-        menuBarra.add(menuGestao);
-
-        menuAjuda.setText("Ajuda");
-
-        menuAjudaDocumentacao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-        menuAjudaDocumentacao.setText("Documentação");
-        menuAjuda.add(menuAjudaDocumentacao);
-
-        menuAjudaAtalhos.setText("Atalhos");
-        menuAjuda.add(menuAjudaAtalhos);
-
-        menuAjudaExemploDeTabela.setText("Exemplo de tabela");
-        menuAjuda.add(menuAjudaExemploDeTabela);
-
-        menuAjudaSobreNos.setText("Sobre ");
-        menuAjuda.add(menuAjudaSobreNos);
-
-        menuBarra.add(menuAjuda);
-
-        setJMenuBar(menuBarra);
+        caixaSelecaoQuinta.setText("Quinta");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -311,21 +158,11 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(txtNomeDaDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelNomeDaDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(botaoRadioSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoRadioTerca, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoRadioQuarta, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoRadioQuinta, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoRadioSexta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelDias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -340,6 +177,18 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
                         .addComponent(botaoAdicionarHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(painelComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(caixaSelecaoSegunda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaSelecaoTerca)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaSelecaoQuarta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaSelecaoQuinta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caixaSelecaoSexta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,14 +199,14 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
                 .addComponent(txtNomeDaDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(labelDias, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoRadioQuarta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoRadioTerca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoRadioSegunda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoRadioQuinta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoRadioSexta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(caixaSelecaoSegunda)
+                    .addComponent(caixaSelecaoTerca)
+                    .addComponent(caixaSelecaoQuarta)
+                    .addComponent(caixaSelecaoSexta)
+                    .addComponent(caixaSelecaoQuinta))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoAdicionarHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -367,52 +216,16 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
                     .addComponent(botaoAlocar))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuTabelaNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaNovoProjetoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuTabelaNovoProjetoActionPerformed
-
-    private void menuTabelaAbrirArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaAbrirArquivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuTabelaAbrirArquivoActionPerformed
-
-    private void menuTabelaSalvarProjetoComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaSalvarProjetoComoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuTabelaSalvarProjetoComoActionPerformed
-
-    private void menuCadastroTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroTurmasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuCadastroTurmasActionPerformed
-
-    private void menuGestaoSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestaoSalaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuGestaoSalaActionPerformed
-
     private void txtNomeDaDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeDaDisciplinaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeDaDisciplinaActionPerformed
-
-    private void botaoRadioQuartaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioQuartaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRadioQuartaActionPerformed
-
-    private void botaoRadioTercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioTercaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRadioTercaActionPerformed
-
-    private void botaoRadioSextaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioSextaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRadioSextaActionPerformed
-
-    private void botaoRadioQuintaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioQuintaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRadioQuintaActionPerformed
 
     private void botaoAdicionarHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarHorariosActionPerformed
 
@@ -478,44 +291,19 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
     private javax.swing.JButton botaoAdicionarHorarios;
     private javax.swing.JButton botaoAlocar;
     private javax.swing.JButton botaoCancelar;
-    private javax.swing.JRadioButton botaoRadioQuarta;
-    private javax.swing.JRadioButton botaoRadioQuinta;
-    private javax.swing.JRadioButton botaoRadioSegunda;
-    private javax.swing.JRadioButton botaoRadioSexta;
-    private javax.swing.JRadioButton botaoRadioTerca;
+    private javax.swing.JCheckBox caixaSelecaoQuarta;
+    private javax.swing.JCheckBox caixaSelecaoQuinta;
+    private javax.swing.JCheckBox caixaSelecaoSegunda;
+    private javax.swing.JCheckBox caixaSelecaoSexta;
+    private javax.swing.JCheckBox caixaSelecaoTerca;
     private javax.swing.JComboBox<String> combo1;
     private javax.swing.JComboBox<String> combo2;
     private javax.swing.JComboBox<String> combo3;
     private javax.swing.JComboBox<String> combo4;
     private javax.swing.JComboBox<String> combo5;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel labelDias;
     private javax.swing.JLabel labelHorarios;
     private javax.swing.JLabel labelNomeDaDisciplina;
-    private javax.swing.JMenu menuAjuda;
-    private javax.swing.JMenuItem menuAjudaAtalhos;
-    private javax.swing.JMenuItem menuAjudaDocumentacao;
-    private javax.swing.JMenuItem menuAjudaExemploDeTabela;
-    private javax.swing.JMenuItem menuAjudaSobreNos;
-    private javax.swing.JMenuBar menuBarra;
-    private javax.swing.JMenu menuCadastro;
-    private javax.swing.JMenuItem menuCadastroDisciplina;
-    private javax.swing.JMenuItem menuCadastroHorarios;
-    private javax.swing.JMenuItem menuCadastroProfessores;
-    private javax.swing.JMenuItem menuCadastroSalas;
-    private javax.swing.JMenuItem menuCadastroTurmas;
-    private javax.swing.JMenu menuGestao;
-    private javax.swing.JMenuItem menuGestaoSala;
-    private javax.swing.JMenuItem menuGestaoTurma;
-    private javax.swing.JMenu menuTabela;
-    private javax.swing.JMenuItem menuTabelaAbrirArquivo;
-    private javax.swing.JMenuItem menuTabelaExportar;
-    private javax.swing.JMenuItem menuTabelaNovoProjeto;
-    private javax.swing.JMenuItem menuTabelaProjetosRecentes;
-    private javax.swing.JMenuItem menuTabelaSair;
-    private javax.swing.JMenuItem menuTabelaSalvarProjeto;
-    private javax.swing.JMenuItem menuTabelaSalvarProjetoComo;
     private javax.swing.JPanel painelComboBox;
     private javax.swing.JTextField txtNomeDaDisciplina;
     // End of variables declaration//GEN-END:variables

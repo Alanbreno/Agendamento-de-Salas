@@ -5,18 +5,20 @@
  */
 package View;
 
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JTable;
 
 /**
  *
  * @author Alan Breno
  */
-public class TelaMudandoHorarios extends javax.swing.JFrame {
+public class TelaGestao extends javax.swing.JFrame {
 
     /**
-     * Creates new form TelaPrincipal
+     * Creates new form TelaCadastro
      */
-    public TelaMudandoHorarios() {
+    public TelaGestao() {
         initComponents();
     }
 
@@ -29,14 +31,12 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelTitulo = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabelaHorariosSalas = new javax.swing.JTable();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaMudandoHorarioDisciplina = new javax.swing.JTable();
-        botaoAlocarDisciplina = new javax.swing.JButton();
-        botaoCancelar = new javax.swing.JButton();
-        botaoSalvar = new javax.swing.JButton();
+        grupoBotaoHora = new javax.swing.ButtonGroup();
+        painelComGuiasCadastro = new javax.swing.JTabbedPane();
+        painelTurmas = new javax.swing.JPanel();
+        painelRolagemTurmas = new javax.swing.JScrollPane();
+        painelSalas = new javax.swing.JPanel();
+        painelRolagemSalas = new javax.swing.JScrollPane();
         menuBarra = new javax.swing.JMenuBar();
         menuTabela = new javax.swing.JMenu();
         menuTabelaNovoProjeto = new javax.swing.JMenuItem();
@@ -64,64 +64,41 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
         menuAjudaSobreNos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema de Alocação");
+        setTitle("Cadastro");
         setExtendedState(6);
         setMinimumSize(new java.awt.Dimension(1024, 768));
-        setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        labelTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitulo.setText("Sala 4");
-        labelTitulo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        labelTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        painelComGuiasCadastro.setPreferredSize(new java.awt.Dimension(100, 600));
 
-        tabelaHorariosSalas.setAutoCreateRowSorter(true);
-        tabelaHorariosSalas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tabelaHorariosSalas.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        tabelaHorariosSalas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        painelTurmas.setPreferredSize(new java.awt.Dimension(800, 600));
 
-            },
-            new String [] {
-                "07:30", "07:30", "07:30", "07:30", "07:30"
-            }
-        ));
-        tabelaHorariosSalas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
-        tabelaHorariosSalas.setColumnSelectionAllowed(true);
-        tabelaHorariosSalas.setMaximumSize(new java.awt.Dimension(2147483647, 1));
-        tabelaHorariosSalas.setMinimumSize(new java.awt.Dimension(75, 30));
-        jScrollPane2.setViewportView(tabelaHorariosSalas);
+        javax.swing.GroupLayout painelTurmasLayout = new javax.swing.GroupLayout(painelTurmas);
+        painelTurmas.setLayout(painelTurmasLayout);
+        painelTurmasLayout.setHorizontalGroup(
+            painelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(painelRolagemTurmas, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+        );
+        painelTurmasLayout.setVerticalGroup(
+            painelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(painelRolagemTurmas, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+        );
 
-        tabelaMudandoHorarioDisciplina.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        painelComGuiasCadastro.addTab("Turmas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/images (2).jpg")), painelTurmas); // NOI18N
 
-            },
-            new String [] {
-                "Disciplina", "Carga Horária", "Professor"
-            }
-        ));
-        jScrollPane1.setViewportView(tabelaMudandoHorarioDisciplina);
+        painelSalas.setPreferredSize(new java.awt.Dimension(795, 575));
 
-        botaoAlocarDisciplina.setText("Alocar Discplina");
-        botaoAlocarDisciplina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoAlocarDisciplinaActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout painelSalasLayout = new javax.swing.GroupLayout(painelSalas);
+        painelSalas.setLayout(painelSalasLayout);
+        painelSalasLayout.setHorizontalGroup(
+            painelSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(painelRolagemSalas, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+        );
+        painelSalasLayout.setVerticalGroup(
+            painelSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(painelRolagemSalas, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+        );
 
-        botaoCancelar.setText("Cancelar");
-        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCancelarActionPerformed(evt);
-            }
-        });
-
-        botaoSalvar.setText("Salvar");
-        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoSalvarActionPerformed(evt);
-            }
-        });
+        painelComGuiasCadastro.addTab("Salas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/images (1).png")), painelSalas); // NOI18N
 
         menuTabela.setText("Tabela");
 
@@ -231,41 +208,28 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 294, Short.MAX_VALUE)
-                        .addComponent(botaoAlocarDisciplina)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
-                        .addComponent(botaoCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoSalvar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)
-                    .addComponent(labelTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(50, 50, 50))
+            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoAlocarDisciplina)
-                    .addComponent(botaoCancelar)
-                    .addComponent(botaoSalvar))
-                .addContainerGap(22, Short.MAX_VALUE))
+            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(816, 639));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuTabelaNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaNovoProjetoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuTabelaNovoProjetoActionPerformed
+
+    private void menuTabelaAbrirArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaAbrirArquivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuTabelaAbrirArquivoActionPerformed
+
+    private void menuTabelaSalvarProjetoComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaSalvarProjetoComoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuTabelaSalvarProjetoComoActionPerformed
 
     private void menuCadastroTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroTurmasActionPerformed
         // TODO add your handling code here:
@@ -274,33 +238,6 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
     private void menuGestaoSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestaoSalaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuGestaoSalaActionPerformed
-
-    private void menuTabelaSalvarProjetoComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaSalvarProjetoComoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuTabelaSalvarProjetoComoActionPerformed
-
-    private void menuTabelaAbrirArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaAbrirArquivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuTabelaAbrirArquivoActionPerformed
-
-    private void menuTabelaNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaNovoProjetoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuTabelaNovoProjetoActionPerformed
-
-    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoCancelarActionPerformed
-
-    private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        
-    }//GEN-LAST:event_botaoSalvarActionPerformed
-
-    private void botaoAlocarDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlocarDisciplinaActionPerformed
-        
-        TelaAlocarDisciplinas telaAlocarDisciplinas = new TelaAlocarDisciplinas(this,true);
-        telaAlocarDisciplinas.setVisible(true);
-        
-    }//GEN-LAST:event_botaoAlocarDisciplinaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,36 +256,29 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaMudandoHorarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaMudandoHorarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaMudandoHorarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaMudandoHorarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaMudandoHorarios().setVisible(true);
+                new TelaGestao().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoAlocarDisciplina;
-    private javax.swing.JButton botaoCancelar;
-    private javax.swing.JButton botaoSalvar;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.ButtonGroup grupoBotaoHora;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JLabel labelTitulo;
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenuItem menuAjudaAtalhos;
     private javax.swing.JMenuItem menuAjudaDocumentacao;
@@ -372,7 +302,10 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuTabelaSair;
     private javax.swing.JMenuItem menuTabelaSalvarProjeto;
     private javax.swing.JMenuItem menuTabelaSalvarProjetoComo;
-    private javax.swing.JTable tabelaHorariosSalas;
-    private javax.swing.JTable tabelaMudandoHorarioDisciplina;
+    private javax.swing.JTabbedPane painelComGuiasCadastro;
+    private javax.swing.JScrollPane painelRolagemSalas;
+    private javax.swing.JScrollPane painelRolagemTurmas;
+    private javax.swing.JPanel painelSalas;
+    private javax.swing.JPanel painelTurmas;
     // End of variables declaration//GEN-END:variables
 }

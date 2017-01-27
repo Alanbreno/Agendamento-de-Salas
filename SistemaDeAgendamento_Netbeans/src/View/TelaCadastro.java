@@ -7,6 +7,7 @@ package View;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JTable;
 
 /**
  *
@@ -83,6 +84,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro");
         setExtendedState(6);
+        setMinimumSize(new java.awt.Dimension(1024, 768));
+        setPreferredSize(new java.awt.Dimension(1024, 768));
 
         painelComGuiasCadastro.setPreferredSize(new java.awt.Dimension(100, 600));
 
