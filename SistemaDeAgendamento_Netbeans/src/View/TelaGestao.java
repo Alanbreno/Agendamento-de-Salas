@@ -18,8 +18,9 @@ public class TelaGestao extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastro
      */
-    public TelaGestao() {
+    public TelaGestao(int indicePainel) {
         initComponents();
+        painelComGuiasGestao.setSelectedIndex(indicePainel);
     }
 
     /**
@@ -32,7 +33,7 @@ public class TelaGestao extends javax.swing.JFrame {
     private void initComponents() {
 
         grupoBotaoHora = new javax.swing.ButtonGroup();
-        painelComGuiasCadastro = new javax.swing.JTabbedPane();
+        painelComGuiasGestao = new javax.swing.JTabbedPane();
         painelTurmas = new javax.swing.JPanel();
         painelRolagemTurmas = new javax.swing.JScrollPane();
         painelSalas = new javax.swing.JPanel();
@@ -68,7 +69,7 @@ public class TelaGestao extends javax.swing.JFrame {
         setExtendedState(6);
         setMinimumSize(new java.awt.Dimension(1024, 768));
 
-        painelComGuiasCadastro.setPreferredSize(new java.awt.Dimension(100, 600));
+        painelComGuiasGestao.setPreferredSize(new java.awt.Dimension(100, 600));
 
         painelTurmas.setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -83,7 +84,7 @@ public class TelaGestao extends javax.swing.JFrame {
             .addComponent(painelRolagemTurmas, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
         );
 
-        painelComGuiasCadastro.addTab("Turmas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/images (2).jpg")), painelTurmas); // NOI18N
+        painelComGuiasGestao.addTab("Turmas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/images (2).jpg")), painelTurmas); // NOI18N
 
         painelSalas.setPreferredSize(new java.awt.Dimension(795, 575));
 
@@ -98,7 +99,7 @@ public class TelaGestao extends javax.swing.JFrame {
             .addComponent(painelRolagemSalas, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
         );
 
-        painelComGuiasCadastro.addTab("Salas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/images (1).png")), painelSalas); // NOI18N
+        painelComGuiasGestao.addTab("Salas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/images (1).png")), painelSalas); // NOI18N
 
         menuTabela.setText("Tabela");
 
@@ -149,12 +150,27 @@ public class TelaGestao extends javax.swing.JFrame {
         menuCadastro.setText("Cadastro");
 
         menuCadastroProfessores.setText("Cadastro de Professores");
+        menuCadastroProfessores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroProfessoresActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menuCadastroProfessores);
 
         menuCadastroDisciplina.setText("Cadastro de Disciplinas");
+        menuCadastroDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroDisciplinaActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menuCadastroDisciplina);
 
         menuCadastroSalas.setText("Cadastro de Salas");
+        menuCadastroSalas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroSalasActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menuCadastroSalas);
 
         menuCadastroTurmas.setText("Cadastro de Turmas");
@@ -166,6 +182,11 @@ public class TelaGestao extends javax.swing.JFrame {
         menuCadastro.add(menuCadastroTurmas);
 
         menuCadastroHorarios.setText("Cadastro de Horários");
+        menuCadastroHorarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroHorariosActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menuCadastroHorarios);
 
         menuBarra.add(menuCadastro);
@@ -173,6 +194,11 @@ public class TelaGestao extends javax.swing.JFrame {
         menuGestao.setText("Gestão");
 
         menuGestaoTurma.setText("Turma");
+        menuGestaoTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGestaoTurmaActionPerformed(evt);
+            }
+        });
         menuGestao.add(menuGestaoTurma);
 
         menuGestaoSala.setText("Sala");
@@ -208,11 +234,11 @@ public class TelaGestao extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(painelComGuiasGestao, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(painelComGuiasGestao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -231,12 +257,60 @@ public class TelaGestao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuTabelaSalvarProjetoComoActionPerformed
 
+    private void menuCadastroProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroProfessoresActionPerformed
+
+        JFrame telaCadastro = new TelaCadastro(1);
+        telaCadastro.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuCadastroProfessoresActionPerformed
+
+    private void menuCadastroDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroDisciplinaActionPerformed
+
+        JFrame telaCadastro = new TelaCadastro(0);
+        telaCadastro.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuCadastroDisciplinaActionPerformed
+
+    private void menuCadastroSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroSalasActionPerformed
+
+        JFrame telaCadastro = new TelaCadastro(2);
+        telaCadastro.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuCadastroSalasActionPerformed
+
     private void menuCadastroTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroTurmasActionPerformed
-        // TODO add your handling code here:
+
+        JFrame telaCadastro = new TelaCadastro(3);
+        telaCadastro.setVisible(true);
+        dispose();
+
     }//GEN-LAST:event_menuCadastroTurmasActionPerformed
 
+    private void menuCadastroHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroHorariosActionPerformed
+
+        JFrame telaCadastro = new TelaCadastro(4);
+        telaCadastro.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuCadastroHorariosActionPerformed
+
+    private void menuGestaoTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestaoTurmaActionPerformed
+
+        TelaGestao telaGestao = new TelaGestao(0);
+        telaGestao.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuGestaoTurmaActionPerformed
+
     private void menuGestaoSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestaoSalaActionPerformed
-        // TODO add your handling code here:
+
+        TelaGestao telaGestao = new TelaGestao(1);
+        telaGestao.setVisible(true);
+        dispose();
+
     }//GEN-LAST:event_menuGestaoSalaActionPerformed
 
     /**
@@ -270,7 +344,7 @@ public class TelaGestao extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaGestao().setVisible(true);
+                new TelaGestao(1).setVisible(true);
             }
         });
     }
@@ -302,7 +376,7 @@ public class TelaGestao extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuTabelaSair;
     private javax.swing.JMenuItem menuTabelaSalvarProjeto;
     private javax.swing.JMenuItem menuTabelaSalvarProjetoComo;
-    private javax.swing.JTabbedPane painelComGuiasCadastro;
+    private javax.swing.JTabbedPane painelComGuiasGestao;
     private javax.swing.JScrollPane painelRolagemSalas;
     private javax.swing.JScrollPane painelRolagemTurmas;
     private javax.swing.JPanel painelSalas;

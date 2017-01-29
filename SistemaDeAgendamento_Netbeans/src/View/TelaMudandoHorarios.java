@@ -5,6 +5,7 @@
  */
 package View;
 
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -172,12 +173,27 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
         menuCadastro.setText("Cadastro");
 
         menuCadastroProfessores.setText("Cadastro de Professores");
+        menuCadastroProfessores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroProfessoresActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menuCadastroProfessores);
 
         menuCadastroDisciplina.setText("Cadastro de Disciplinas");
+        menuCadastroDisciplina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroDisciplinaActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menuCadastroDisciplina);
 
         menuCadastroSalas.setText("Cadastro de Salas");
+        menuCadastroSalas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroSalasActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menuCadastroSalas);
 
         menuCadastroTurmas.setText("Cadastro de Turmas");
@@ -189,6 +205,11 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
         menuCadastro.add(menuCadastroTurmas);
 
         menuCadastroHorarios.setText("Cadastro de Horários");
+        menuCadastroHorarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroHorariosActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menuCadastroHorarios);
 
         menuBarra.add(menuCadastro);
@@ -196,6 +217,11 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
         menuGestao.setText("Gestão");
 
         menuGestaoTurma.setText("Turma");
+        menuGestaoTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGestaoTurmaActionPerformed(evt);
+            }
+        });
         menuGestao.add(menuGestaoTurma);
 
         menuGestaoSala.setText("Sala");
@@ -252,7 +278,7 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
@@ -260,32 +286,12 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
                     .addComponent(botaoAlocarDisciplina)
                     .addComponent(botaoCancelar)
                     .addComponent(botaoSalvar))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(816, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void menuCadastroTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroTurmasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuCadastroTurmasActionPerformed
-
-    private void menuGestaoSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestaoSalaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuGestaoSalaActionPerformed
-
-    private void menuTabelaSalvarProjetoComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaSalvarProjetoComoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuTabelaSalvarProjetoComoActionPerformed
-
-    private void menuTabelaAbrirArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaAbrirArquivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuTabelaAbrirArquivoActionPerformed
-
-    private void menuTabelaNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaNovoProjetoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuTabelaNovoProjetoActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         // TODO add your handling code here:
@@ -301,6 +307,74 @@ public class TelaMudandoHorarios extends javax.swing.JFrame {
         telaAlocarDisciplinas.setVisible(true);
         
     }//GEN-LAST:event_botaoAlocarDisciplinaActionPerformed
+
+    private void menuTabelaNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaNovoProjetoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuTabelaNovoProjetoActionPerformed
+
+    private void menuTabelaAbrirArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaAbrirArquivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuTabelaAbrirArquivoActionPerformed
+
+    private void menuTabelaSalvarProjetoComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaSalvarProjetoComoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuTabelaSalvarProjetoComoActionPerformed
+
+    private void menuCadastroProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroProfessoresActionPerformed
+
+        JFrame telaCadastro = new TelaCadastro(1);
+        telaCadastro.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuCadastroProfessoresActionPerformed
+
+    private void menuCadastroDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroDisciplinaActionPerformed
+
+        JFrame telaCadastro = new TelaCadastro(0);
+        telaCadastro.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuCadastroDisciplinaActionPerformed
+
+    private void menuCadastroSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroSalasActionPerformed
+
+        JFrame telaCadastro = new TelaCadastro(2);
+        telaCadastro.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuCadastroSalasActionPerformed
+
+    private void menuCadastroTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroTurmasActionPerformed
+
+        JFrame telaCadastro = new TelaCadastro(3);
+        telaCadastro.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuCadastroTurmasActionPerformed
+
+    private void menuCadastroHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroHorariosActionPerformed
+
+        JFrame telaCadastro = new TelaCadastro(4);
+        telaCadastro.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuCadastroHorariosActionPerformed
+
+    private void menuGestaoTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestaoTurmaActionPerformed
+
+        TelaGestao telaGestao = new TelaGestao(0);
+        telaGestao.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuGestaoTurmaActionPerformed
+
+    private void menuGestaoSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestaoSalaActionPerformed
+
+        TelaGestao telaGestao = new TelaGestao(1);
+        telaGestao.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_menuGestaoSalaActionPerformed
 
     /**
      * @param args the command line arguments
