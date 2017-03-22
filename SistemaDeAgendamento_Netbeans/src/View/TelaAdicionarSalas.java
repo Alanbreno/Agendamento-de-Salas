@@ -5,6 +5,10 @@
  */
 package View;
 
+import DAO.DisciplinaJpaController;
+import DAO.SalaJpaController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alan Breno
@@ -35,7 +39,7 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
         labelCapacidade = new javax.swing.JLabel();
         labelBloco = new javax.swing.JLabel();
         labelObservacao = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        txtIdentificacao = new javax.swing.JTextField();
         txtCapacidade = new javax.swing.JTextField();
         txtBloco = new javax.swing.JTextField();
         txtObservacao = new javax.swing.JTextField();
@@ -50,7 +54,7 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
         labelInformacoes.setText("Informações Salas ");
 
         labelNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelNome.setText("Nome");
+        labelNome.setText("Identificação");
 
         labelCapacidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelCapacidade.setText("Capacidade");
@@ -68,6 +72,11 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
         });
 
         botaoCancelar.setText("Cancelar");
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelarActionPerformed(evt);
+            }
+        });
 
         botaoSalvar.setText("Salvar");
         botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,11 +107,11 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
                         .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelInformacoes)
                             .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(txtIdentificacao, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                                 .addComponent(txtCapacidade)
                                 .addComponent(txtBloco)
                                 .addComponent(txtObservacao)))))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         painelAdicionarSalasLayout.setVerticalGroup(
             painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +121,7 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdentificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCapacidade)
@@ -152,8 +161,28 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCapacidadeActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        // TODO add your handling code here:
+        if (!"".equals(txtIdentificacao.getText()) && !"".equals(txtBloco.getText()) && !"".equals(txtCapacidade.getText()) && !"".equals(txtObservacao.getText())){
+            Entidades.Sala s = new Entidades.Sala();
+            s.setSalaNumAluno((short)Integer.parseInt(txtCapacidade.getText()));
+            s.setSalaObservacao(txtObservacao.getText());
+            //faltou criar campos no banco de dados para o restante das informações
+            SalaJpaController j = new SalaJpaController();
+            j.create(s);
+
+            txtCapacidade.setText("");
+            txtIdentificacao.setText("");
+            txtBloco.setText("");
+            txtObservacao.setText("");
+            JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro - Preencha todos os campos!");
+            
+        }   
     }//GEN-LAST:event_botaoSalvarActionPerformed
+
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,7 +238,7 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
     private javax.swing.JPanel painelAdicionarSalas;
     private javax.swing.JTextField txtBloco;
     private javax.swing.JTextField txtCapacidade;
-    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtIdentificacao;
     private javax.swing.JTextField txtObservacao;
     // End of variables declaration//GEN-END:variables
 }
