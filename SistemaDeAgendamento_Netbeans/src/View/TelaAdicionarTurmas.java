@@ -5,7 +5,6 @@
  */
 package View;
 
-import DAO.ProfessorJpaController;
 import DAO.TurmaJpaController;
 import javax.swing.JOptionPane;
 
@@ -35,17 +34,19 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
         grupoBotoesStatus = new javax.swing.ButtonGroup();
         painelAdicionarTurmas = new javax.swing.JPanel();
         labelInformacoes = new javax.swing.JLabel();
-        labelIndetificacao = new javax.swing.JLabel();
+        labelNome = new javax.swing.JLabel();
         labelSemestre = new javax.swing.JLabel();
         labelNumeroDeAlunos = new javax.swing.JLabel();
+        labelStatus = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtSemestre = new javax.swing.JTextField();
         txtNumeroDeAlunos = new javax.swing.JTextField();
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
-        labelPossuiSubTurmas = new javax.swing.JLabel();
-        botaoRadioSim1 = new javax.swing.JRadioButton();
-        botaoRadioNao1 = new javax.swing.JRadioButton();
+        botaoRadioNao = new javax.swing.JRadioButton();
+        botaoRadioSim = new javax.swing.JRadioButton();
+        labelTurno = new javax.swing.JLabel();
+        txtTurno = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Turmas");
@@ -54,14 +55,17 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
         labelInformacoes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInformacoes.setText("Informações Turmas");
 
-        labelIndetificacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelIndetificacao.setText("Identificação");
+        labelNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelNome.setText("Identificação");
 
         labelSemestre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelSemestre.setText("Semestre");
 
         labelNumeroDeAlunos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelNumeroDeAlunos.setText("Nº de Alunos");
+
+        labelStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelStatus.setText("Status");
 
         txtSemestre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,24 +87,21 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
             }
         });
 
-        labelPossuiSubTurmas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelPossuiSubTurmas.setText("Possui sub-turmas?");
-
-        botaoRadioSim1.setText("Sim");
-        botaoRadioSim1.setBorderPainted(true);
-        botaoRadioSim1.addActionListener(new java.awt.event.ActionListener() {
+        grupoBotoesStatus.add(botaoRadioNao);
+        botaoRadioNao.setText("Não");
+        botaoRadioNao.setBorderPainted(true);
+        botaoRadioNao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoRadioSim1ActionPerformed(evt);
+                botaoRadioNaoActionPerformed(evt);
             }
         });
 
-        botaoRadioNao1.setText("Não");
-        botaoRadioNao1.setBorderPainted(true);
-        botaoRadioNao1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoRadioNao1ActionPerformed(evt);
-            }
-        });
+        grupoBotoesStatus.add(botaoRadioSim);
+        botaoRadioSim.setText("Sim");
+        botaoRadioSim.setBorderPainted(true);
+
+        labelTurno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelTurno.setText("Turno");
 
         javax.swing.GroupLayout painelAdicionarTurmasLayout = new javax.swing.GroupLayout(painelAdicionarTurmas);
         painelAdicionarTurmas.setLayout(painelAdicionarTurmasLayout);
@@ -111,32 +112,30 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
                     .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelStatus)
+                            .addComponent(labelNumeroDeAlunos)
+                            .addComponent(labelSemestre)
+                            .addComponent(labelNome)
+                            .addComponent(labelTurno))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNome)
+                            .addComponent(txtSemestre)
+                            .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
-                                .addComponent(botaoCancelar)
-                                .addGap(99, 99, 99)
-                                .addComponent(botaoSalvar))
-                            .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(labelPossuiSubTurmas)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(botaoRadioSim1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(botaoRadioNao1))
-                                .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
-                                    .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(labelNumeroDeAlunos)
-                                        .addComponent(labelSemestre)
-                                        .addComponent(labelIndetificacao))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtNome)
-                                        .addComponent(txtSemestre)
-                                        .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(botaoRadioSim)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botaoRadioNao))
+                            .addComponent(txtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
                         .addGap(153, 153, 153)
-                        .addComponent(labelInformacoes)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addComponent(labelInformacoes))
+                    .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(botaoCancelar)
+                        .addGap(99, 99, 99)
+                        .addComponent(botaoSalvar)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         painelAdicionarTurmasLayout.setVerticalGroup(
             painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +144,7 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
                 .addComponent(labelInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelIndetificacao)
+                    .addComponent(labelNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -157,14 +156,18 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
                     .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPossuiSubTurmas, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoRadioSim1)
-                    .addComponent(botaoRadioNao1))
-                .addGap(81, 81, 81)
+                    .addComponent(txtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTurno))
+                .addGap(30, 30, 30)
+                .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoRadioSim)
+                    .addComponent(botaoRadioNao))
+                .addGap(44, 44, 44)
                 .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
                     .addComponent(botaoSalvar))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,10 +190,17 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
     }//GEN-LAST:event_txtSemestreActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        if (!"".equals(txtNome.getText()) && !"".equals(txtNumeroDeAlunos.getText()) && !"".equals(txtSemestre.getText()) ){
+        if (!"".equals(txtNome.getText()) && !"".equals(txtNumeroDeAlunos.getText()) && !"".equals(txtSemestre.getText()) && (botaoRadioSim.isSelected() == true || botaoRadioNao.isSelected() == true) ){
             Entidades.Turma t = new Entidades.Turma();
+            t.setTurmaTurno(txtTurno.getText());
             t.setTurmaNumAluno((short)Integer.parseInt(txtNumeroDeAlunos.getText()));
-            // Observar colunas a se acrescentar nos campos
+            t.setTurmaSemestre((short)Integer.parseInt(txtSemestre.getText()));
+            if (botaoRadioSim.isSelected() ==  true){
+                t.setTurmaStatus(true);
+            }else{
+                t.setTurmaStatus(false);
+            }
+            
             
             TurmaJpaController j = new TurmaJpaController();
             j.create(t);
@@ -198,6 +208,8 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
             txtNome.setText("");
             txtNumeroDeAlunos.setText("");
             txtSemestre.setText("");
+            txtTurno.setText("");
+            
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
         }else{
             JOptionPane.showMessageDialog(null, "Erro - Preencha todos os campos!");
@@ -205,13 +217,9 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
         } 
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
-    private void botaoRadioNao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioNao1ActionPerformed
+    private void botaoRadioNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioNaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRadioNao1ActionPerformed
-
-    private void botaoRadioSim1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioSim1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRadioSim1ActionPerformed
+    }//GEN-LAST:event_botaoRadioNaoActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         this.dispose();
@@ -261,18 +269,20 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
-    private javax.swing.JRadioButton botaoRadioNao1;
-    private javax.swing.JRadioButton botaoRadioSim1;
+    private javax.swing.JRadioButton botaoRadioNao;
+    private javax.swing.JRadioButton botaoRadioSim;
     private javax.swing.JButton botaoSalvar;
     private javax.swing.ButtonGroup grupoBotoesStatus;
-    private javax.swing.JLabel labelIndetificacao;
     private javax.swing.JLabel labelInformacoes;
+    private javax.swing.JLabel labelNome;
     private javax.swing.JLabel labelNumeroDeAlunos;
-    private javax.swing.JLabel labelPossuiSubTurmas;
     private javax.swing.JLabel labelSemestre;
+    private javax.swing.JLabel labelStatus;
+    private javax.swing.JLabel labelTurno;
     private javax.swing.JPanel painelAdicionarTurmas;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumeroDeAlunos;
     private javax.swing.JTextField txtSemestre;
+    private javax.swing.JTextField txtTurno;
     // End of variables declaration//GEN-END:variables
 }

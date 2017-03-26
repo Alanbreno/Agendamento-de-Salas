@@ -30,7 +30,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Turma.findAll", query = "SELECT t FROM Turma t"),
     @NamedQuery(name = "Turma.findByTurmaId", query = "SELECT t FROM Turma t WHERE t.turmaId = :turmaId"),
-    @NamedQuery(name = "Turma.findByTurmaNumAluno", query = "SELECT t FROM Turma t WHERE t.turmaNumAluno = :turmaNumAluno")})
+    @NamedQuery(name = "Turma.findByTurmaNumAluno", query = "SELECT t FROM Turma t WHERE t.turmaNumAluno = :turmaNumAluno"),
+    @NamedQuery(name = "Turma.findByTurmaStatus", query = "SELECT t FROM Turma t WHERE t.turmaStatus = :turmaStatus"),
+    @NamedQuery(name = "Turma.findByTurmaTurno", query = "SELECT t FROM Turma t WHERE t.turmaTurno = :turmaTurno"),
+    @NamedQuery(name = "Turma.findByTurmaSemestre", query = "SELECT t FROM Turma t WHERE t.turmaSemestre = :turmaSemestre")})
 public class Turma implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +45,15 @@ public class Turma implements Serializable {
     @Basic(optional = false)
     @Column(name = "turma_num_aluno")
     private short turmaNumAluno;
+    @Basic(optional = false)
+    @Column(name = "turma_status")
+    private boolean turmaStatus;
+    @Basic(optional = false)
+    @Column(name = "turma_turno")
+    private String turmaTurno;
+    @Basic(optional = false)
+    @Column(name = "turma_semestre")
+    private short turmaSemestre;
     @ManyToMany(mappedBy = "turmaCollection")
     private Collection<Disciplina> disciplinaCollection;
 
@@ -52,9 +64,12 @@ public class Turma implements Serializable {
         this.turmaId = turmaId;
     }
 
-    public Turma(Integer turmaId, short turmaNumAluno) {
+    public Turma(Integer turmaId, short turmaNumAluno, boolean turmaStatus, String turmaTurno, short turmaSemestre) {
         this.turmaId = turmaId;
         this.turmaNumAluno = turmaNumAluno;
+        this.turmaStatus = turmaStatus;
+        this.turmaTurno = turmaTurno;
+        this.turmaSemestre = turmaSemestre;
     }
 
     public Integer getTurmaId() {
@@ -71,6 +86,30 @@ public class Turma implements Serializable {
 
     public void setTurmaNumAluno(short turmaNumAluno) {
         this.turmaNumAluno = turmaNumAluno;
+    }
+
+    public boolean getTurmaStatus() {
+        return turmaStatus;
+    }
+
+    public void setTurmaStatus(boolean turmaStatus) {
+        this.turmaStatus = turmaStatus;
+    }
+
+    public String getTurmaTurno() {
+        return turmaTurno;
+    }
+
+    public void setTurmaTurno(String turmaTurno) {
+        this.turmaTurno = turmaTurno;
+    }
+
+    public short getTurmaSemestre() {
+        return turmaSemestre;
+    }
+
+    public void setTurmaSemestre(short turmaSemestre) {
+        this.turmaSemestre = turmaSemestre;
     }
 
     @XmlTransient

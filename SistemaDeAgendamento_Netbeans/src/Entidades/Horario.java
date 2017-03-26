@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Horario.findAll", query = "SELECT h FROM Horario h"),
     @NamedQuery(name = "Horario.findByHorarioId", query = "SELECT h FROM Horario h WHERE h.horarioId = :horarioId"),
-    @NamedQuery(name = "Horario.findByHorarioHora", query = "SELECT h FROM Horario h WHERE h.horarioHora = :horarioHora")})
+    @NamedQuery(name = "Horario.findByHorarioInicial", query = "SELECT h FROM Horario h WHERE h.horarioInicial = :horarioInicial"),
+    @NamedQuery(name = "Horario.findByHorarioFinal", query = "SELECT h FROM Horario h WHERE h.horarioFinal = :horarioFinal")})
 public class Horario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,9 +46,13 @@ public class Horario implements Serializable {
     @Column(name = "horario_id")
     private Integer horarioId;
     @Basic(optional = false)
-    @Column(name = "horario_hora")
+    @Column(name = "horario_inicial")
     @Temporal(TemporalType.TIME)
-    private Date horarioHora;
+    private Date horarioInicial;
+    @Basic(optional = false)
+    @Column(name = "horario_final")
+    @Temporal(TemporalType.TIME)
+    private Date horarioFinal;
     @JoinTable(name = "sala_horario", joinColumns = {
         @JoinColumn(name = "horario_id", referencedColumnName = "horario_id")}, inverseJoinColumns = {
         @JoinColumn(name = "sala_id", referencedColumnName = "sala_id")})
@@ -68,9 +73,10 @@ public class Horario implements Serializable {
         this.horarioId = horarioId;
     }
 
-    public Horario(Integer horarioId, Date horarioHora) {
+    public Horario(Integer horarioId, Date horarioInicial, Date horarioFinal) {
         this.horarioId = horarioId;
-        this.horarioHora = horarioHora;
+        this.horarioInicial = horarioInicial;
+        this.horarioFinal = horarioFinal;
     }
 
     public Integer getHorarioId() {
@@ -81,12 +87,20 @@ public class Horario implements Serializable {
         this.horarioId = horarioId;
     }
 
-    public Date getHorarioHora() {
-        return horarioHora;
+    public Date getHorarioInicial() {
+        return horarioInicial;
     }
 
-    public void setHorarioHora(Date horarioHora) {
-        this.horarioHora = horarioHora;
+    public void setHorarioInicial(Date horarioInicial) {
+        this.horarioInicial = horarioInicial;
+    }
+
+    public Date getHorarioFinal() {
+        return horarioFinal;
+    }
+
+    public void setHorarioFinal(Date horarioFinal) {
+        this.horarioFinal = horarioFinal;
     }
 
     @XmlTransient

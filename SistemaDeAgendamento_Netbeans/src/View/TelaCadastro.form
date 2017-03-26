@@ -237,7 +237,7 @@
               <JTabbedPaneConstraints tabName="Disciplina">
                 <Property name="tabTitle" type="java.lang.String" value="Disciplina"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/images (2).jpg"/>
+                  <Image iconType="3" name="/Imagens/icone_cadastro.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -262,10 +262,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" pref="460" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="442" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Component id="botaoAdicionarDisciplina" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -346,7 +346,7 @@
               <JTabbedPaneConstraints tabName="Professor">
                 <Property name="tabTitle" type="java.lang.String" value="Professor"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/images (1).png"/>
+                  <Image iconType="3" name="/Imagens/icone_professor.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -371,10 +371,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" pref="460" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="442" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Component id="botaoAdicionarProfessor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -444,7 +444,7 @@
               <JTabbedPaneConstraints tabName="Sala">
                 <Property name="tabTitle" type="java.lang.String" value="Sala"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/images.jpg"/>
+                  <Image iconType="3" name="/Imagens/icone_sala.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -469,10 +469,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane3" pref="460" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" pref="442" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Component id="botaoAdicionarSala" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -542,7 +542,7 @@
               <JTabbedPaneConstraints tabName="Turma">
                 <Property name="tabTitle" type="java.lang.String" value="Turma"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/download.png"/>
+                  <Image iconType="3" name="/Imagens/icone_turma.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -567,10 +567,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane4" pref="460" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="442" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Component id="botaoAdicionarTurma" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -640,7 +640,7 @@
               <JTabbedPaneConstraints tabName="Hor&#xe1;rio">
                 <Property name="tabTitle" type="java.lang.String" value="Hor&#xe1;rio"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/images (8).png"/>
+                  <Image iconType="3" name="/Imagens/icone_relogio.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -672,14 +672,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane5" pref="460" max="32767" attributes="0"/>
+                      <Component id="jScrollPane5" pref="442" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="botaoAdicionarHorarios" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="botaoRadio12h" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="botaoRadio24h" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

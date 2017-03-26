@@ -83,20 +83,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         labelNomeDoPrograma1.setBackground(new java.awt.Color(255, 255, 255));
         labelNomeDoPrograma1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 36)); // NOI18N
         labelNomeDoPrograma1.setForeground(new java.awt.Color(0, 51, 102));
-        labelNomeDoPrograma1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelNomeDoPrograma1.setText("Sistema de Alocação");
+        labelNomeDoPrograma1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelNomeDoPrograma1.setText("  Sistema de");
         labelNomeDoPrograma1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         labelNomeDoPrograma2.setBackground(new java.awt.Color(255, 255, 255));
         labelNomeDoPrograma2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 36)); // NOI18N
         labelNomeDoPrograma2.setForeground(new java.awt.Color(0, 51, 102));
-        labelNomeDoPrograma2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelNomeDoPrograma2.setText("de Disciplinas - UFPA");
+        labelNomeDoPrograma2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelNomeDoPrograma2.setText("Agendamento");
         labelNomeDoPrograma2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         labelLogoDoPrograma.setBackground(new java.awt.Color(255, 255, 255));
         labelLogoDoPrograma.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelLogoDoPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/download (1).png"))); // NOI18N
+        labelLogoDoPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_logo.png"))); // NOI18N
         labelLogoDoPrograma.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         botaoNovoProjeto.setText("Novo Projeto");
@@ -109,9 +109,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelNovoProjeto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelNovoProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/images (8).png"))); // NOI18N
+        labelNovoProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_novo_projeto.png"))); // NOI18N
         labelNovoProjeto.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        labelNovoProjeto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        labelNovoProjeto.setBorder(null);
 
         botaoAbrirProjeto.setText("Abrir Projeto");
         botaoAbrirProjeto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -123,12 +123,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelAbrirProjeto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelAbrirProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/images (2).jpg"))); // NOI18N
+        labelAbrirProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_projeto.png"))); // NOI18N
         labelAbrirProjeto.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        labelAbrirProjeto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        labelAbrirProjeto.setBorder(null);
         labelAbrirProjeto.setPreferredSize(new java.awt.Dimension(54, 90));
 
-        botaoVizualizarDisciplinas.setText("<html><center>Vizualizar<br />Disciplinas<center/></html>");
+        botaoVizualizarDisciplinas.setText("<html><center>Visualizar<br />Disciplinas<center/></html>");
         botaoVizualizarDisciplinas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         botaoVizualizarDisciplinas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoVizualizarDisciplinas.setRolloverEnabled(false);
@@ -139,13 +139,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelVizualizarDisciplinas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelVizualizarDisciplinas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/images (1).png"))); // NOI18N
+        labelVizualizarDisciplinas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_visualizar_disciplinas.png"))); // NOI18N
         labelVizualizarDisciplinas.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        labelVizualizarDisciplinas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        labelVizualizarDisciplinas.setBorder(null);
         labelVizualizarDisciplinas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labelVizualizarDisciplinas.setPreferredSize(new java.awt.Dimension(54, 90));
 
-        botaoVizualizarProfessores.setText("<html><center>Vizualizar<br />professores<center/></html>");
+        botaoVizualizarProfessores.setText("<html><center>Visualizar<br />professores<center/></html>");
         botaoVizualizarProfessores.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         botaoVizualizarProfessores.setRolloverEnabled(false);
         botaoVizualizarProfessores.addActionListener(new java.awt.event.ActionListener() {
@@ -155,9 +155,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelVizualizarProfessores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelVizualizarProfessores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/download.png"))); // NOI18N
+        labelVizualizarProfessores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_professor.png"))); // NOI18N
         labelVizualizarProfessores.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        labelVizualizarProfessores.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        labelVizualizarProfessores.setBorder(null);
         labelVizualizarProfessores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labelVizualizarProfessores.setPreferredSize(new java.awt.Dimension(54, 90));
 
@@ -171,9 +171,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelGestaoDeSalas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelGestaoDeSalas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/download.png"))); // NOI18N
+        labelGestaoDeSalas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_sala.png"))); // NOI18N
         labelGestaoDeSalas.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        labelGestaoDeSalas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        labelGestaoDeSalas.setBorder(null);
         labelGestaoDeSalas.setPreferredSize(new java.awt.Dimension(54, 90));
 
         botaoCadastrar.setText("Cadastrar");
@@ -186,9 +186,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelCadastrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/download.png"))); // NOI18N
+        labelCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_cadastro.png"))); // NOI18N
         labelCadastrar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        labelCadastrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        labelCadastrar.setBorder(null);
         labelCadastrar.setPreferredSize(new java.awt.Dimension(54, 90));
 
         botaoGerarPDF.setText("Gerar PDF");
@@ -201,9 +201,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelGerarPDF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelGerarPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/download.png"))); // NOI18N
+        labelGerarPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_pdf.png"))); // NOI18N
         labelGerarPDF.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        labelGerarPDF.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        labelGerarPDF.setBorder(null);
         labelGerarPDF.setPreferredSize(new java.awt.Dimension(54, 90));
 
         botaoGestaoDeTurmas.setText("<html><center>Gestão<br />de turmas<center/></html>");
@@ -216,9 +216,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelGestaoDeTurmas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelGestaoDeTurmas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/download.png"))); // NOI18N
+        labelGestaoDeTurmas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_turma.png"))); // NOI18N
         labelGestaoDeTurmas.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        labelGestaoDeTurmas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        labelGestaoDeTurmas.setBorder(null);
         labelGestaoDeTurmas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labelGestaoDeTurmas.setPreferredSize(new java.awt.Dimension(54, 90));
 
@@ -384,28 +384,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(botaoGestaoDeSalas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelGestaoDeSalas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(269, 269, 269)
                 .addComponent(labelLogoDoPrograma)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(labelNomeDoPrograma2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelNomeDoPrograma1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelNomeDoPrograma1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelNomeDoPrograma2, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labelNomeDoPrograma1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(labelNomeDoPrograma2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelLogoDoPrograma, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(labelNomeDoPrograma1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelNomeDoPrograma2))
+                    .addComponent(labelLogoDoPrograma))
+                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoNovoProjeto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelNovoProjeto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,7 +414,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(botaoCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelGerarPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoGerarPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 35, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(labelVizualizarProfessores, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -428,7 +427,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(labelGestaoDeTurmas, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botaoGestaoDeTurmas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGap(66, 66, 66))
         );
 
         setSize(new java.awt.Dimension(816, 639));

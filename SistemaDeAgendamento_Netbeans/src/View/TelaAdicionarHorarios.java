@@ -5,6 +5,17 @@
  */
 package View;
 
+
+import DAO.HorarioJpaController;
+import Entidades.Horario;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alan Breno
@@ -139,7 +150,31 @@ public class TelaAdicionarHorarios extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        
+        if ((!"".equals(txtInicio.getText())) && (!"".equals(txtFinal.getText()))){
+            Horario h = new Horario();
+            SimpleDateFormat data = new SimpleDateFormat("HH:mm");
+            try {
+                Date dataFormatadaInicio = data.parse(txtInicio.getText());
+                Date dataFormatadaFinal = data.parse(txtFinal.getText());
+                h.setHorarioInicial(dataFormatadaInicio);
+                h.setHorarioFinal(dataFormatadaFinal);
+                
+                HorarioJpaController Horario = new HorarioJpaController();
+                Horario.create(h);
+                
+                JOptionPane.showMessageDialog(null, "Salvo com sucesso");
+                
+                txtInicio.setText("");
+                txtFinal.setText("");
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao salvar");
+            }
+            
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro - Preencha todos os campos!");
+            
+        }   
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
