@@ -56,11 +56,13 @@
                                   <Component id="labelNome" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtNome" max="32767" attributes="0"/>
-                                  <Component id="txtSemestre" max="32767" attributes="0"/>
-                                  <Component id="txtCargaHoraria" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtNumeroDeAlunos" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtNome" pref="200" max="32767" attributes="0"/>
+                                      <Component id="txtSemestre" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtCargaHoraria" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtNumeroDeAlunos" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -194,15 +196,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNome">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtSemestre">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSemestreActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtCargaHoraria">
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtNumeroDeAlunos">
-        </Component>
         <Component class="javax.swing.JButton" name="botaoCancelar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
@@ -249,6 +242,33 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Codigo"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="txtSemestre">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format format="#0" subtype="-1" type="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="txtCargaHoraria">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format format="#0" subtype="-1" type="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCargaHorariaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="txtNumeroDeAlunos">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format format="#0" subtype="-1" type="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumeroDeAlunosActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

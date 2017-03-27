@@ -39,11 +39,11 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
         labelBloco = new javax.swing.JLabel();
         labelObservacao = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        txtCapacidade = new javax.swing.JTextField();
         txtBloco = new javax.swing.JTextField();
         txtObservacao = new javax.swing.JTextField();
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
+        txtCapacidade = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Salas");
@@ -64,12 +64,6 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
         labelObservacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelObservacao.setText("Observação");
 
-        txtCapacidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCapacidadeActionPerformed(evt);
-            }
-        });
-
         botaoCancelar.setText("Cancelar");
         botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,17 +78,14 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
             }
         });
 
+        txtCapacidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
         javax.swing.GroupLayout painelAdicionarSalasLayout = new javax.swing.GroupLayout(painelAdicionarSalas);
         painelAdicionarSalas.setLayout(painelAdicionarSalasLayout);
         painelAdicionarSalasLayout.setHorizontalGroup(
             painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelAdicionarSalasLayout.createSequentialGroup()
                 .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelAdicionarSalasLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(botaoCancelar)
-                        .addGap(99, 99, 99)
-                        .addComponent(botaoSalvar))
                     .addGroup(painelAdicionarSalasLayout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,13 +94,17 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
                             .addComponent(labelNome, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelBloco, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelInformacoes)
-                            .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                .addComponent(txtCapacidade)
-                                .addComponent(txtBloco)
-                                .addComponent(txtObservacao)))))
+                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(txtBloco)
+                            .addComponent(txtObservacao)
+                            .addComponent(txtCapacidade)))
+                    .addGroup(painelAdicionarSalasLayout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(botaoCancelar)
+                        .addGap(99, 99, 99)
+                        .addComponent(botaoSalvar)))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         painelAdicionarSalasLayout.setVerticalGroup(
@@ -154,10 +149,6 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCapacidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCapacidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCapacidadeActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         if (!"".equals(txtNome.getText()) && !"".equals(txtBloco.getText()) && !"".equals(txtCapacidade.getText()) && !"".equals(txtObservacao.getText())){
@@ -237,7 +228,7 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
     private javax.swing.JLabel labelObservacao;
     private javax.swing.JPanel painelAdicionarSalas;
     private javax.swing.JTextField txtBloco;
-    private javax.swing.JTextField txtCapacidade;
+    private javax.swing.JFormattedTextField txtCapacidade;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtObservacao;
     // End of variables declaration//GEN-END:variables

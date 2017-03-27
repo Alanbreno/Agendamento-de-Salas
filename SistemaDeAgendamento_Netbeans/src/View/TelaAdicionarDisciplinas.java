@@ -44,15 +44,15 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
         labelNumeroDeAlunos = new javax.swing.JLabel();
         labeloPossuiSubTurmas = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        txtSemestre = new javax.swing.JTextField();
-        txtCargaHoraria = new javax.swing.JTextField();
-        txtNumeroDeAlunos = new javax.swing.JTextField();
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
         botaoRadioNao = new javax.swing.JRadioButton();
         botaoRadioSim = new javax.swing.JRadioButton();
         txtCodigo = new javax.swing.JTextField();
         labelCodigo = new javax.swing.JLabel();
+        txtSemestre = new javax.swing.JFormattedTextField();
+        txtCargaHoraria = new javax.swing.JFormattedTextField();
+        txtNumeroDeAlunos = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Disciplinas");
@@ -75,12 +75,6 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
 
         labeloPossuiSubTurmas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labeloPossuiSubTurmas.setText("Possui sub-turmas?");
-
-        txtSemestre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSemestreActionPerformed(evt);
-            }
-        });
 
         botaoCancelar.setText("Cancelar");
         botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +106,22 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
         labelCodigo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelCodigo.setText("Codigo");
 
+        txtSemestre.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        txtCargaHoraria.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtCargaHoraria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCargaHorariaActionPerformed(evt);
+            }
+        });
+
+        txtNumeroDeAlunos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtNumeroDeAlunos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumeroDeAlunosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelAdicionarDisiciplinasLayout = new javax.swing.GroupLayout(painelAdicionarDisiciplinas);
         painelAdicionarDisiciplinas.setLayout(painelAdicionarDisiciplinasLayout);
         painelAdicionarDisiciplinasLayout.setHorizontalGroup(
@@ -127,11 +137,12 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
                                 .addComponent(labelSemestre, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(labelNome, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNome)
-                                .addComponent(txtSemestre)
-                                .addComponent(txtCargaHoraria)
-                                .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(txtSemestre)
+                                    .addComponent(txtCargaHoraria))
+                                .addComponent(txtNumeroDeAlunos)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAdicionarDisiciplinasLayout.createSequentialGroup()
                             .addGap(123, 123, 123)
                             .addGroup(painelAdicionarDisiciplinasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,10 +219,6 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSemestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSemestreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSemestreActionPerformed
-
     private void botaoRadioNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioNaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoRadioNaoActionPerformed
@@ -250,6 +257,14 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
+
+    private void txtCargaHorariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCargaHorariaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCargaHorariaActionPerformed
+
+    private void txtNumeroDeAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroDeAlunosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumeroDeAlunosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,10 +322,10 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
     private javax.swing.JLabel labelSemestre;
     private javax.swing.JLabel labeloPossuiSubTurmas;
     private javax.swing.JPanel painelAdicionarDisiciplinas;
-    private javax.swing.JTextField txtCargaHoraria;
+    private javax.swing.JFormattedTextField txtCargaHoraria;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNumeroDeAlunos;
-    private javax.swing.JTextField txtSemestre;
+    private javax.swing.JFormattedTextField txtNumeroDeAlunos;
+    private javax.swing.JFormattedTextField txtSemestre;
     // End of variables declaration//GEN-END:variables
 }

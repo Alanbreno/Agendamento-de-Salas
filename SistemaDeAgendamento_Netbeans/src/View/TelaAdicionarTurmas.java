@@ -39,14 +39,14 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
         labelNumeroDeAlunos = new javax.swing.JLabel();
         labelStatus = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        txtSemestre = new javax.swing.JTextField();
-        txtNumeroDeAlunos = new javax.swing.JTextField();
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
         botaoRadioNao = new javax.swing.JRadioButton();
         botaoRadioSim = new javax.swing.JRadioButton();
         labelTurno = new javax.swing.JLabel();
         txtTurno = new javax.swing.JTextField();
+        txtSemestre = new javax.swing.JFormattedTextField();
+        txtNumeroDeAlunos = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Turmas");
@@ -66,12 +66,6 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
 
         labelStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelStatus.setText("Status");
-
-        txtSemestre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSemestreActionPerformed(evt);
-            }
-        });
 
         botaoCancelar.setText("Cancelar");
         botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +97,10 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
         labelTurno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelTurno.setText("Turno");
 
+        txtSemestre.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        txtNumeroDeAlunos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
         javax.swing.GroupLayout painelAdicionarTurmasLayout = new javax.swing.GroupLayout(painelAdicionarTurmas);
         painelAdicionarTurmas.setLayout(painelAdicionarTurmasLayout);
         painelAdicionarTurmasLayout.setHorizontalGroup(
@@ -120,13 +118,13 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(painelAdicionarTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNome)
+                            .addComponent(txtTurno, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(txtSemestre)
-                            .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
                                 .addComponent(botaoRadioSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(botaoRadioNao))
-                            .addComponent(txtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNumeroDeAlunos)))
                     .addGroup(painelAdicionarTurmasLayout.createSequentialGroup()
                         .addGap(153, 153, 153)
                         .addComponent(labelInformacoes))
@@ -184,10 +182,6 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtSemestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSemestreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSemestreActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         if (!"".equals(txtNome.getText()) && !"".equals(txtNumeroDeAlunos.getText()) && !"".equals(txtSemestre.getText()) && (botaoRadioSim.isSelected() == true || botaoRadioNao.isSelected() == true) ){
@@ -281,8 +275,8 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
     private javax.swing.JLabel labelTurno;
     private javax.swing.JPanel painelAdicionarTurmas;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNumeroDeAlunos;
-    private javax.swing.JTextField txtSemestre;
+    private javax.swing.JFormattedTextField txtNumeroDeAlunos;
+    private javax.swing.JFormattedTextField txtSemestre;
     private javax.swing.JTextField txtTurno;
     // End of variables declaration//GEN-END:variables
 }

@@ -46,8 +46,8 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
         botaoSalvar = new javax.swing.JButton();
         botaoRadioNao = new javax.swing.JRadioButton();
         botaoRadioSim = new javax.swing.JRadioButton();
-        txtCargaHoraria = new javax.swing.JTextField();
         labelCargaHoraria = new javax.swing.JLabel();
+        txtCargaHoraria = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Professores");
@@ -103,6 +103,8 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
 
         labelCargaHoraria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelCargaHoraria.setText("Carga horária");
+
+        txtCargaHoraria.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         javax.swing.GroupLayout painelAdicionarProfessoresLayout = new javax.swing.GroupLayout(painelAdicionarProfessores);
         painelAdicionarProfessores.setLayout(painelAdicionarProfessoresLayout);
@@ -288,7 +290,7 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labeloCargaHorariaCumprida;
     private javax.swing.JPanel painelAdicionarProfessores;
-    private javax.swing.JTextField txtCargaHoraria;
+    private javax.swing.JFormattedTextField txtCargaHoraria;
     private javax.swing.JTextField txtEspecializacao;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTitulo;
