@@ -76,6 +76,12 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
         labeloPossuiSubTurmas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labeloPossuiSubTurmas.setText("Possui sub-turmas?");
 
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
+
         botaoCancelar.setText("Cancelar");
         botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,6 +271,10 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
     private void txtNumeroDeAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroDeAlunosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroDeAlunosActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
 
     /**
      * @param args the command line arguments
