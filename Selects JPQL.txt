@@ -1,0 +1,32 @@
+Neste arquivo, temos os selects necessários para a aplicação.
+___________________________________________________________________________________________________________
+Primeiro pensaremos nos selects utilizados para o sistema:
+
+
+Selects de Disciplinas_Professor:
+- Select disciplinas por id de professor
+
+___________________________________________________________________________________________________________
+Em seguida, os selects em sua forma JPQL:
+
+
+Selects de disciplina:
+
+SELECT d FROM Disciplina d 					#Seleciona todas as disciplinas com suas informações.
+SELECT d FROM Disciplina d WHERE d.disciplina_id = x		#Seleciona disciplina com ID = X;
+SELECT d FROM Disciplina d WHERE d.disciplina_status = 0	#Seleciona disciplinas ainda não alocadas;
+SELECT d FROM Disciplina d WHERE d.disciplina_sub_turma = 1	#Seleciona disciplinas com subturmas;
+SELECT d FROM Disciplina d WHERE d.disciplina_semestre = x	#Seleciona disciplinas de um semestre = X;
+
+
+Selects de Disciplinas_Professor:
+?
+
+Selects Professor:
+
+SELECT p FROM Professor p WHERE p.professor_status = 0		#Seleciona professores que ainda precisam cumprir carga horária.
+
+
+
+
+
