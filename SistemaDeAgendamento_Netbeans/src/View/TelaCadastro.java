@@ -31,30 +31,6 @@ public class TelaCadastro extends javax.swing.JFrame {
     public TelaCadastro(int indiceDoJTabbed) {
         initComponents();
         painelComGuiasCadastro.setSelectedIndex(indiceDoJTabbed);
-        
-        //Cria um número de objetos de acordo com o número de colunas da tabela
-        int numColunas = tabelaDisciplina.getColumnCount();
-        Object linhaColun[] = new Object[numColunas];
-        
-        //Acessa o banco de dados e seleciona todas as disciplinas
-        DisciplinaJpaController discControl = new DisciplinaJpaController();
-        List<Disciplina> disc = discControl.findDisciplinaEntities();
-        
-        //Para cada disciplina, recebe informações e ao fim adiciona a nova linha
-        for (Disciplina disciplina : disc) {
-            linhaColun[0] = disciplina.getDisciplinaNome();
-            linhaColun[1] = disciplina.getDisciplinaSemestre();
-            linhaColun[2] = disciplina.getDisciplinaCargaHoraria();
-            linhaColun[3] = disciplina.getDisciplinaNumAluno();
-            String alocaDisciplina;
-            if(disciplina.getDisciplinaSubTurma())
-               linhaColun[4] = "Sim";
-            else
-                linhaColun[4] = "Não";
-            
-            DefaultTableModel model = (DefaultTableModel) tabelaDisciplina.getModel();
-            model.addRow(linhaColun);
-        }
     }
 
     /**
@@ -123,6 +99,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1024, 768));
 
         painelComGuiasCadastro.setPreferredSize(new java.awt.Dimension(100, 600));
+        painelComGuiasCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                painelComGuiasCadastroMouseClicked(evt);
+            }
+        });
 
         painelDisciplina.setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -572,7 +553,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         JFrame telaCadastro = new TelaCadastro(1);
         telaCadastro.setVisible(true);
         dispose();
-        
 
     }//GEN-LAST:event_menuCadastroProfessoresActionPerformed
 
@@ -580,9 +560,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         JFrame telaCadastro = new TelaCadastro(0);
         telaCadastro.setVisible(true);
-        dispose();
-        
-        
+        dispose(); 
 
     }//GEN-LAST:event_menuCadastroDisciplinaActionPerformed
 
@@ -625,6 +603,32 @@ public class TelaCadastro extends javax.swing.JFrame {
         dispose();
 
     }//GEN-LAST:event_menuGestaoSalaActionPerformed
+
+    private void painelComGuiasCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelComGuiasCadastroMouseClicked
+        int numColunas = tabelaDisciplina.getColumnCount();
+        Object informColuna[] = new Object[numColunas];
+        DefaultTableModel model = (DefaultTableModel) tabelaDisciplina.getModel();
+        
+        //Acessa o banco de dados e seleciona todas as disciplinas
+        DisciplinaJpaController discControl = new DisciplinaJpaController();
+        List<Disciplina> disc = discControl.findDisciplinasOrdered();
+        
+        //Para cada disciplina, recebe informações e ao fim adiciona a nova linha
+        for (Disciplina disciplina : disc) {
+            informColuna[0] = disciplina.getDisciplinaNome();
+            informColuna[1] = disciplina.getDisciplinaSemestre();
+            informColuna[2] = disciplina.getDisciplinaCargaHoraria();
+            informColuna[3] = disciplina.getDisciplinaNumAluno();
+            String alocaDisciplina;
+            if(disciplina.getDisciplinaSubTurma())
+               informColuna[4] = "Sim";
+            else
+                informColuna[4] = "Não";
+            
+            model.addRow(informColuna);
+        }
+        
+    }//GEN-LAST:event_painelComGuiasCadastroMouseClicked
 
     /**
      * @param args the command line arguments
