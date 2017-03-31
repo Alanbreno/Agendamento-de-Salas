@@ -282,7 +282,7 @@ public class DisciplinaJpaController implements Serializable {
     public List<Disciplina> findDisciplinasOrdered(){
         EntityManager em = getEntityManager();
         try {
-            String sql = "SELECT c FROM Disciplina c ORDER BY c.disciplinaNome";
+            String sql = "SELECT d FROM Disciplina d ORDER BY d.disciplinaNome";
             Query query = em.createQuery(sql);
             return query.getResultList();
         } finally {
