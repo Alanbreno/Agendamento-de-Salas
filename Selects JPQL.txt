@@ -1,13 +1,6 @@
 Neste arquivo, temos os selects necessários para a aplicação.
 ___________________________________________________________________________________________________________
-Primeiro pensaremos nos selects utilizados para o sistema:
-
-
-Selects de Disciplinas_Professor:
-- Select disciplinas por id de professor
-
 ___________________________________________________________________________________________________________
-Em seguida, os selects em sua forma JPQL:
 
 
 Selects de disciplina:
@@ -20,7 +13,17 @@ SELECT d FROM Disciplina d WHERE d.disciplina_semestre = x	#Seleciona disciplina
 
 
 Selects de Disciplinas_Professor:
-?
+
+SELECT d.name FROM Disciplina d 
+INNER JOIN Disciplina_professor dp ON d.id = dp.id 		#Seleciona as disciplinas por id de professor
+INNER JOIN Professor p ON p.id = dp.id 
+WHERE p.id = x
+
+SELECT Disciplina.nomeDisciplina FROM Disciplina		#Seleciona as disciplinas por id de professor
+NATURAL JOIN Disciplina_professor
+NATURAL JOIN Professor
+WHERE p.id = x
+
 
 Selects Professor:
 
