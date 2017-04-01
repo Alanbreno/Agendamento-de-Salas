@@ -7,6 +7,7 @@ package View;
 
 import DAO.DisciplinaJpaController;
 import Entidades.Disciplina;
+import java.awt.Component;
 import java.sql.DriverManager;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -605,28 +606,9 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_menuGestaoSalaActionPerformed
 
     private void painelComGuiasCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelComGuiasCadastroMouseClicked
-        int numColunas = tabelaDisciplina.getColumnCount();
-        Object informColuna[] = new Object[numColunas];
-        DefaultTableModel model = (DefaultTableModel) tabelaDisciplina.getModel();
+        int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
         
-        //Acessa o banco de dados e seleciona todas as disciplinas
-        DisciplinaJpaController discControl = new DisciplinaJpaController();
-        List<Disciplina> disc = discControl.findDisciplinasOrdered();
-        
-        //Para cada disciplina, recebe informações e ao fim adiciona a nova linha
-        for (Disciplina disciplina : disc) {
-            informColuna[0] = disciplina.getDisciplinaNome();
-            informColuna[1] = disciplina.getDisciplinaSemestre();
-            informColuna[2] = disciplina.getDisciplinaCargaHoraria();
-            informColuna[3] = disciplina.getDisciplinaNumAluno();
-            String alocaDisciplina;
-            if(disciplina.getDisciplinaSubTurma())
-               informColuna[4] = "Sim";
-            else
-                informColuna[4] = "Não";
-            
-            model.addRow(informColuna);
-        }
+        System.out.println(guiaEscolhida);
         
     }//GEN-LAST:event_painelComGuiasCadastroMouseClicked
 
