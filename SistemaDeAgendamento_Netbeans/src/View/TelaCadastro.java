@@ -7,7 +7,9 @@ package View;
 
 import DAO.DisciplinaJpaController;
 import Entidades.Disciplina;
+import ViewControllers.TelaCadastroController;
 import java.awt.Component;
+import java.awt.SystemColor;
 import java.sql.DriverManager;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -26,12 +28,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaCadastro extends javax.swing.JFrame {
     
-    /**
-     * Creates new form TelaCadastro
-     */
+    TelaCadastroController control = new TelaCadastroController();
+    DefaultTableModel modeloTabela;
+    
     public TelaCadastro(int indiceDoJTabbed) {
         initComponents();
         painelComGuiasCadastro.setSelectedIndex(indiceDoJTabbed);
+        modeloTabela = (DefaultTableModel) tabelaProfessores.getModel();
+        control.guiaClicada(1, modeloTabela);
     }
 
     /**
@@ -101,8 +105,8 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         painelComGuiasCadastro.setPreferredSize(new java.awt.Dimension(100, 600));
         painelComGuiasCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                painelComGuiasCadastroMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                painelComGuiasCadastroMousePressed(evt);
             }
         });
 
@@ -209,7 +213,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Sala", "Capacidade", "bloco", "Observação"
+                "Identificação", "Capacidade", "Localização", "Observação"
             }
         ));
         jScrollPane3.setViewportView(tabelaSalas);
@@ -255,16 +259,13 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Turma", "Semestre", "N° de alunos", "Status"
+                "Turma", "Semestre", "N° de alunos", "Todas as disciplinas alocadas"
             }
         ));
         jScrollPane4.setViewportView(tabelaTurma);
         if (tabelaTurma.getColumnModel().getColumnCount() > 0) {
             tabelaTurma.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tabelaTurma.getColumnModel().getColumn(1).setHeaderValue("Semestre");
             tabelaTurma.getColumnModel().getColumn(2).setPreferredWidth(80);
-            tabelaTurma.getColumnModel().getColumn(2).setHeaderValue("N° de alunos");
-            tabelaTurma.getColumnModel().getColumn(3).setHeaderValue("Status");
         }
 
         botaoAdicionarTurma.setText("Adicionar turma");
@@ -605,12 +606,37 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     }//GEN-LAST:event_menuGestaoSalaActionPerformed
 
-    private void painelComGuiasCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelComGuiasCadastroMouseClicked
+    private void painelComGuiasCadastroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelComGuiasCadastroMousePressed
+        //Recebe o número da guia que foi clicada e limpa a última tabela usada.
         int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
+        modeloTabela.setNumRows(0);
         
-        System.out.println(guiaEscolhida);
+        //Define o novo modelo da tabela, entrega modelo da nova tabela
+        //para o método 'guiaClicada' da classe de controle.
+        switch(guiaEscolhida){
+            case 0:
+                modeloTabela = (DefaultTableModel)tabelaDisciplina.getModel();
+                control.guiaClicada(guiaEscolhida, modeloTabela);
+                break;
+            case 1:
+                modeloTabela = (DefaultTableModel)tabelaProfessores.getModel();
+                control.guiaClicada(guiaEscolhida, modeloTabela);
+                break;
+            case 2:
+                modeloTabela = (DefaultTableModel)tabelaSalas.getModel();
+                control.guiaClicada(guiaEscolhida, modeloTabela);
+                break;
+            case 3:
+                modeloTabela = (DefaultTableModel)tabelaTurma.getModel();
+                control.guiaClicada(guiaEscolhida, modeloTabela);
+                break;
+            case 4:
+                modeloTabela = (DefaultTableModel)tabelaHorarios.getModel();
+                control.guiaClicada(guiaEscolhida, modeloTabela);
+                break;
+        }
         
-    }//GEN-LAST:event_painelComGuiasCadastroMouseClicked
+    }//GEN-LAST:event_painelComGuiasCadastroMousePressed
 
     /**
      * @param args the command line arguments
