@@ -218,5 +218,16 @@ public class SalaJpaController implements Serializable {
             em.close();
         }
     }
+
+    public List<Sala> findSalaOrdered() {
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "SELECT s FROM Sala s ORDER BY s.salaCodigo";
+            Query query = em.createQuery(sql);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
     
 }
