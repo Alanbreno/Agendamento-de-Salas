@@ -218,5 +218,16 @@ public class ProfessorJpaController implements Serializable {
             em.close();
         }
     }
+
+    public List<Professor> findProfessorOrdered() {
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "SELECT p FROM Professor p ORDER BY p.professorNome";
+            Query query = em.createQuery(sql);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
     
 }

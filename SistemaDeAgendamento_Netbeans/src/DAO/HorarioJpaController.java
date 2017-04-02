@@ -258,5 +258,9 @@ public class HorarioJpaController implements Serializable {
             em.close();
         }
     }
+
+    public List<Horario> findHorarioOrdered() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

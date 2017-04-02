@@ -21,6 +21,7 @@ import Entidades.Sala;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 /**
@@ -28,11 +29,12 @@ import javax.persistence.Persistence;
  * @author Alan Breno
  */
 public class DisciplinaJpaController implements Serializable {
-
+    
+    private EntityManagerFactory emf = null;
+    
     public DisciplinaJpaController() {
         this.emf = Persistence.createEntityManagerFactory("SistemaDeAgendamentoPU");
     }
-    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -276,6 +278,17 @@ public class DisciplinaJpaController implements Serializable {
             em.close();
         }
     }
+    
+    public List<Disciplina> findDisciplinasOrdered(){
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "SELECT d FROM Disciplina d ORDER BY d.disciplinaNome";
+            Query query = em.createQuery(sql);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 
     public Disciplina findDisciplina(Integer id) {
         EntityManager em = getEntityManager();
@@ -298,5 +311,4 @@ public class DisciplinaJpaController implements Serializable {
             em.close();
         }
     }
-    
 }

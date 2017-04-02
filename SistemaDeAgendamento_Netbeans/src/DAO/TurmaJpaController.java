@@ -178,5 +178,16 @@ public class TurmaJpaController implements Serializable {
             em.close();
         }
     }
+
+    public List<Turma> findTurmaOrdered() {
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "SELECT t FROM Turma t ORDER BY t.turmaSemestre";
+            Query query = em.createQuery(sql);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
     
 }
