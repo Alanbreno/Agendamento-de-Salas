@@ -23,17 +23,29 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author Alan Breno
+ * @author jnts
  */
 public class ProfessorJpaController implements Serializable {
-
+    
+    private EntityManagerFactory emf = null;
+    
     public ProfessorJpaController() {
         this.emf = Persistence.createEntityManagerFactory("SistemaDeAgendamentoPU");
     }
-    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+    
+    public List<Professor> findProfessorOrdered(){
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "SELECT p FROM Professor p ORDER BY p.professorNome";
+            Query query = em.createQuery(sql);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
     }
 
     public void create(Professor professor) {
@@ -214,17 +226,6 @@ public class ProfessorJpaController implements Serializable {
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
-        } finally {
-            em.close();
-        }
-    }
-
-    public List<Professor> findProfessorOrdered() {
-        EntityManager em = getEntityManager();
-        try {
-            String sql = "SELECT p FROM Professor p ORDER BY p.professorNome";
-            Query query = em.createQuery(sql);
-            return query.getResultList();
         } finally {
             em.close();
         }

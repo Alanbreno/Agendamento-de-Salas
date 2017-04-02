@@ -28,7 +28,7 @@ public class TelaCadastroController {
         
                 //Acessa o banco de dados e seleciona todas as disciplinas
                 DisciplinaJpaController discControl = new DisciplinaJpaController();
-                List<Disciplina> disc = discControl.findDisciplinasOrdered();
+                List<Disciplina> disc = discControl.findDisciplinaOrdered();
                 //Para cada disciplina, recebe informações e ao fim adiciona uma nova linha na tabela
                 for (Disciplina disciplina : disc) {
                     informColuna[0] = disciplina.getDisciplinaNome();
@@ -72,7 +72,7 @@ public class TelaCadastroController {
                 for (Sala sala : sal) {
                     informColuna[0] = sala.getSalaCodigo();
                     informColuna[1] = sala.getSalaNumAluno();
-                    informColuna[2] = "";
+                    informColuna[2] = sala.getSalaLocalizacao();
                     informColuna[3] = sala.getSalaObservacao();
                     
                     model.addRow(informColuna);
@@ -99,23 +99,17 @@ public class TelaCadastroController {
                 break;
                 
             case 4:
-//                informColuna = new Object[1];
-//        
-//                HorarioJpaController horarioControl = new HorarioJpaController();
-//                List<Horario> hora = horarioControl.findHorarioOrdered();
-//
-//                for (Horario horario : hora) {
-//                    informColuna[0] = horario.getTurmaTurno();
-//                    informColuna[1] = horario.getTurmaSemestre();
-//                    informColuna[2] = horario.getTurmaSemestre();
-//                    if(horario.getTurmaStatus())
-//                        informColuna[3] = "Sim";
-//                    else
-//                        informColuna[3] = "Não";
-//                    
-//                    model.addRow(informColuna);
-//                }
-//                break;
+                informColuna = new Object[1];
+        
+                HorarioJpaController horarioControl = new HorarioJpaController();
+                List<Horario> hora = horarioControl.findHorarioOrdered();
+
+                for (Horario horario : hora) {
+                    informColuna[0] = horario.getHorarioInicial();
+                    
+                    model.addRow(informColuna);
+                }
+                break;
         }
     }
 }

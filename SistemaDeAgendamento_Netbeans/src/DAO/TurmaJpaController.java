@@ -22,19 +22,30 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author Alan Breno
+ * @author jnts
  */
 public class TurmaJpaController implements Serializable {
 
+    private EntityManagerFactory emf = null;
+    
     public TurmaJpaController() {
         this.emf = Persistence.createEntityManagerFactory("SistemaDeAgendamentoPU");
     }
-    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    
+    public List<Turma> findTurmaOrdered(){
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "SELECT t FROM Turma t ORDER BY t.turmaCodigo";
+            Query query = em.createQuery(sql);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
     public void create(Turma turma) {
         if (turma.getDisciplinaCollection() == null) {
             turma.setDisciplinaCollection(new ArrayList<Disciplina>());
@@ -174,17 +185,6 @@ public class TurmaJpaController implements Serializable {
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
-        } finally {
-            em.close();
-        }
-    }
-
-    public List<Turma> findTurmaOrdered() {
-        EntityManager em = getEntityManager();
-        try {
-            String sql = "SELECT t FROM Turma t ORDER BY t.turmaSemestre";
-            Query query = em.createQuery(sql);
-            return query.getResultList();
         } finally {
             em.close();
         }

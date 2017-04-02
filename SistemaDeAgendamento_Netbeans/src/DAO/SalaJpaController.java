@@ -23,17 +23,29 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author Alan Breno
+ * @author jnts
  */
 public class SalaJpaController implements Serializable {
-
+    
+    private EntityManagerFactory emf = null;
+    
     public SalaJpaController() {
         this.emf = Persistence.createEntityManagerFactory("SistemaDeAgendamentoPU");
     }
-    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+    
+    public List<Sala> findSalaOrdered(){
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "SELECT s FROM Sala s ORDER BY s.salaCodigo";
+            Query query = em.createQuery(sql);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
     }
 
     public void create(Sala sala) {
@@ -214,17 +226,6 @@ public class SalaJpaController implements Serializable {
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
-        } finally {
-            em.close();
-        }
-    }
-
-    public List<Sala> findSalaOrdered() {
-        EntityManager em = getEntityManager();
-        try {
-            String sql = "SELECT s FROM Sala s ORDER BY s.salaCodigo";
-            Query query = em.createQuery(sql);
-            return query.getResultList();
         } finally {
             em.close();
         }

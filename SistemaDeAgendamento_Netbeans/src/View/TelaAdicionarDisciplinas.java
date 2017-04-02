@@ -237,7 +237,7 @@ public class TelaAdicionarDisciplinas extends javax.swing.JDialog {
             d.setDisciplinaSemestre((short) Integer.parseInt(txtSemestre.getText()));
             d.setDisciplinaNumAluno((short)Integer.parseInt(txtNumeroDeAlunos.getText()));
             d.setDisciplinaStatus(false);
-            d.setDisciplinaCódigo(txtCodigo.getText());
+            d.setDisciplinaCodigo(txtCodigo.getText());
             if (botaoRadioSim.isSelected() == true){
                 d.setDisciplinaSubTurma(true);
             }else{

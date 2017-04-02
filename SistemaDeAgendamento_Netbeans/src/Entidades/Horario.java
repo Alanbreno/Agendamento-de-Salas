@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Alan Breno
+ * @author jnts
  */
 @Entity
 @Table(name = "horario")
