@@ -5,6 +5,10 @@
  */
 package View;
 
+import java.awt.Dimension;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
+
 /**
  *
  * @author Alan Breno
@@ -14,6 +18,8 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
     /**
      * Creates new form TelaAlocarDisciplinasM
      */
+    
+    private int yHorarios = 0;
     public TelaAlocarDisciplinas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -28,18 +34,12 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         labelDias = new javax.swing.JLabel();
         txtNomeDaDisciplina = new javax.swing.JTextField();
         labelNomeDaDisciplina = new javax.swing.JLabel();
         labelHorarios = new javax.swing.JLabel();
         botaoAdicionarHorarios = new javax.swing.JButton();
-        painelComboBox = new javax.swing.JPanel();
-        combo1 = new javax.swing.JComboBox<>();
-        combo2 = new javax.swing.JComboBox<>();
-        combo3 = new javax.swing.JComboBox<>();
-        combo4 = new javax.swing.JComboBox<>();
-        combo5 = new javax.swing.JComboBox<>();
-        barraDeRolagemPainelComboBox = new javax.swing.JScrollBar();
         botaoCancelar = new javax.swing.JButton();
         botaoAlocar = new javax.swing.JButton();
         caixaSelecaoSegunda = new javax.swing.JCheckBox();
@@ -47,6 +47,15 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
         caixaSelecaoQuarta = new javax.swing.JCheckBox();
         caixaSelecaoSexta = new javax.swing.JCheckBox();
         caixaSelecaoQuinta = new javax.swing.JCheckBox();
+        painelScrollHorarios = new javax.swing.JScrollPane();
+        painelHorarios = new javax.swing.JPanel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jComboBox5 = new javax.swing.JComboBox<>();
+        jComboBox6 = new javax.swing.JComboBox<>();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alocar Disciplinas");
@@ -73,69 +82,12 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
         labelHorarios.setText("Horários");
         labelHorarios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        botaoAdicionarHorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add.png"))); // NOI18N
         botaoAdicionarHorarios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         botaoAdicionarHorarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAdicionarHorariosActionPerformed(evt);
             }
         });
-
-        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        combo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        combo3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        combo3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo3ActionPerformed(evt);
-            }
-        });
-
-        combo4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        combo4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo4ActionPerformed(evt);
-            }
-        });
-
-        combo5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        combo5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout painelComboBoxLayout = new javax.swing.GroupLayout(painelComboBox);
-        painelComboBox.setLayout(painelComboBoxLayout);
-        painelComboBoxLayout.setHorizontalGroup(
-            painelComboBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelComboBoxLayout.createSequentialGroup()
-                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(combo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(combo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(combo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(combo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(barraDeRolagemPainelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        painelComboBoxLayout.setVerticalGroup(
-            painelComboBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelComboBoxLayout.createSequentialGroup()
-                .addGroup(painelComboBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(barraDeRolagemPainelComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-        );
 
         botaoCancelar.setText("Cancelar");
 
@@ -151,6 +103,53 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
 
         caixaSelecaoQuinta.setText("Quinta");
 
+        painelHorarios.setPreferredSize(new java.awt.Dimension(380, 86));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setPreferredSize(new java.awt.Dimension(70, 25));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setPreferredSize(new java.awt.Dimension(70, 25));
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setPreferredSize(new java.awt.Dimension(70, 25));
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox5.setPreferredSize(new java.awt.Dimension(70, 25));
+
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox6.setPreferredSize(new java.awt.Dimension(70, 25));
+
+        javax.swing.GroupLayout painelHorariosLayout = new javax.swing.GroupLayout(painelHorarios);
+        painelHorarios.setLayout(painelHorariosLayout);
+        painelHorariosLayout.setHorizontalGroup(
+            painelHorariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelHorariosLayout.createSequentialGroup()
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        painelHorariosLayout.setVerticalGroup(
+            painelHorariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelHorariosLayout.createSequentialGroup()
+                .addGroup(painelHorariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61))
+        );
+
+        painelScrollHorarios.setViewportView(painelHorarios);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,24 +158,6 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
                 .addGap(108, 108, 108)
                 .addComponent(txtNomeDaDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(93, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelNomeDaDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addComponent(labelDias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(botaoCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botaoAlocar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(13, 13, 13))
-                            .addComponent(labelHorarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoAdicionarHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(painelComboBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(caixaSelecaoSegunda)
@@ -188,6 +169,25 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
                 .addComponent(caixaSelecaoQuinta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(caixaSelecaoSexta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelNomeDaDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelDias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(41, 41, 41)
+                                    .addComponent(botaoCancelar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                                    .addComponent(botaoAlocar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(13, 13, 13))
+                                .addComponent(labelHorarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(botaoAdicionarHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(painelScrollHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -211,8 +211,8 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
                     .addComponent(labelHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoAdicionarHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addComponent(painelScrollHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
                     .addComponent(botaoAlocar))
@@ -228,20 +228,42 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNomeDaDisciplinaActionPerformed
 
     private void botaoAdicionarHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarHorariosActionPerformed
-
+        
+        yHorarios += 30;
+        String[] data = {"teste","teste","teste"};
+        JComboBox box1 = new JComboBox(data);
+        JComboBox box2 = new JComboBox(data);
+        JComboBox box3 = new JComboBox(data);
+        JComboBox box4 = new JComboBox(data);
+        JComboBox box5 = new JComboBox(data);
+        box1.setBounds(0,yHorarios,70,25);
+        box1.setSelectedIndex(0);
+        painelHorarios.add(box1);
+        
+        box2.setBounds(72,yHorarios,70,25);
+        box2.setSelectedIndex(0);
+        painelHorarios.add(box2);
+        
+        box3.setBounds(144,yHorarios,70,25);
+        box3.setSelectedIndex(0);
+        painelHorarios.add(box3);
+        
+        box4.setBounds(216,yHorarios,70,25);
+        box4.setSelectedIndex(0);
+        painelHorarios.add(box4);
+        
+        box5.setBounds(288,yHorarios,70,25);
+        box5.setSelectedIndex(0);
+        painelHorarios.add(box5);
+        
+        painelHorarios.setSize(painelHorarios.getWidth(), painelHorarios.getHeight() + 20);
+        painelHorarios.setPreferredSize(new Dimension(painelHorarios.getWidth(), painelHorarios.getHeight() + 20));
+                
+               
+        
+        
+        
     }//GEN-LAST:event_botaoAdicionarHorariosActionPerformed
-
-    private void combo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo3ActionPerformed
-
-    private void combo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo4ActionPerformed
-
-    private void combo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,7 +309,6 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollBar barraDeRolagemPainelComboBox;
     private javax.swing.JButton botaoAdicionarHorarios;
     private javax.swing.JButton botaoAlocar;
     private javax.swing.JButton botaoCancelar;
@@ -296,15 +317,17 @@ public class TelaAlocarDisciplinas extends javax.swing.JDialog {
     private javax.swing.JCheckBox caixaSelecaoSegunda;
     private javax.swing.JCheckBox caixaSelecaoSexta;
     private javax.swing.JCheckBox caixaSelecaoTerca;
-    private javax.swing.JComboBox<String> combo1;
-    private javax.swing.JComboBox<String> combo2;
-    private javax.swing.JComboBox<String> combo3;
-    private javax.swing.JComboBox<String> combo4;
-    private javax.swing.JComboBox<String> combo5;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel labelDias;
     private javax.swing.JLabel labelHorarios;
     private javax.swing.JLabel labelNomeDaDisciplina;
-    private javax.swing.JPanel painelComboBox;
+    private javax.swing.JPanel painelHorarios;
+    private javax.swing.JScrollPane painelScrollHorarios;
     private javax.swing.JTextField txtNomeDaDisciplina;
     // End of variables declaration//GEN-END:variables
 }
