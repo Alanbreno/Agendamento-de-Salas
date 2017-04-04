@@ -11,9 +11,8 @@ import Entidades.Professor;
 import Entidades.Sala;
 import Entidades.Turma;
 import java.util.List;
-import javax.swing.JTable;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.html.parser.DTDConstants;
 
 public class TelaCadastroController {
     
@@ -86,7 +85,7 @@ public class TelaCadastroController {
                 List<Turma> turm = turmaControl.findTurmaOrdered();
                 
                 for (Turma turma : turm) {
-                    informColuna[0] = turma.getTurmaTurno();
+                    informColuna[0] = turma.getTurmaCodigo();
                     informColuna[1] = turma.getTurmaSemestre();
                     informColuna[2] = turma.getTurmaNumAluno();
                     if(turma.getTurmaStatus())
@@ -99,15 +98,28 @@ public class TelaCadastroController {
                 break;
                 
             case 4:
-                informColuna = new Object[1];
+                informColuna = new Object[2];
         
                 HorarioJpaController horarioControl = new HorarioJpaController();
                 List<Horario> hora = horarioControl.findHorarioOrdered();
 
                 for (Horario horario : hora) {
                     informColuna[0] = horario.getHorarioInicial();
+                    informColuna[1] = horario.getHorarioFinal();
                     
-                    model.addRow(informColuna);
+                    //Transforma o objeto recebido em String, corta a nova variável
+                    //para eliminar as informações sobressalentes.
+                    String inicialString = informColuna[0].toString();
+                    String inicialStringCort = inicialString.substring(11, 16);
+                    
+                    String finalString = informColuna[1].toString();
+                    String finalStringCort = finalString.substring(11, 16);
+                    
+                    //Passa as novas Strings para a tabela.
+                    model.addRow(new Object[]{inicialStringCort + " - " + finalStringCort});
+                    
+                   
+                    
                 }
                 break;
         }

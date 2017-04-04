@@ -17,10 +17,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -36,6 +40,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         painelComGuiasCadastro.setSelectedIndex(indiceDoJTabbed);
         modeloTabela = (DefaultTableModel) tabelaProfessores.getModel();
         control.guiaClicada(1, modeloTabela);
+        
+//        tabelaHorarios.getColumnModel().getColumn(1).setPreferredWidth(20);
+
     }
 
     /**
@@ -141,7 +148,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDisciplinaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDisciplinaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -189,7 +196,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProfessorLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelProfessorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -235,7 +242,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSalaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelSalaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -264,8 +271,12 @@ public class TelaCadastro extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tabelaTurma);
         if (tabelaTurma.getColumnModel().getColumnCount() > 0) {
+            tabelaTurma.getColumnModel().getColumn(0).setHeaderValue("Turma");
             tabelaTurma.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tabelaTurma.getColumnModel().getColumn(1).setHeaderValue("Semestre");
             tabelaTurma.getColumnModel().getColumn(2).setPreferredWidth(80);
+            tabelaTurma.getColumnModel().getColumn(2).setHeaderValue("N° de alunos");
+            tabelaTurma.getColumnModel().getColumn(3).setHeaderValue("Todas as disciplinas alocadas");
         }
 
         botaoAdicionarTurma.setText("Adicionar turma");
@@ -281,7 +292,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelTurmaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelTurmaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelTurmaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -305,10 +316,28 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Horário"
+                "Horário", "", "", ""
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane5.setViewportView(tabelaHorarios);
+        if (tabelaHorarios.getColumnModel().getColumnCount() > 0) {
+            tabelaHorarios.getColumnModel().getColumn(0).setResizable(false);
+            tabelaHorarios.getColumnModel().getColumn(0).setPreferredWidth(850);
+            tabelaHorarios.getColumnModel().getColumn(1).setResizable(false);
+            tabelaHorarios.getColumnModel().getColumn(1).setPreferredWidth(20);
+            tabelaHorarios.getColumnModel().getColumn(2).setResizable(false);
+            tabelaHorarios.getColumnModel().getColumn(2).setPreferredWidth(20);
+            tabelaHorarios.getColumnModel().getColumn(3).setResizable(false);
+            tabelaHorarios.getColumnModel().getColumn(3).setPreferredWidth(20);
+        }
 
         botaoAdicionarHorarios.setText("Adicionar horário");
         botaoAdicionarHorarios.addActionListener(new java.awt.event.ActionListener() {
@@ -334,11 +363,11 @@ public class TelaCadastro extends javax.swing.JFrame {
                         .addComponent(botaoRadio12h)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botaoRadio24h)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
                         .addComponent(botaoAdicionarHorarios)
-                        .addContainerGap(422, Short.MAX_VALUE))
+                        .addContainerGap(434, Short.MAX_VALUE))
                     .addGroup(painelHorarioLayout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
                         .addGap(10, 10, 10))))
         );
         painelHorarioLayout.setVerticalGroup(
@@ -489,14 +518,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

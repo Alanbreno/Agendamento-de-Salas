@@ -44,6 +44,7 @@ public class HorarioJpaController implements Serializable {
             String sql = "SELECT h FROM Horario h ORDER BY h.horarioInicial";
             Query query = em.createQuery(sql);
             return query.getResultList();
+            
         } finally {
             em.close();
         }
