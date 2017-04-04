@@ -24,17 +24,30 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author Alan Breno
+ * @author jnts
  */
 public class HorarioJpaController implements Serializable {
 
+    private EntityManagerFactory emf = null;
+    
     public HorarioJpaController() {
         this.emf = Persistence.createEntityManagerFactory("SistemaDeAgendamentoPU");
     }
-    private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+    
+    public List<Horario> findHorarioOrdered(){
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "SELECT h FROM Horario h ORDER BY h.horarioInicial";
+            Query query = em.createQuery(sql);
+            return query.getResultList();
+            
+        } finally {
+            em.close();
+        }
     }
 
     public void create(Horario horario) {

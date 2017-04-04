@@ -1,0 +1,35 @@
+Neste arquivo, temos os selects necessários para a aplicação.
+___________________________________________________________________________________________________________
+___________________________________________________________________________________________________________
+
+
+Selects de disciplina:
+
+SELECT d FROM Disciplina d 					#Seleciona todas as disciplinas com suas informações.
+SELECT d FROM Disciplina d WHERE d.disciplina_id = x		#Seleciona disciplina com ID = X;
+SELECT d FROM Disciplina d WHERE d.disciplina_status = 0	#Seleciona disciplinas ainda não alocadas;
+SELECT d FROM Disciplina d WHERE d.disciplina_sub_turma = 1	#Seleciona disciplinas com subturmas;
+SELECT d FROM Disciplina d WHERE d.disciplina_semestre = x	#Seleciona disciplinas de um semestre = X;
+
+
+Selects de Disciplinas_Professor:
+
+SELECT d.name FROM Disciplina d 
+INNER JOIN Disciplina_professor dp ON d.id = dp.id 		#Seleciona as disciplinas por id de professor
+INNER JOIN Professor p ON p.id = dp.id 
+WHERE p.id = x
+
+SELECT Disciplina.nomeDisciplina FROM Disciplina		#Seleciona as disciplinas por id de professor
+NATURAL JOIN Disciplina_professor
+NATURAL JOIN Professor
+WHERE p.id = x
+
+
+Selects Professor:
+
+SELECT p FROM Professor p WHERE p.professor_status = 0		#Seleciona professores que ainda precisam cumprir carga horária.
+
+
+
+
+

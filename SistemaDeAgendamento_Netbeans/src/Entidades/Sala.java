@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Alan Breno
+ * @author jnts
  */
 @Entity
 @Table(name = "sala")
@@ -30,9 +30,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Sala.findAll", query = "SELECT s FROM Sala s"),
     @NamedQuery(name = "Sala.findBySalaId", query = "SELECT s FROM Sala s WHERE s.salaId = :salaId"),
+    @NamedQuery(name = "Sala.findBySalaCodigo", query = "SELECT s FROM Sala s WHERE s.salaCodigo = :salaCodigo"),
     @NamedQuery(name = "Sala.findBySalaNumAluno", query = "SELECT s FROM Sala s WHERE s.salaNumAluno = :salaNumAluno"),
-    @NamedQuery(name = "Sala.findBySalaObservacao", query = "SELECT s FROM Sala s WHERE s.salaObservacao = :salaObservacao"),
-    @NamedQuery(name = "Sala.findBySalaCodigo", query = "SELECT s FROM Sala s WHERE s.salaCodigo = :salaCodigo")})
+    @NamedQuery(name = "Sala.findBySalaLocalizacao", query = "SELECT s FROM Sala s WHERE s.salaLocalizacao = :salaLocalizacao"),
+    @NamedQuery(name = "Sala.findBySalaObservacao", query = "SELECT s FROM Sala s WHERE s.salaObservacao = :salaObservacao")})
 public class Sala implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,13 +43,16 @@ public class Sala implements Serializable {
     @Column(name = "sala_id")
     private Integer salaId;
     @Basic(optional = false)
-    @Column(name = "sala_num_aluno")
-    private short salaNumAluno;
-    @Column(name = "sala_observacao")
-    private String salaObservacao;
-    @Basic(optional = false)
     @Column(name = "sala_codigo")
     private String salaCodigo;
+    @Basic(optional = false)
+    @Column(name = "sala_num_aluno")
+    private short salaNumAluno;
+    @Basic(optional = false)
+    @Column(name = "sala_localizacao")
+    private String salaLocalizacao;
+    @Column(name = "sala_observacao")
+    private String salaObservacao;
     @ManyToMany(mappedBy = "salaCollection")
     private Collection<Horario> horarioCollection;
     @ManyToMany(mappedBy = "salaCollection")
@@ -61,10 +65,11 @@ public class Sala implements Serializable {
         this.salaId = salaId;
     }
 
-    public Sala(Integer salaId, short salaNumAluno, String salaCodigo) {
+    public Sala(Integer salaId, String salaCodigo, short salaNumAluno, String salaLocalizacao) {
         this.salaId = salaId;
-        this.salaNumAluno = salaNumAluno;
         this.salaCodigo = salaCodigo;
+        this.salaNumAluno = salaNumAluno;
+        this.salaLocalizacao = salaLocalizacao;
     }
 
     public Integer getSalaId() {
@@ -75,6 +80,14 @@ public class Sala implements Serializable {
         this.salaId = salaId;
     }
 
+    public String getSalaCodigo() {
+        return salaCodigo;
+    }
+
+    public void setSalaCodigo(String salaCodigo) {
+        this.salaCodigo = salaCodigo;
+    }
+
     public short getSalaNumAluno() {
         return salaNumAluno;
     }
@@ -83,20 +96,20 @@ public class Sala implements Serializable {
         this.salaNumAluno = salaNumAluno;
     }
 
+    public String getSalaLocalizacao() {
+        return salaLocalizacao;
+    }
+
+    public void setSalaLocalizacao(String salaLocalizacao) {
+        this.salaLocalizacao = salaLocalizacao;
+    }
+
     public String getSalaObservacao() {
         return salaObservacao;
     }
 
     public void setSalaObservacao(String salaObservacao) {
         this.salaObservacao = salaObservacao;
-    }
-
-    public String getSalaCodigo() {
-        return salaCodigo;
-    }
-
-    public void setSalaCodigo(String salaCodigo) {
-        this.salaCodigo = salaCodigo;
     }
 
     @XmlTransient

@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Alan Breno
+ * @author jnts
  */
 @Entity
 @Table(name = "turma")
@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Turma.findAll", query = "SELECT t FROM Turma t"),
     @NamedQuery(name = "Turma.findByTurmaId", query = "SELECT t FROM Turma t WHERE t.turmaId = :turmaId"),
+    @NamedQuery(name = "Turma.findByTurmaCodigo", query = "SELECT t FROM Turma t WHERE t.turmaCodigo = :turmaCodigo"),
     @NamedQuery(name = "Turma.findByTurmaNumAluno", query = "SELECT t FROM Turma t WHERE t.turmaNumAluno = :turmaNumAluno"),
     @NamedQuery(name = "Turma.findByTurmaStatus", query = "SELECT t FROM Turma t WHERE t.turmaStatus = :turmaStatus"),
     @NamedQuery(name = "Turma.findByTurmaTurno", query = "SELECT t FROM Turma t WHERE t.turmaTurno = :turmaTurno"),
@@ -42,6 +43,9 @@ public class Turma implements Serializable {
     @Basic(optional = false)
     @Column(name = "turma_id")
     private Integer turmaId;
+    @Basic(optional = false)
+    @Column(name = "turma_codigo")
+    private String turmaCodigo;
     @Basic(optional = false)
     @Column(name = "turma_num_aluno")
     private short turmaNumAluno;
@@ -64,8 +68,9 @@ public class Turma implements Serializable {
         this.turmaId = turmaId;
     }
 
-    public Turma(Integer turmaId, short turmaNumAluno, boolean turmaStatus, String turmaTurno, short turmaSemestre) {
+    public Turma(Integer turmaId, String turmaCodigo, short turmaNumAluno, boolean turmaStatus, String turmaTurno, short turmaSemestre) {
         this.turmaId = turmaId;
+        this.turmaCodigo = turmaCodigo;
         this.turmaNumAluno = turmaNumAluno;
         this.turmaStatus = turmaStatus;
         this.turmaTurno = turmaTurno;
@@ -78,6 +83,14 @@ public class Turma implements Serializable {
 
     public void setTurmaId(Integer turmaId) {
         this.turmaId = turmaId;
+    }
+
+    public String getTurmaCodigo() {
+        return turmaCodigo;
+    }
+
+    public void setTurmaCodigo(String turmaCodigo) {
+        this.turmaCodigo = turmaCodigo;
     }
 
     public short getTurmaNumAluno() {

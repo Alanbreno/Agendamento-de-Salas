@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Alan Breno
+ * @author jnts
  */
 @Entity
 @Table(name = "disciplina")
@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Disciplina.findByDisciplinaSubTurma", query = "SELECT d FROM Disciplina d WHERE d.disciplinaSubTurma = :disciplinaSubTurma"),
     @NamedQuery(name = "Disciplina.findByDisciplinaNumAluno", query = "SELECT d FROM Disciplina d WHERE d.disciplinaNumAluno = :disciplinaNumAluno"),
     @NamedQuery(name = "Disciplina.findByDisciplinaStatus", query = "SELECT d FROM Disciplina d WHERE d.disciplinaStatus = :disciplinaStatus"),
-    @NamedQuery(name = "Disciplina.findByDisciplinaC\u00f3digo", query = "SELECT d FROM Disciplina d WHERE d.disciplinaC\u00f3digo = :disciplinaC\u00f3digo")})
+    @NamedQuery(name = "Disciplina.findByDisciplinaCodigo", query = "SELECT d FROM Disciplina d WHERE d.disciplinaCodigo = :disciplinaCodigo")})
 public class Disciplina implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,8 +66,8 @@ public class Disciplina implements Serializable {
     @Column(name = "disciplina_status")
     private boolean disciplinaStatus;
     @Basic(optional = false)
-    @Column(name = "disciplina_c\u00f3digo")
-    private String disciplinaCódigo;
+    @Column(name = "disciplina_codigo")
+    private String disciplinaCodigo;
     @JoinTable(name = "disciplina_turma", joinColumns = {
         @JoinColumn(name = "disciplina_id", referencedColumnName = "disciplina_id")}, inverseJoinColumns = {
         @JoinColumn(name = "turma_id", referencedColumnName = "turma_id")})
@@ -96,7 +96,7 @@ public class Disciplina implements Serializable {
         this.disciplinaId = disciplinaId;
     }
 
-    public Disciplina(Integer disciplinaId, String disciplinaNome, short disciplinaCargaHoraria, short disciplinaSemestre, boolean disciplinaSubTurma, short disciplinaNumAluno, boolean disciplinaStatus, String disciplinaCódigo) {
+    public Disciplina(Integer disciplinaId, String disciplinaNome, short disciplinaCargaHoraria, short disciplinaSemestre, boolean disciplinaSubTurma, short disciplinaNumAluno, boolean disciplinaStatus, String disciplinaCodigo) {
         this.disciplinaId = disciplinaId;
         this.disciplinaNome = disciplinaNome;
         this.disciplinaCargaHoraria = disciplinaCargaHoraria;
@@ -104,7 +104,7 @@ public class Disciplina implements Serializable {
         this.disciplinaSubTurma = disciplinaSubTurma;
         this.disciplinaNumAluno = disciplinaNumAluno;
         this.disciplinaStatus = disciplinaStatus;
-        this.disciplinaCódigo = disciplinaCódigo;
+        this.disciplinaCodigo = disciplinaCodigo;
     }
 
     public Integer getDisciplinaId() {
@@ -163,12 +163,12 @@ public class Disciplina implements Serializable {
         this.disciplinaStatus = disciplinaStatus;
     }
 
-    public String getDisciplinaCódigo() {
-        return disciplinaCódigo;
+    public String getDisciplinaCodigo() {
+        return disciplinaCodigo;
     }
 
-    public void setDisciplinaCódigo(String disciplinaCódigo) {
-        this.disciplinaCódigo = disciplinaCódigo;
+    public void setDisciplinaCodigo(String disciplinaCodigo) {
+        this.disciplinaCodigo = disciplinaCodigo;
     }
 
     @XmlTransient
