@@ -108,7 +108,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         setTitle("Cadastro");
         setExtendedState(6);
         setMinimumSize(new java.awt.Dimension(1024, 768));
-        setPreferredSize(new java.awt.Dimension(1024, 768));
 
         painelComGuiasCadastro.setPreferredSize(new java.awt.Dimension(100, 600));
         painelComGuiasCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -694,7 +693,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastro(1).setVisible(true);
+                new TelaCadastro(0).setVisible(true);
             }
         });
     }

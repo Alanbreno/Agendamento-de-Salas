@@ -151,12 +151,13 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        if (!"".equals(txtNome.getText()) && !"".equals(txtBloco.getText()) && !"".equals(txtCapacidade.getText()) && !"".equals(txtObservacao.getText())){
+        if (!"".equals(txtNome.getText()) && (!"".equals(txtBloco.getText())) && (!"".equals(txtCapacidade.getText())) && (!"".equals(txtObservacao.getText()))){
             Entidades.Sala s = new Entidades.Sala();
             s.setSalaNumAluno((short)Integer.parseInt(txtCapacidade.getText()));
             s.setSalaObservacao(txtObservacao.getText());
             s.setSalaCodigo(txtNome.getText());
-            //faltou o campo bloco
+            s.setSalaLocalizacao(txtBloco.getText());
+            
             SalaJpaController j = new SalaJpaController();
             j.create(s);
 

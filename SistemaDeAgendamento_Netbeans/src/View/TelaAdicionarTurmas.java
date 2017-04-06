@@ -184,7 +184,7 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        if (!"".equals(txtNome.getText()) && !"".equals(txtNumeroDeAlunos.getText()) && !"".equals(txtSemestre.getText()) && (botaoRadioSim.isSelected() == true || botaoRadioNao.isSelected() == true) ){
+        if (!"".equals(txtNome.getText()) && !"".equals(txtNumeroDeAlunos.getText()) && !"".equals(txtSemestre.getText()) && (botaoRadioSim.isSelected() == true || botaoRadioNao.isSelected() == true) && (!"".equals(txtTurno.getText())) ){
             Entidades.Turma t = new Entidades.Turma();
             t.setTurmaTurno(txtTurno.getText());
             t.setTurmaNumAluno((short)Integer.parseInt(txtNumeroDeAlunos.getText()));
@@ -194,6 +194,7 @@ public class TelaAdicionarTurmas extends javax.swing.JDialog {
             }else{
                 t.setTurmaStatus(false);
             }
+            t.setTurmaCodigo(txtNome.getText());
             
             
             TurmaJpaController j = new TurmaJpaController();
