@@ -11,7 +11,6 @@ import Entidades.Professor;
 import Entidades.Sala;
 import Entidades.Turma;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastroController {
@@ -21,23 +20,22 @@ public class TelaCadastroController {
         
         switch(guiaEscolhida){
             case 0:
-                //Define como 5 o número de informações que serão passadas para a tabela,
-                //onde 5 é o número de colunas na tabela.
-                informColuna = new Object[5];
+                //Define como 4 o número de informações que serão passadas para a tabela,
+                //onde 4 é o número de colunas na tabela.
+                informColuna = new Object[4];
         
                 //Acessa o banco de dados e seleciona todas as disciplinas
                 DisciplinaJpaController discControl = new DisciplinaJpaController();
                 List<Disciplina> disc = discControl.findDisciplinaOrdered();
                 //Para cada disciplina, recebe informações e ao fim adiciona uma nova linha na tabela
                 for (Disciplina disciplina : disc) {
-                    informColuna[0] = disciplina.getDisciplinaNome();
-                    informColuna[1] = disciplina.getDisciplinaSemestre();
-                    informColuna[2] = disciplina.getDisciplinaCargaHoraria();
-                    informColuna[3] = disciplina.getDisciplinaNumAluno();
+                    informColuna[0] = disciplina.getDisciplinaCodigo();
+                    informColuna[1] = disciplina.getDisciplinaNome();
+                    informColuna[2] = disciplina.getDisciplinaSemestre();
                     if(disciplina.getDisciplinaSubTurma())
-                        informColuna[4] = "Sim";
+                        informColuna[3] = "Sim";
                     else
-                        informColuna[4] = "Não";
+                        informColuna[3] = "Não";
                                 
                     model.addRow(informColuna);
                 }

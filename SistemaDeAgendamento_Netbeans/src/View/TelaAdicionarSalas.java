@@ -31,7 +31,7 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        grupoBotoes = new javax.swing.ButtonGroup();
         painelAdicionarSalas = new javax.swing.JPanel();
         labelInformacoes = new javax.swing.JLabel();
         labelNome = new javax.swing.JLabel();
@@ -44,6 +44,9 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
         txtCapacidade = new javax.swing.JFormattedTextField();
+        labelLaboratorio = new javax.swing.JLabel();
+        botaoRadioSim = new javax.swing.JRadioButton();
+        botaoRadioNao = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Salas");
@@ -80,6 +83,25 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
 
         txtCapacidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
+        labelLaboratorio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelLaboratorio.setText("Laboratório");
+
+        grupoBotoes.add(botaoRadioSim);
+        botaoRadioSim.setText("Sim");
+        botaoRadioSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRadioSimActionPerformed(evt);
+            }
+        });
+
+        grupoBotoes.add(botaoRadioNao);
+        botaoRadioNao.setText("Não");
+        botaoRadioNao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRadioNaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelAdicionarSalasLayout = new javax.swing.GroupLayout(painelAdicionarSalas);
         painelAdicionarSalas.setLayout(painelAdicionarSalasLayout);
         painelAdicionarSalasLayout.setHorizontalGroup(
@@ -92,14 +114,21 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
                             .addComponent(labelObservacao, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelCapacidade, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelNome, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelBloco, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(labelBloco, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelLaboratorio, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelInformacoes)
-                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(txtBloco)
-                            .addComponent(txtObservacao)
-                            .addComponent(txtCapacidade)))
+                        .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(labelInformacoes)
+                                .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(txtBloco)
+                                .addComponent(txtObservacao)
+                                .addComponent(txtCapacidade))
+                            .addGroup(painelAdicionarSalasLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(botaoRadioSim)
+                                .addGap(39, 39, 39)
+                                .addComponent(botaoRadioNao))))
                     .addGroup(painelAdicionarSalasLayout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(botaoCancelar)
@@ -128,7 +157,13 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
                 .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelObservacao)
                     .addComponent(txtObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelLaboratorio)
+                        .addComponent(botaoRadioSim))
+                    .addComponent(botaoRadioNao))
+                .addGap(44, 44, 44)
                 .addGroup(painelAdicionarSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
                     .addComponent(botaoSalvar))
@@ -175,6 +210,14 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
+    private void botaoRadioSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioSimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoRadioSimActionPerformed
+
+    private void botaoRadioNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioNaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoRadioNaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -219,11 +262,14 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
+    private javax.swing.JRadioButton botaoRadioNao;
+    private javax.swing.JRadioButton botaoRadioSim;
     private javax.swing.JButton botaoSalvar;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup grupoBotoes;
     private javax.swing.JLabel labelBloco;
     private javax.swing.JLabel labelCapacidade;
     private javax.swing.JLabel labelInformacoes;
+    private javax.swing.JLabel labelLaboratorio;
     private javax.swing.JLabel labelNome;
     private javax.swing.JLabel labelObservacao;
     private javax.swing.JPanel painelAdicionarSalas;

@@ -1,30 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View;
 
-import DAO.DisciplinaJpaController;
-import Entidades.Disciplina;
 import ViewControllers.TelaCadastroController;
-import java.awt.Component;
-import java.awt.SystemColor;
-import java.sql.DriverManager;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
+
 
 /**
  *
@@ -38,11 +17,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     public TelaCadastro(int indiceDoJTabbed) {
         initComponents();
         painelComGuiasCadastro.setSelectedIndex(indiceDoJTabbed);
-        modeloTabela = (DefaultTableModel) tabelaProfessores.getModel();
-        control.guiaClicada(1, modeloTabela);
-        
-//        tabelaHorarios.getColumnModel().getColumn(1).setPreferredWidth(20);
-
+        modeloTabela = (DefaultTableModel) tabelaDisciplina.getModel();
+        control.guiaClicada(0, modeloTabela);
     }
 
     /**
@@ -124,13 +100,12 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Disciplina", "Semestre", "Carga Horária", "N° de Alunos", "Subturmas"
+                "Identificação", "Disciplina", "Semestre", "Carga Horária"
             }
         ));
         jScrollPane1.setViewportView(tabelaDisciplina);
         if (tabelaDisciplina.getColumnModel().getColumnCount() > 0) {
-            tabelaDisciplina.getColumnModel().getColumn(0).setPreferredWidth(250);
-            tabelaDisciplina.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tabelaDisciplina.getColumnModel().getColumn(1).setPreferredWidth(250);
             tabelaDisciplina.getColumnModel().getColumn(2).setPreferredWidth(100);
             tabelaDisciplina.getColumnModel().getColumn(3).setPreferredWidth(100);
         }
@@ -148,7 +123,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDisciplinaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDisciplinaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -196,7 +171,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProfessorLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelProfessorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -220,7 +195,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Identificação", "Capacidade", "Localização", "Observação"
+                "Identificação", "Capacidade", "Localização", "Laboratório", "Observação"
             }
         ));
         jScrollPane3.setViewportView(tabelaSalas);
@@ -242,7 +217,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSalaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelSalaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -292,7 +267,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelTurmaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelTurmaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelTurmaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -303,7 +278,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelTurmaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelTurmaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoAdicionarTurma)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -363,11 +338,11 @@ public class TelaCadastro extends javax.swing.JFrame {
                         .addComponent(botaoRadio12h)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botaoRadio24h)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
                         .addComponent(botaoAdicionarHorarios)
-                        .addContainerGap(434, Short.MAX_VALUE))
+                        .addContainerGap(412, Short.MAX_VALUE))
                     .addGroup(painelHorarioLayout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                         .addGap(10, 10, 10))))
         );
         painelHorarioLayout.setVerticalGroup(
@@ -518,7 +493,10 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -694,7 +672,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastro(1).setVisible(true);
+                new TelaCadastro(0).setVisible(true);
             }
         });
     }

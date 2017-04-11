@@ -109,7 +109,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelNovoProjeto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelNovoProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_novo_projeto.png"))); // NOI18N
+        labelNovoProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TelaPrincipal/icone_novo_projeto.png"))); // NOI18N
         labelNovoProjeto.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         labelNovoProjeto.setBorder(null);
 
@@ -123,7 +123,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelAbrirProjeto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelAbrirProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_projeto.png"))); // NOI18N
+        labelAbrirProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TelaPrincipal/icone_projeto.png"))); // NOI18N
         labelAbrirProjeto.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         labelAbrirProjeto.setBorder(null);
         labelAbrirProjeto.setPreferredSize(new java.awt.Dimension(54, 90));
@@ -139,7 +139,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelVizualizarDisciplinas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelVizualizarDisciplinas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_visualizar_disciplinas.png"))); // NOI18N
+        labelVizualizarDisciplinas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TelaPrincipal/icone_visualizar_disciplinas.png"))); // NOI18N
         labelVizualizarDisciplinas.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         labelVizualizarDisciplinas.setBorder(null);
         labelVizualizarDisciplinas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -155,7 +155,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelVizualizarProfessores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelVizualizarProfessores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_professor.png"))); // NOI18N
+        labelVizualizarProfessores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TelaPrincipal/icone_professor.png"))); // NOI18N
         labelVizualizarProfessores.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         labelVizualizarProfessores.setBorder(null);
         labelVizualizarProfessores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -171,7 +171,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelGestaoDeSalas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelGestaoDeSalas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_sala.png"))); // NOI18N
+        labelGestaoDeSalas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TelaPrincipal/icone_sala.png"))); // NOI18N
         labelGestaoDeSalas.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         labelGestaoDeSalas.setBorder(null);
         labelGestaoDeSalas.setPreferredSize(new java.awt.Dimension(54, 90));
@@ -186,7 +186,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelCadastrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_cadastro.png"))); // NOI18N
+        labelCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TelaPrincipal/icone_cadastro.png"))); // NOI18N
         labelCadastrar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         labelCadastrar.setBorder(null);
         labelCadastrar.setPreferredSize(new java.awt.Dimension(54, 90));
@@ -201,7 +201,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelGerarPDF.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelGerarPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_pdf.png"))); // NOI18N
+        labelGerarPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TelaPrincipal/icone_pdf.png"))); // NOI18N
         labelGerarPDF.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         labelGerarPDF.setBorder(null);
         labelGerarPDF.setPreferredSize(new java.awt.Dimension(54, 90));
@@ -216,7 +216,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         labelGestaoDeTurmas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelGestaoDeTurmas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_turma.png"))); // NOI18N
+        labelGestaoDeTurmas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/TelaPrincipal/icone_turma.png"))); // NOI18N
         labelGestaoDeTurmas.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         labelGestaoDeTurmas.setBorder(null);
         labelGestaoDeTurmas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
