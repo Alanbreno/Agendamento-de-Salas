@@ -244,7 +244,7 @@
               <JTabbedPaneConstraints tabName="Disciplina">
                 <Property name="tabTitle" type="java.lang.String" value="Disciplina"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icone_cadastro.png"/>
+                  <Image iconType="3" name="/Imagens/Gestao/disciplina_32px.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -269,7 +269,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" pref="442" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="455" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Component id="botaoAdicionarDisciplina" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -288,11 +288,12 @@
                 <Component class="javax.swing.JTable" name="tabelaDisciplina">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="0">
+                      <Table columnCount="5" rowCount="0">
                         <Column editable="true" title="Identifica&#xe7;&#xe3;o" type="java.lang.Object"/>
                         <Column editable="true" title="Disciplina" type="java.lang.Object"/>
                         <Column editable="true" title="Semestre" type="java.lang.Object"/>
                         <Column editable="true" title="Carga Hor&#xe1;ria" type="java.lang.Object"/>
+                        <Column editable="true" title="A&#xe7;&#xe3;o" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -317,12 +318,20 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                       </TableColumnModel>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaDisciplinaMousePressed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -347,7 +356,7 @@
               <JTabbedPaneConstraints tabName="Professor">
                 <Property name="tabTitle" type="java.lang.String" value="Professor"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icone_professor.png"/>
+                  <Image iconType="3" name="/Imagens/Gestao/professor_32px.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -372,7 +381,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" pref="442" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="455" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Component id="botaoAdicionarProfessor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -445,7 +454,7 @@
               <JTabbedPaneConstraints tabName="Sala">
                 <Property name="tabTitle" type="java.lang.String" value="Sala"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icone_sala.png"/>
+                  <Image iconType="3" name="/Imagens/Gestao/sala_32px.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -470,7 +479,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane3" pref="442" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" pref="455" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Component id="botaoAdicionarSala" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -549,7 +558,7 @@
               <JTabbedPaneConstraints tabName="Turma">
                 <Property name="tabTitle" type="java.lang.String" value="Turma"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icone_turma.png"/>
+                  <Image iconType="3" name="/Imagens/Gestao/turma_32px.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -574,7 +583,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane4" pref="454" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="455" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Component id="botaoAdicionarTurma" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -647,7 +656,7 @@
               <JTabbedPaneConstraints tabName="Hor&#xe1;rio">
                 <Property name="tabTitle" type="java.lang.String" value="Hor&#xe1;rio"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/icone_relogio.png"/>
+                  <Image iconType="3" name="/Imagens/Gestao/horario_32px.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -679,7 +688,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane5" pref="442" max="32767" attributes="0"/>
+                      <Component id="jScrollPane5" pref="455" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="botaoAdicionarHorarios" alignment="3" min="-2" max="-2" attributes="0"/>
