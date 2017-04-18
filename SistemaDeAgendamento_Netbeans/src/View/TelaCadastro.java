@@ -23,6 +23,19 @@ public class TelaCadastro extends javax.swing.JFrame {
         painelComGuiasCadastro.setSelectedIndex(indiceDoJTabbed);
         modeloTabela = (DefaultTableModel) tabelaDisciplina.getModel();
         control.guiaClicada(0, modeloTabela);
+        
+//    DefaultTableModel modeloTabela = new DefaultTableModel(){
+//        @Override
+//        public Class<?> getColumnClass(int column) {
+//            switch(column) {
+//                case 0:
+//                case 1: return Integer.class;
+//                case 2: return ImageIcon.class;
+//                default: return Object.class;
+//            }
+//        }
+//    };
+
     }
 
     /**
@@ -657,10 +670,10 @@ public class TelaCadastro extends javax.swing.JFrame {
         
         int selected = tabelaDisciplina.getSelectedRow();
         
-        ImageIcon icon = new ImageIcon("src/Imagens/Gestao/pen_16.png");
-        JOptionPane.showMessageDialog(null, "Blah blah blah", "About", JOptionPane.INFORMATION_MESSAGE, icon);
+        ImageIcon icon = new ImageIcon("src/pen_16.png");
+//        JOptionPane.showMessageDialog(null, "Blah blah blah", "About", JOptionPane.INFORMATION_MESSAGE, icon);
         
-//        tabelaDisciplina.setValueAt(icon, selected , 4);
+        tabelaDisciplina.setValueAt(icon, selected , 4);
     }//GEN-LAST:event_tabelaDisciplinaMousePressed
 
     /**
