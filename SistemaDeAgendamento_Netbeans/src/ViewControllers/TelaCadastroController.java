@@ -1,19 +1,28 @@
 package ViewControllers;
 
-import DAO.DisciplinaJpaController;
-import DAO.HorarioJpaController;
-import DAO.ProfessorJpaController;
-import DAO.SalaJpaController;
-import DAO.TurmaJpaController;
+import DAO.Controladores.ControladorDisciplina;
+import DAO.Controladores.ControladorHorario;
+import DAO.Controladores.ControladorProfessor;
+import DAO.Controladores.ControladorSala;
+import DAO.Controladores.ControladorTurma;
 import Entidades.Disciplina;
 import Entidades.Horario;
 import Entidades.Professor;
 import Entidades.Sala;
 import Entidades.Turma;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastroController {
+    
+    final ImageIcon lapisIcone = new ImageIcon("src/Imagens/Gestao/pen_16.png");
+    final ImageIcon lupaIcone = new ImageIcon("src/Imagens/Gestao/lupa_16px.png");
+    final ImageIcon xisIcone = new ImageIcon("src/Imagens/Gestao/xis_16px.png");
+    
+    private int linhaEscolhidaAnter = 1;
     
     public void guiaClicada(int guiaEscolhida, DefaultTableModel model){        
         Object informColuna[];
@@ -25,8 +34,8 @@ public class TelaCadastroController {
                 informColuna = new Object[4];
         
                 //Acessa o banco de dados e seleciona todas as disciplinas
-                DisciplinaJpaController discControl = new DisciplinaJpaController();
-                List<Disciplina> disc = discControl.findDisciplinaOrdered();
+                ControladorDisciplina discControl = new ControladorDisciplina();
+                List<Disciplina> disc = discControl.selectDisciplinas();
                 //Para cada disciplina, recebe informações e ao fim adiciona uma nova linha na tabela
                 for (Disciplina disciplina : disc) {
                     informColuna[0] = disciplina.getDisciplinaCodigo();
@@ -44,8 +53,8 @@ public class TelaCadastroController {
             case 1:
                 informColuna = new Object[4];
         
-                ProfessorJpaController profControl = new ProfessorJpaController();
-                List<Professor> prof = profControl.findProfessorOrdered();
+                ControladorProfessor profControl = new ControladorProfessor();
+                List<Professor> prof = profControl.selectProfessores();
 
                 for (Professor professor : prof) {
                     informColuna[0] = professor.getProfessorNome();
@@ -63,8 +72,8 @@ public class TelaCadastroController {
             case 2:
                 informColuna = new Object[4];
         
-                SalaJpaController salaControl = new SalaJpaController();
-                List<Sala> sal = salaControl.findSalaOrdered();
+                ControladorSala salaControl = new ControladorSala();
+                List<Sala> sal = salaControl.selectSalas();
 
                 for (Sala sala : sal) {
                     informColuna[0] = sala.getSalaCodigo();
@@ -79,8 +88,8 @@ public class TelaCadastroController {
             case 3:  
                 informColuna = new Object[4];
         
-                TurmaJpaController turmaControl = new TurmaJpaController();
-                List<Turma> turm = turmaControl.findTurmaOrdered();
+                ControladorTurma turmaControl = new ControladorTurma();
+                List<Turma> turm = turmaControl.selectTurmas();
                 
                 for (Turma turma : turm) {
                     informColuna[0] = turma.getTurmaCodigo();
@@ -98,8 +107,8 @@ public class TelaCadastroController {
             case 4:
                 informColuna = new Object[2];
         
-                HorarioJpaController horarioControl = new HorarioJpaController();
-                List<Horario> hora = horarioControl.findHorarioOrdered();
+                ControladorHorario horarioControl = new ControladorHorario();
+                List<Horario> hora = horarioControl.selectHorarios();
 
                 for (Horario horario : hora) {
                     informColuna[0] = horario.getHorarioInicial();
@@ -121,6 +130,37 @@ public class TelaCadastroController {
                 }
                 break;
         }
+    }
+    
+    public void iconesDinamicos(JTable tabela, int linhaEscolhida){
+        
+        int colunaEditar = tabela.getColumnCount() - 3;
+        int colunaVisual = tabela.getColumnCount() - 2;
+        int colunaApagar = tabela.getColumnCount() - 1;
+        
+        if( tabela.getRowCount() > this.linhaEscolhidaAnter )
+            this.linhaEscolhidaAnter = 1;
+        
+        if (this.linhaEscolhidaAnter == linhaEscolhida){
+            
+            if( linhaEscolhida == colunaEditar )
+                JOptionPane.showMessageDialog(null, "Editar item");                    
+            else if( linhaEscolhida == colunaVisual )
+                JOptionPane.showMessageDialog(null, "Visualizar item");
+            else if( linhaEscolhida == colunaApagar )
+                JOptionPane.showMessageDialog(null, "Excluir item");    
+            
+        } else{
+            tabela.setValueAt("", this.linhaEscolhidaAnter, colunaEditar);
+            tabela.setValueAt("", this.linhaEscolhidaAnter, colunaVisual);
+            tabela.setValueAt("", this.linhaEscolhidaAnter, colunaApagar);
+            
+            tabela.setValueAt(this.lapisIcone, linhaEscolhida, colunaEditar);
+            tabela.setValueAt(this.lupaIcone, linhaEscolhida, colunaVisual);
+            tabela.setValueAt(this.xisIcone, linhaEscolhida, colunaApagar);
+        }        
+
+        this.linhaEscolhidaAnter = linhaEscolhida;
     }
 }
 

@@ -35,18 +35,7 @@ public class ProfessorJpaController implements Serializable {
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
-    }
-    
-    public List<Professor> findProfessorOrdered(){
-        EntityManager em = getEntityManager();
-        try {
-            String sql = "SELECT p FROM Professor p ORDER BY p.professorNome";
-            Query query = em.createQuery(sql);
-            return query.getResultList();
-        } finally {
-            em.close();
-        }
-    }
+    }    
 
     public void create(Professor professor) {
         if (professor.getHorarioCollection() == null) {
