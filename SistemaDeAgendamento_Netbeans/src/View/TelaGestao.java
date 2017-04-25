@@ -5,9 +5,16 @@
  */
 package View;
 
-import javax.swing.JDialog;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Insets;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.Border;
 
 /**
  *
@@ -18,9 +25,17 @@ public class TelaGestao extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastro
      */
+    
+    private int contadorTelaTurma = 0;
+    private int yTurma = 0;
+    private int ySala = 0;
+    private int contadorTelaSala = 0;
+    
+            
     public TelaGestao(int indicePainel) {
         initComponents();
         painelComGuiasGestao.setSelectedIndex(indicePainel);
+        
     }
 
     /**
@@ -35,9 +50,13 @@ public class TelaGestao extends javax.swing.JFrame {
         grupoBotaoHora = new javax.swing.ButtonGroup();
         painelComGuiasGestao = new javax.swing.JTabbedPane();
         painelTurmas = new javax.swing.JPanel();
-        painelRolagemTurmas = new javax.swing.JScrollPane();
+        painelScrollTurmas = new javax.swing.JScrollPane();
+        painelTurmasScroll = new javax.swing.JPanel();
+        botaoAdicionarTurma = new javax.swing.JButton();
         painelSalas = new javax.swing.JPanel();
-        painelRolagemSalas = new javax.swing.JScrollPane();
+        painelScrollSalas = new javax.swing.JScrollPane();
+        painelSalasScroll = new javax.swing.JPanel();
+        botaoAdicionarSalas = new javax.swing.JButton();
         menuBarra = new javax.swing.JMenuBar();
         menuTabela = new javax.swing.JMenu();
         menuTabelaNovoProjeto = new javax.swing.JMenuItem();
@@ -71,32 +90,87 @@ public class TelaGestao extends javax.swing.JFrame {
 
         painelComGuiasGestao.setPreferredSize(new java.awt.Dimension(100, 600));
 
+        painelTurmas.setAlignmentX(1.0F);
+        painelTurmas.setAutoscrolls(true);
+        painelTurmas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         painelTurmas.setPreferredSize(new java.awt.Dimension(800, 600));
+
+        javax.swing.GroupLayout painelTurmasScrollLayout = new javax.swing.GroupLayout(painelTurmasScroll);
+        painelTurmasScroll.setLayout(painelTurmasScrollLayout);
+        painelTurmasScrollLayout.setHorizontalGroup(
+            painelTurmasScrollLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        painelTurmasScrollLayout.setVerticalGroup(
+            painelTurmasScrollLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 483, Short.MAX_VALUE)
+        );
+
+        painelScrollTurmas.setViewportView(painelTurmasScroll);
+
+        botaoAdicionarTurma.setText("Adicionar");
+        botaoAdicionarTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAdicionarTurmaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelTurmasLayout = new javax.swing.GroupLayout(painelTurmas);
         painelTurmas.setLayout(painelTurmasLayout);
         painelTurmasLayout.setHorizontalGroup(
             painelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelRolagemTurmas, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+            .addComponent(painelScrollTurmas)
+            .addGroup(painelTurmasLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoAdicionarTurma)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelTurmasLayout.setVerticalGroup(
             painelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addComponent(painelRolagemTurmas, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+
         );
 
         painelComGuiasGestao.addTab("Turmas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/turma_32px.png")), painelTurmas); // NOI18N
 
         painelSalas.setPreferredSize(new java.awt.Dimension(795, 575));
 
+        javax.swing.GroupLayout painelSalasScrollLayout = new javax.swing.GroupLayout(painelSalasScroll);
+        painelSalasScroll.setLayout(painelSalasScrollLayout);
+        painelSalasScrollLayout.setHorizontalGroup(
+            painelSalasScrollLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        painelSalasScrollLayout.setVerticalGroup(
+            painelSalasScrollLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 483, Short.MAX_VALUE)
+        );
+
+        painelScrollSalas.setViewportView(painelSalasScroll);
+
+        botaoAdicionarSalas.setText("Adicionar");
+        botaoAdicionarSalas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAdicionarSalasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelSalasLayout = new javax.swing.GroupLayout(painelSalas);
         painelSalas.setLayout(painelSalasLayout);
         painelSalasLayout.setHorizontalGroup(
             painelSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelRolagemSalas, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+            .addComponent(painelScrollSalas)
+            .addGroup(painelSalasLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoAdicionarSalas)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelSalasLayout.setVerticalGroup(
             painelSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addComponent(painelRolagemSalas, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+
         );
 
         painelComGuiasGestao.addTab("Salas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/sala_32px.png")), painelSalas); // NOI18N
@@ -313,6 +387,98 @@ public class TelaGestao extends javax.swing.JFrame {
 
     }//GEN-LAST:event_menuGestaoSalaActionPerformed
 
+    private void botaoAdicionarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarTurmaActionPerformed
+        int x;
+        
+        String[] colunas = {"", "", "", "",""};
+        String[][] data = {
+            {null, null, null, null, null},
+            {null, null, null, null, null},
+            {null, null, null, null, null},
+            {null, null, null, null, null}
+        };
+        JTable tabela = new JTable(data,colunas);
+
+        tabela.setPreferredScrollableViewportSize(new Dimension(600,300));
+        tabela.setFillsViewportHeight(true);
+        tabela.setShowHorizontalLines(true);
+        tabela.setShowVerticalLines(true);
+        tabela.setShowGrid(true);
+        
+        JLabel jl = new JLabel();
+        jl.setText("Turma/Semestre");
+        
+        
+        
+        if (contadorTelaTurma % 2 == 0){
+            x = 20;
+            yTurma = (contadorTelaTurma / 2) * 350 + 50;
+           
+        }else {
+            x = 720;
+        }
+        
+        painelTurmasScroll.setSize(painelTurmasScroll.getWidth(), painelTurmasScroll.getHeight() + 100);        
+        painelTurmasScroll.setPreferredSize(new Dimension(painelTurmasScroll.getWidth(), painelTurmasScroll.getHeight() + 100));
+        jl.setBounds(x + 3, yTurma - 20, 620, 20);
+        jl.setOpaque(true);
+        jl.setBackground(Color.GRAY);
+        jl.setHorizontalAlignment((int) JLabel.CENTER_ALIGNMENT);
+        
+        
+        JScrollPane jps = new JScrollPane(tabela);
+        jps.setBounds( x, yTurma, 625, 300);
+        painelTurmasScroll.add(jps);
+        painelTurmasScroll.add(jl);
+        contadorTelaTurma++;
+    }//GEN-LAST:event_botaoAdicionarTurmaActionPerformed
+
+    private void botaoAdicionarSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarSalasActionPerformed
+        int x;
+        
+        String[] colunas = {"", "", "", "",""};
+        String[][] data = {
+            {null, null, null, null, null},
+            {null, null, null, null, null},
+            {null, null, null, null, null},
+            {null, null, null, null, null}
+        };
+        JTable tabela = new JTable(data,colunas);
+
+        tabela.setPreferredScrollableViewportSize(new Dimension(600,300));
+        tabela.setFillsViewportHeight(true);
+        tabela.setShowHorizontalLines(true);
+        tabela.setShowVerticalLines(true);
+        tabela.setShowGrid(true);
+        
+        JLabel jl = new JLabel();
+        jl.setText("Sala");
+        
+        
+        
+        if (contadorTelaSala % 2 == 0){
+            x = 20;
+            ySala = (contadorTelaSala / 2) * 350 + 50;
+           
+        }else {
+            x = 720;
+        }
+        
+        painelSalasScroll.setSize(painelSalasScroll.getWidth(), painelSalasScroll.getHeight() + 100);        
+        painelSalasScroll.setPreferredSize(new Dimension(painelSalasScroll.getWidth(), painelSalasScroll.getHeight() + 100));
+        jl.setBounds(x + 3, ySala - 20, 620, 20);
+        jl.setOpaque(true);
+        jl.setBackground(Color.GRAY);
+        jl.setHorizontalAlignment((int) JLabel.CENTER_ALIGNMENT);
+        
+        
+        JScrollPane jps = new JScrollPane(tabela);
+        jps.setBounds( x, ySala, 625, 300);
+        painelSalasScroll.add(jps);
+        painelSalasScroll.add(jl);
+        contadorTelaSala++;
+    }//GEN-LAST:event_botaoAdicionarSalasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -344,12 +510,14 @@ public class TelaGestao extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaGestao(1).setVisible(true);
+                new TelaGestao(0).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAdicionarSalas;
+    private javax.swing.JButton botaoAdicionarTurma;
     private javax.swing.ButtonGroup grupoBotaoHora;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -377,9 +545,32 @@ public class TelaGestao extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuTabelaSalvarProjeto;
     private javax.swing.JMenuItem menuTabelaSalvarProjetoComo;
     private javax.swing.JTabbedPane painelComGuiasGestao;
-    private javax.swing.JScrollPane painelRolagemSalas;
-    private javax.swing.JScrollPane painelRolagemTurmas;
     private javax.swing.JPanel painelSalas;
+    private javax.swing.JPanel painelSalasScroll;
+    private javax.swing.JScrollPane painelScrollSalas;
+    private javax.swing.JScrollPane painelScrollTurmas;
     private javax.swing.JPanel painelTurmas;
+    private javax.swing.JPanel painelTurmasScroll;
     // End of variables declaration//GEN-END:variables
+
+    private static class BorderImpl implements Border {
+
+        public BorderImpl() {
+        }
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public boolean isBorderOpaque() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
 }

@@ -5,15 +5,20 @@
  */
 package View;
 
+import java.awt.Dimension;
+import javax.swing.JComboBox;
+
 /**
  *
  * @author Alan Breno
  */
+
 public class TelaAlocarDisciplinaEmTurma extends javax.swing.JDialog {
 
     /**
      * Creates new form TelaAlocarDisciplinaEmTurma
      */
+    private int yHorarios = 0;
     public TelaAlocarDisciplinaEmTurma(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -28,25 +33,17 @@ public class TelaAlocarDisciplinaEmTurma extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         labelTitulo = new javax.swing.JLabel();
         botaoAlocar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
-        painelItens = new javax.swing.JPanel();
-        comboDisciplina = new javax.swing.JComboBox<>();
         botaoAdicionarDisciplina = new javax.swing.JButton();
-        barraDeRolagem = new javax.swing.JScrollBar();
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        painelScrollDisciplina = new javax.swing.JScrollPane();
+        painelComboBox = new javax.swing.JPanel();
+        botaoComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Disciplina em turma");
+        setPreferredSize(new java.awt.Dimension(415, 320));
         setResizable(false);
 
         labelTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -55,12 +52,14 @@ public class TelaAlocarDisciplinaEmTurma extends javax.swing.JDialog {
         labelTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         botaoAlocar.setText("Alocar");
+        botaoAlocar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAlocarActionPerformed(evt);
+            }
+        });
 
         botaoCancelar.setText("Cancelar");
 
-        comboDisciplina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        botaoAdicionarDisciplina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/add.png"))); // NOI18N
         botaoAdicionarDisciplina.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         botaoAdicionarDisciplina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,59 +67,67 @@ public class TelaAlocarDisciplinaEmTurma extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout painelItensLayout = new javax.swing.GroupLayout(painelItens);
-        painelItens.setLayout(painelItensLayout);
-        painelItensLayout.setHorizontalGroup(
-            painelItensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelItensLayout.createSequentialGroup()
-                .addComponent(comboDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoAdicionarDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(barraDeRolagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        painelScrollDisciplina.setPreferredSize(new java.awt.Dimension(277, 100));
+
+        painelComboBox.setPreferredSize(new java.awt.Dimension(250, 90));
+
+        botaoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout painelComboBoxLayout = new javax.swing.GroupLayout(painelComboBox);
+        painelComboBox.setLayout(painelComboBoxLayout);
+        painelComboBoxLayout.setHorizontalGroup(
+            painelComboBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelComboBoxLayout.createSequentialGroup()
+                .addComponent(botaoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 29, Short.MAX_VALUE))
         );
-        painelItensLayout.setVerticalGroup(
-            painelItensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelItensLayout.createSequentialGroup()
-                .addGroup(painelItensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(comboDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(botaoAdicionarDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(barraDeRolagem, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+        painelComboBoxLayout.setVerticalGroup(
+            painelComboBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelComboBoxLayout.createSequentialGroup()
+                .addComponent(botaoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 68, Short.MAX_VALUE))
         );
+
+        painelScrollDisciplina.setViewportView(painelComboBox);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoAlocar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(90, 90, 90)
+                        .addComponent(botaoCancelar)
+                        .addGap(95, 95, 95)
+                        .addComponent(botaoAlocar))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(40, Short.MAX_VALUE)
-                        .addComponent(painelItens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(painelScrollDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)))
+                        .addGap(0, 0, 0)
+                        .addComponent(botaoAdicionarDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
-                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(painelItens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoAlocar)
-                    .addComponent(botaoCancelar))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoAdicionarDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(painelScrollDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoCancelar)
+                    .addComponent(botaoAlocar))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,8 +135,21 @@ public class TelaAlocarDisciplinaEmTurma extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoAdicionarDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarDisciplinaActionPerformed
-
+        
+        yHorarios += 32;
+        String[] data = {"teste","teste","teste"};
+        JComboBox box1 = new JComboBox(data);
+        box1.setBounds(0,yHorarios,227,30);
+        box1.setSelectedIndex(0);
+        painelComboBox.add(box1);
+        painelComboBox.setSize(painelComboBox.getWidth(), painelComboBox.getHeight() + 32);
+        painelComboBox.setPreferredSize(new Dimension(painelComboBox.getWidth(), painelComboBox.getHeight() + 32));
+        
     }//GEN-LAST:event_botaoAdicionarDisciplinaActionPerformed
+
+    private void botaoAlocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlocarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoAlocarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,14 +194,12 @@ public class TelaAlocarDisciplinaEmTurma extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollBar barraDeRolagem;
     private javax.swing.JButton botaoAdicionarDisciplina;
     private javax.swing.JButton botaoAlocar;
     private javax.swing.JButton botaoCancelar;
-    private javax.swing.JComboBox<String> comboDisciplina;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> botaoComboBox;
     private javax.swing.JLabel labelTitulo;
-    private javax.swing.JPanel painelItens;
+    private javax.swing.JPanel painelComboBox;
+    private javax.swing.JScrollPane painelScrollDisciplina;
     // End of variables declaration//GEN-END:variables
 }
