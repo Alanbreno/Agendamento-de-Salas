@@ -7,6 +7,7 @@ import Entidades.Disciplina;
 import Entidades.Professor;
 import ViewControllers.TelaCadastroController;
 import java.awt.Dimension;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
