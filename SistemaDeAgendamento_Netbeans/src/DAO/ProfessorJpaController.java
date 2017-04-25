@@ -20,6 +20,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -229,6 +230,14 @@ public class ProfessorJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    
+    public List<Professor> FiltroProfessor(String Professor){
+        EntityManager em = getEntityManager();
+        TypedQuery<Professor> query = em.createQuery("SELECT p FROM Professor p WHERE p.professorNome = :professorNome",Professor.class);
+        query.setParameter("professorNome", Professor);
+      
+      return query.getResultList();
     }
     
 }

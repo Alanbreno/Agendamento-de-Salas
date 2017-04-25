@@ -6,7 +6,10 @@
 package View;
 
 import DAO.DisciplinaJpaController;
+import DAO.ProfessorJpaController;
+import DAO.exceptions.NonexistentEntityException;
 import Entidades.Disciplina;
+import Entidades.Professor;
 import ViewControllers.TelaCadastroController;
 import java.awt.Component;
 import java.awt.SystemColor;
@@ -60,10 +63,14 @@ public class TelaCadastro extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDisciplina = new javax.swing.JTable();
         botaoAdicionarDisciplina = new javax.swing.JButton();
+        botaoEditar = new javax.swing.JButton();
+        botaoExcluir = new javax.swing.JButton();
         painelProfessor = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaProfessores = new javax.swing.JTable();
         botaoAdicionarProfessor = new javax.swing.JButton();
+        botaoEditarProfessor = new javax.swing.JButton();
+        botaoExcluirProfessor = new javax.swing.JButton();
         painelSala = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaSalas = new javax.swing.JTable();
@@ -141,17 +148,35 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        botaoEditar.setText("Editar");
+        botaoEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEditarActionPerformed(evt);
+            }
+        });
+
+        botaoExcluir.setText("Excluir");
+        botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelDisciplinaLayout = new javax.swing.GroupLayout(painelDisciplina);
         painelDisciplina.setLayout(painelDisciplinaLayout);
         painelDisciplinaLayout.setHorizontalGroup(
             painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDisciplinaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDisciplinaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoEditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoAdicionarDisciplina)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoExcluir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelDisciplinaLayout.setVerticalGroup(
@@ -160,7 +185,10 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoAdicionarDisciplina)
+                .addGroup(painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoAdicionarDisciplina)
+                    .addComponent(botaoEditar)
+                    .addComponent(botaoExcluir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -189,17 +217,35 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        botaoEditarProfessor.setText("Editar");
+        botaoEditarProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEditarProfessorActionPerformed(evt);
+            }
+        });
+
+        botaoExcluirProfessor.setText("Excluir");
+        botaoExcluirProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluirProfessorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelProfessorLayout = new javax.swing.GroupLayout(painelProfessor);
         painelProfessor.setLayout(painelProfessorLayout);
         painelProfessorLayout.setHorizontalGroup(
             painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProfessorLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelProfessorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoEditarProfessor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoAdicionarProfessor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoExcluirProfessor)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelProfessorLayout.setVerticalGroup(
@@ -208,7 +254,10 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoAdicionarProfessor)
+                .addGroup(painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoAdicionarProfessor)
+                    .addComponent(botaoEditarProfessor)
+                    .addComponent(botaoExcluirProfessor))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -663,6 +712,116 @@ public class TelaCadastro extends javax.swing.JFrame {
         
     }//GEN-LAST:event_painelComGuiasCadastroMousePressed
 
+    private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
+        int valor = tabelaDisciplina.getSelectedRow();
+        String valores = tabelaDisciplina.getModel().getValueAt(valor,0).toString();
+        int resposta = JOptionPane.showConfirmDialog(this,"voçê esta deletando a Disciplina "+valores+ ", Tem certeza disso?", "AVISO", JOptionPane.YES_NO_OPTION);
+        if(resposta == JOptionPane.YES_OPTION){
+        DisciplinaJpaController j = new DisciplinaJpaController();
+        Entidades.Disciplina  p = new Entidades.Disciplina();
+        List<Disciplina>a = j.FiltroDisciplina(valores);
+        p = a.get(0);
+          try {
+                 j.destroy(p.getDisciplinaId());
+                 int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
+                modeloTabela.setNumRows(0);
+
+                //Define o novo modelo da tabela, entrega modelo da nova tabela
+                //para o método 'guiaClicada' da classe de controle.
+                switch(guiaEscolhida){
+                    case 0:
+                        modeloTabela = (DefaultTableModel)tabelaDisciplina.getModel();
+                        control.guiaClicada(guiaEscolhida, modeloTabela);
+                        break;
+                    case 1:
+                        modeloTabela = (DefaultTableModel)tabelaProfessores.getModel();
+                        control.guiaClicada(guiaEscolhida, modeloTabela);
+                        break;
+                    case 2:
+                        modeloTabela = (DefaultTableModel)tabelaSalas.getModel();
+                        control.guiaClicada(guiaEscolhida, modeloTabela);
+                        break;
+                    case 3:
+                        modeloTabela = (DefaultTableModel)tabelaTurma.getModel();
+                        control.guiaClicada(guiaEscolhida, modeloTabela);
+                        break;
+                    case 4:
+                        modeloTabela = (DefaultTableModel)tabelaHorarios.getModel();
+                        control.guiaClicada(guiaEscolhida, modeloTabela);
+                        break;
+                }
+               JOptionPane.showMessageDialog(this, "Deletado com sucesso");
+          } catch (NonexistentEntityException ex) {
+              JOptionPane.showMessageDialog(this, "ERRO: a disciplina nao existe no banco de dados");
+          }
+        }
+    }//GEN-LAST:event_botaoExcluirActionPerformed
+
+    private void botaoExcluirProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirProfessorActionPerformed
+        int valor = tabelaProfessores.getSelectedRow();
+        String valores = tabelaProfessores.getModel().getValueAt(valor,0).toString();
+        int resposta = JOptionPane.showConfirmDialog(this,"voçê esta deletando o professor "+valores+ ", Tem certeza disso?", "AVISO", JOptionPane.YES_NO_OPTION);
+        if(resposta == JOptionPane.YES_OPTION){
+        ProfessorJpaController j = new ProfessorJpaController();
+        Entidades.Professor  p = new Entidades.Professor();
+        List<Professor>a = j.FiltroProfessor(valores);
+        p = a.get(0);
+          try {
+              j.destroy(p.getProfessorId());
+                int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
+                modeloTabela.setNumRows(0);
+
+                //Define o novo modelo da tabela, entrega modelo da nova tabela
+                //para o método 'guiaClicada' da classe de controle.
+                switch(guiaEscolhida){
+                    case 0:
+                        modeloTabela = (DefaultTableModel)tabelaDisciplina.getModel();
+                        control.guiaClicada(guiaEscolhida, modeloTabela);
+                        break;
+                    case 1:
+                        modeloTabela = (DefaultTableModel)tabelaProfessores.getModel();
+                        control.guiaClicada(guiaEscolhida, modeloTabela);
+                        break;
+                    case 2:
+                        modeloTabela = (DefaultTableModel)tabelaSalas.getModel();
+                        control.guiaClicada(guiaEscolhida, modeloTabela);
+                        break;
+                    case 3:
+                        modeloTabela = (DefaultTableModel)tabelaTurma.getModel();
+                        control.guiaClicada(guiaEscolhida, modeloTabela);
+                        break;
+                    case 4:
+                        modeloTabela = (DefaultTableModel)tabelaHorarios.getModel();
+                        control.guiaClicada(guiaEscolhida, modeloTabela);
+                        break;
+                }
+               JOptionPane.showMessageDialog(this, "Deletado com sucesso");
+          } catch (NonexistentEntityException ex) {
+              JOptionPane.showMessageDialog(this, "ERRO: a disciplina nao existe no banco de dados");
+          }
+        }
+    }//GEN-LAST:event_botaoExcluirProfessorActionPerformed
+
+    private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
+        
+        int valor = tabelaDisciplina.getSelectedRow();
+        String valores = tabelaDisciplina.getModel().getValueAt(valor,0).toString();
+        TelaEditarDisciplina tela = new TelaEditarDisciplina(this,true);
+        tela.editar(valores);
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_botaoEditarActionPerformed
+
+    private void botaoEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarProfessorActionPerformed
+        
+        int valor = tabelaProfessores.getSelectedRow();
+        String valores = tabelaProfessores.getModel().getValueAt(valor,0).toString();
+        TelaEditarProfessor tela = new TelaEditarProfessor(this, true);
+        tela.editar(valores);
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_botaoEditarProfessorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -704,6 +863,10 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton botaoAdicionarProfessor;
     private javax.swing.JButton botaoAdicionarSala;
     private javax.swing.JButton botaoAdicionarTurma;
+    private javax.swing.JButton botaoEditar;
+    private javax.swing.JButton botaoEditarProfessor;
+    private javax.swing.JButton botaoExcluir;
+    private javax.swing.JButton botaoExcluirProfessor;
     private javax.swing.JRadioButton botaoRadio12h;
     private javax.swing.JRadioButton botaoRadio24h;
     private javax.swing.ButtonGroup grupoBotaoHora;

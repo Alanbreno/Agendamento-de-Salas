@@ -22,6 +22,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -308,6 +309,14 @@ public class DisciplinaJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    
+    public List<Disciplina> FiltroDisciplina(String Disciplina){
+        EntityManager em = getEntityManager();
+        TypedQuery<Disciplina> query = em.createQuery("SELECT d FROM Disciplina d WHERE d.disciplinaNome = :disciplinaNome",Disciplina.class);
+        query.setParameter("disciplinaNome", Disciplina);
+      
+      return query.getResultList();
     }
     
 }
