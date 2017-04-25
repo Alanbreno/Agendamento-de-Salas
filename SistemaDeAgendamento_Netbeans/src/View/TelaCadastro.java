@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View;
 
 import DAO.DisciplinaJpaController;
@@ -11,41 +6,28 @@ import DAO.exceptions.NonexistentEntityException;
 import Entidades.Disciplina;
 import Entidades.Professor;
 import ViewControllers.TelaCadastroController;
-import java.awt.Component;
-import java.awt.SystemColor;
-import java.sql.DriverManager;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import java.awt.Dimension;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-/**
- *
- * @author Alan Breno
- */
+
 public class TelaCadastro extends javax.swing.JFrame {
     
-    TelaCadastroController control = new TelaCadastroController();
     DefaultTableModel modeloTabela;
-    
+    TelaCadastroController control = new TelaCadastroController();
+   
     public TelaCadastro(int indiceDoJTabbed) {
         initComponents();
-        painelComGuiasCadastro.setSelectedIndex(indiceDoJTabbed);
-        modeloTabela = (DefaultTableModel) tabelaProfessores.getModel();
-        control.guiaClicada(1, modeloTabela);
         
-//        tabelaHorarios.getColumnModel().getColumn(1).setPreferredWidth(20);
-
+        painelComGuiasCadastro.setSelectedIndex(indiceDoJTabbed);
+        modeloTabela = (DefaultTableModel) tabelaDisciplina.getModel();
+        control.guiaClicada(0, modeloTabela);
     }
 
     /**
@@ -130,16 +112,31 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Disciplina", "Semestre", "Carga Horária", "N° de Alunos", "Subturmas"
+                "Identificação", "Disciplina", "Semestre", "Carga Horária", "", "", ""
             }
-        ));
+        ){
+            @Override
+            public Class<?> getColumnClass(int column) {
+                switch(column) {
+                    case 4: return ImageIcon.class;
+                    case 5: return ImageIcon.class;
+                    case 6: return ImageIcon.class;
+                    default: return Object.class;
+                }
+            }
+        });
+        tabelaDisciplina.setRowHeight(22);
+        tabelaDisciplina.getColumnModel().getColumn(4).setMaxWidth(30);
+        tabelaDisciplina.getColumnModel().getColumn(5).setMaxWidth(30);
+        tabelaDisciplina.getColumnModel().getColumn(6).setMaxWidth(30);
+        tabelaDisciplina.setSelectionBackground(new java.awt.Color(236, 236, 236));
+        tabelaDisciplina.setSelectionForeground(new java.awt.Color(1, 1, 1));
+        tabelaDisciplina.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabelaDisciplinaMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaDisciplina);
-        if (tabelaDisciplina.getColumnModel().getColumnCount() > 0) {
-            tabelaDisciplina.getColumnModel().getColumn(0).setPreferredWidth(250);
-            tabelaDisciplina.getColumnModel().getColumn(1).setPreferredWidth(100);
-            tabelaDisciplina.getColumnModel().getColumn(2).setPreferredWidth(100);
-            tabelaDisciplina.getColumnModel().getColumn(3).setPreferredWidth(100);
-        }
 
         botaoAdicionarDisciplina.setText("Adicionar disciplina");
         botaoAdicionarDisciplina.addActionListener(new java.awt.event.ActionListener() {
@@ -168,7 +165,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDisciplinaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDisciplinaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -183,7 +180,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDisciplinaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAdicionarDisciplina)
@@ -192,7 +189,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        painelComGuiasCadastro.addTab("Disciplina", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_cadastro.png")), painelDisciplina); // NOI18N
+        painelComGuiasCadastro.addTab("Disciplina", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/disciplina_32px.png")), painelDisciplina); // NOI18N
 
         painelProfessor.setPreferredSize(new java.awt.Dimension(795, 575));
 
@@ -201,9 +198,30 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Professor", "Título", "Área de conhecimento", "Carga horária cumprida"
+                "Professor", "Título", "Área de conhecimento", "Carga horária cumprida", "", "", ""
             }
-        ));
+        ){
+            @Override
+            public Class<?> getColumnClass(int column) {
+                switch(column) {
+                    case 4: return ImageIcon.class;
+                    case 5: return ImageIcon.class;
+                    case 6: return ImageIcon.class;
+                    default: return Object.class;
+                }
+            }
+        });
+        tabelaProfessores.setRowHeight(22);
+        tabelaProfessores.getColumnModel().getColumn(4).setMaxWidth(30);
+        tabelaProfessores.getColumnModel().getColumn(5).setMaxWidth(30);
+        tabelaProfessores.getColumnModel().getColumn(6).setMaxWidth(30);
+        tabelaProfessores.setSelectionBackground(new java.awt.Color(236, 236, 236));
+        tabelaProfessores.setSelectionForeground(new java.awt.Color(1, 1, 1));
+        tabelaProfessores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabelaProfessoresMousePressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabelaProfessores);
         if (tabelaProfessores.getColumnModel().getColumnCount() > 0) {
             tabelaProfessores.getColumnModel().getColumn(1).setPreferredWidth(150);
@@ -252,7 +270,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProfessorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAdicionarProfessor)
@@ -261,16 +279,37 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        painelComGuiasCadastro.addTab("Professor", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_professor.png")), painelProfessor); // NOI18N
+        painelComGuiasCadastro.addTab("Professor", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/professor_32px.png")), painelProfessor); // NOI18N
 
         tabelaSalas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Identificação", "Capacidade", "Localização", "Observação"
+                "Identificação", "Capacidade", "Localização", "Laboratório", "Observação", "", "", ""
             }
-        ));
+        ){
+            @Override
+            public Class<?> getColumnClass(int column) {
+                switch(column) {
+                    case 5: return ImageIcon.class;
+                    case 6: return ImageIcon.class;
+                    case 7: return ImageIcon.class;
+                    default: return Object.class;
+                }
+            }
+        });
+        tabelaSalas.setRowHeight(22);
+        tabelaSalas.getColumnModel().getColumn(5).setMaxWidth(30);
+        tabelaSalas.getColumnModel().getColumn(6).setMaxWidth(30);
+        tabelaSalas.getColumnModel().getColumn(7).setMaxWidth(30);
+        tabelaSalas.setSelectionBackground(new java.awt.Color(236, 236, 236));
+        tabelaSalas.setSelectionForeground(new java.awt.Color(1, 1, 1));
+        tabelaSalas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabelaSalasMousePressed(evt);
+            }
+        });
         jScrollPane3.setViewportView(tabelaSalas);
         if (tabelaSalas.getColumnModel().getColumnCount() > 0) {
             tabelaSalas.getColumnModel().getColumn(1).setPreferredWidth(150);
@@ -301,30 +340,47 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSalaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoAdicionarSala)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        painelComGuiasCadastro.addTab("Sala", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_sala.png")), painelSala); // NOI18N
+        painelComGuiasCadastro.addTab("Sala", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/sala_32px.png")), painelSala); // NOI18N
 
         tabelaTurma.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Turma", "Semestre", "N° de alunos", "Todas as disciplinas alocadas"
+                "Turma", "Semestre", "N° de alunos", "Todas as disciplinas alocadas", "", "", ""
             }
-        ));
+        ){
+            @Override
+            public Class<?> getColumnClass(int column) {
+                switch(column) {
+                    case 4: return ImageIcon.class;
+                    case 5: return ImageIcon.class;
+                    case 6: return ImageIcon.class;
+                    default: return Object.class;
+                }
+            }
+        });
+        tabelaTurma.setRowHeight(22);
+        tabelaTurma.getColumnModel().getColumn(4).setMaxWidth(30);
+        tabelaTurma.getColumnModel().getColumn(5).setMaxWidth(30);
+        tabelaTurma.getColumnModel().getColumn(6).setMaxWidth(30);
+        tabelaTurma.setSelectionBackground(new java.awt.Color(236, 236, 236));
+        tabelaTurma.setSelectionForeground(new java.awt.Color(1, 1, 1));
+        tabelaTurma.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabelaTurmaMousePressed(evt);
+            }
+        });
         jScrollPane4.setViewportView(tabelaTurma);
         if (tabelaTurma.getColumnModel().getColumnCount() > 0) {
-            tabelaTurma.getColumnModel().getColumn(0).setHeaderValue("Turma");
             tabelaTurma.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tabelaTurma.getColumnModel().getColumn(1).setHeaderValue("Semestre");
             tabelaTurma.getColumnModel().getColumn(2).setPreferredWidth(80);
-            tabelaTurma.getColumnModel().getColumn(2).setHeaderValue("N° de alunos");
-            tabelaTurma.getColumnModel().getColumn(3).setHeaderValue("Todas as disciplinas alocadas");
         }
 
         botaoAdicionarTurma.setText("Adicionar turma");
@@ -351,13 +407,13 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelTurmaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelTurmaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoAdicionarTurma)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        painelComGuiasCadastro.addTab("Turma", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_turma.png")), painelTurma); // NOI18N
+        painelComGuiasCadastro.addTab("Turma", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/turma_32px.png")), painelTurma); // NOI18N
 
         tabelaHorarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -374,18 +430,31 @@ public class TelaCadastro extends javax.swing.JFrame {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
+
+            @Override
+            public Class<?> getColumnClass(int column) {
+                switch(column) {
+                    case 1: return ImageIcon.class;
+                    case 2: return ImageIcon.class;
+                    case 3: return ImageIcon.class;
+                    default: return Object.class;
+                }
+            }
+        });
+        tabelaHorarios.getColumnModel().getColumn(1).setMaxWidth(30);
+        tabelaHorarios.getColumnModel().getColumn(2).setMaxWidth(30);
+        tabelaHorarios.getColumnModel().getColumn(3).setMaxWidth(30);
+        tabelaHorarios.setRowHeight(22);
+        tabelaHorarios.setSelectionBackground(new java.awt.Color(236, 236, 236));
+        tabelaHorarios.setSelectionForeground(new java.awt.Color(1, 1, 1));
+        tabelaHorarios.getTableHeader().setResizingAllowed(false);
+        tabelaHorarios.getTableHeader().setReorderingAllowed(false);
+        tabelaHorarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabelaHorariosMousePressed(evt);
+            }
         });
         jScrollPane5.setViewportView(tabelaHorarios);
-        if (tabelaHorarios.getColumnModel().getColumnCount() > 0) {
-            tabelaHorarios.getColumnModel().getColumn(0).setResizable(false);
-            tabelaHorarios.getColumnModel().getColumn(0).setPreferredWidth(850);
-            tabelaHorarios.getColumnModel().getColumn(1).setResizable(false);
-            tabelaHorarios.getColumnModel().getColumn(1).setPreferredWidth(20);
-            tabelaHorarios.getColumnModel().getColumn(2).setResizable(false);
-            tabelaHorarios.getColumnModel().getColumn(2).setPreferredWidth(20);
-            tabelaHorarios.getColumnModel().getColumn(3).setResizable(false);
-            tabelaHorarios.getColumnModel().getColumn(3).setPreferredWidth(20);
-        }
 
         botaoAdicionarHorarios.setText("Adicionar horário");
         botaoAdicionarHorarios.addActionListener(new java.awt.event.ActionListener() {
@@ -411,9 +480,9 @@ public class TelaCadastro extends javax.swing.JFrame {
                         .addComponent(botaoRadio12h)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botaoRadio24h)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
                         .addComponent(botaoAdicionarHorarios)
-                        .addContainerGap(434, Short.MAX_VALUE))
+                        .addContainerGap(413, Short.MAX_VALUE))
                     .addGroup(painelHorarioLayout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
                         .addGap(10, 10, 10))))
@@ -422,7 +491,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelHorarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAdicionarHorarios)
@@ -431,7 +500,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        painelComGuiasCadastro.addTab("Horário", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_relogio.png")), painelHorario); // NOI18N
+        painelComGuiasCadastro.addTab("Horário", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/horario_32px.png")), painelHorario); // NOI18N
 
         menuTabela.setText("Tabela");
 
@@ -566,7 +635,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
+            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
