@@ -143,7 +143,7 @@ public class TelaCadastroController {
         
         //Caso haja troca de tabelas, com uma tabela de maior número de linhas.
         if( tabela.getRowCount() <= this.linhaEscolhidaAnter )
-            this.linhaEscolhidaAnter = 0;
+           this.linhaEscolhidaAnter = 0;        
         
         //Caso usuário escolha a mesma linha duas vezes, na segunda vez realiza uma
         //ação ao clicar nas colunas de ação. Também adiciona e retira ícones.
@@ -164,7 +164,13 @@ public class TelaCadastroController {
             tabela.setValueAt(this.lapisIcone, linhaEscolhida, colunaEditar);
             tabela.setValueAt(this.lupaIcone, linhaEscolhida, colunaVisual);
             tabela.setValueAt(this.xisIcone, linhaEscolhida, colunaApagar);
-        }        
+        }
+
+        if ( linhaEscolhida == 0 ){
+            tabela.setValueAt(this.lapisIcone, linhaEscolhida, colunaEditar);
+            tabela.setValueAt(this.lupaIcone, linhaEscolhida, colunaVisual);
+            tabela.setValueAt(this.xisIcone, linhaEscolhida, colunaApagar);
+        }
 
         this.linhaEscolhidaAnter = linhaEscolhida;        
     }
