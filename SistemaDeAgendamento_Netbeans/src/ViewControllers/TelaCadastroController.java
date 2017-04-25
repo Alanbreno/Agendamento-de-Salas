@@ -18,11 +18,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastroController {
     
+    //Variáveis necessárias para o método de ícones dinâmicos.
     final ImageIcon lapisIcone = new ImageIcon("src/Imagens/Gestao/pen_16.png");
     final ImageIcon lupaIcone = new ImageIcon("src/Imagens/Gestao/lupa_16px.png");
-    final ImageIcon xisIcone = new ImageIcon("src/Imagens/Gestao/xis_16px.png");
-    
-    private int linhaEscolhidaAnter = 1;
+    final ImageIcon xisIcone = new ImageIcon("src/Imagens/Gestao/xis_16px.png");    
+    private int linhaEscolhidaAnter;
     
     public void guiaClicada(int guiaEscolhida, DefaultTableModel model){        
         Object informColuna[];
@@ -132,23 +132,29 @@ public class TelaCadastroController {
         }
     }
     
-    public void iconesDinamicos(JTable tabela, int linhaEscolhida){
+    public void iconesDinamicos(JTable tabela){
         
+        int linhaEscolhida = tabela.getSelectedRow();
+        
+        //Define as colunas com ações
         int colunaEditar = tabela.getColumnCount() - 3;
         int colunaVisual = tabela.getColumnCount() - 2;
         int colunaApagar = tabela.getColumnCount() - 1;
         
-        if( tabela.getRowCount() > this.linhaEscolhidaAnter )
-            this.linhaEscolhidaAnter = 1;
+        //Caso haja troca de tabelas, com uma tabela de maior número de linhas.
+        if( tabela.getRowCount() <= this.linhaEscolhidaAnter )
+            this.linhaEscolhidaAnter = 0;
         
+        //Caso usuário escolha a mesma linha duas vezes, na segunda vez realiza uma
+        //ação ao clicar nas colunas de ação. Também adiciona e retira ícones.
         if (this.linhaEscolhidaAnter == linhaEscolhida){
             
-            if( linhaEscolhida == colunaEditar )
-                JOptionPane.showMessageDialog(null, "Editar item");                    
-            else if( linhaEscolhida == colunaVisual )
-                JOptionPane.showMessageDialog(null, "Visualizar item");
-            else if( linhaEscolhida == colunaApagar )
-                JOptionPane.showMessageDialog(null, "Excluir item");    
+            if( tabela.getSelectedColumn() == colunaEditar )
+                JOptionPane.showMessageDialog(null, "Editar item","Editar", JOptionPane.INFORMATION_MESSAGE, lapisIcone);                    
+            else if( tabela.getSelectedColumn() == colunaVisual )
+                JOptionPane.showMessageDialog(null, "Visualizar item", "Visualizar", JOptionPane.INFORMATION_MESSAGE, lupaIcone);
+            else if( tabela.getSelectedColumn() == colunaApagar )
+                JOptionPane.showMessageDialog(null, "Excluir item", "Excluir", JOptionPane.INFORMATION_MESSAGE, xisIcone);    
             
         } else{
             tabela.setValueAt("", this.linhaEscolhidaAnter, colunaEditar);
@@ -160,7 +166,7 @@ public class TelaCadastroController {
             tabela.setValueAt(this.xisIcone, linhaEscolhida, colunaApagar);
         }        
 
-        this.linhaEscolhidaAnter = linhaEscolhida;
+        this.linhaEscolhidaAnter = linhaEscolhida;        
     }
 }
 

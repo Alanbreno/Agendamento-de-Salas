@@ -204,11 +204,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="painelComGuiasCadastro" pref="1000" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="painelComGuiasCadastro" alignment="0" pref="1024" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -339,7 +335,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="960" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="984" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -353,7 +349,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" pref="455" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="480" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Component id="botaoAdicionarProfessor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -371,13 +367,8 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tabelaProfessores">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="0">
-                        <Column editable="true" title="Professor" type="java.lang.Object"/>
-                        <Column editable="true" title="T&#xed;tulo" type="java.lang.Object"/>
-                        <Column editable="true" title="&#xc1;rea de conhecimento" type="java.lang.Object"/>
-                        <Column editable="true" title="Carga hor&#xe1;ria cumprida" type="java.lang.Object"/>
-                      </Table>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Professor&quot;, &quot;T&#xed;tulo&quot;, &quot;&#xc1;rea de conhecimento&quot;, &quot;Carga hor&#xe1;ria cumprida&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;&#xa;    }&#xa;){&#xa;    @Override&#xa;    public Class&lt;?&gt; getColumnClass(int column) {&#xa;        switch(column) {&#xa;            case 4: return ImageIcon.class;&#xa;            case 5: return ImageIcon.class;&#xa;            case 6: return ImageIcon.class;&#xa;            default: return Object.class;&#xa;        }&#xa;    }&#xa;}" type="code"/>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
@@ -401,9 +392,24 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                       </TableColumnModel>
                     </Property>
-                    <Property name="rowHeight" type="int" value="22"/>
+                    <Property name="rowHeight" type="int" value="22" postCode="tabelaProfessores.getColumnModel().getColumn(4).setMaxWidth(30);&#xa;tabelaProfessores.getColumnModel().getColumn(5).setMaxWidth(30);&#xa;tabelaProfessores.getColumnModel().getColumn(6).setMaxWidth(30);"/>
                     <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ec" green="ec" red="ec" type="rgb"/>
                     </Property>
@@ -447,7 +453,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="960" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" pref="984" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -479,14 +485,8 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tabelaSalas">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="0">
-                        <Column editable="true" title="Identifica&#xe7;&#xe3;o" type="java.lang.Object"/>
-                        <Column editable="true" title="Capacidade" type="java.lang.Object"/>
-                        <Column editable="true" title="Localiza&#xe7;&#xe3;o" type="java.lang.Object"/>
-                        <Column editable="true" title="Laborat&#xf3;rio" type="java.lang.Object"/>
-                        <Column editable="true" title="Observa&#xe7;&#xe3;o" type="java.lang.Object"/>
-                      </Table>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Identifica&#xe7;&#xe3;o&quot;, &quot;Capacidade&quot;, &quot;Localiza&#xe7;&#xe3;o&quot;, &quot;Laborat&#xf3;rio&quot;, &quot;Observa&#xe7;&#xe3;o&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;&#xa;    }&#xa;){&#xa;    @Override&#xa;    public Class&lt;?&gt; getColumnClass(int column) {&#xa;        switch(column) {&#xa;            case 5: return ImageIcon.class;&#xa;            case 6: return ImageIcon.class;&#xa;            case 7: return ImageIcon.class;&#xa;            default: return Object.class;&#xa;        }&#xa;    }&#xa;}" type="code"/>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
@@ -515,9 +515,24 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                       </TableColumnModel>
                     </Property>
-                    <Property name="rowHeight" type="int" value="22"/>
+                    <Property name="rowHeight" type="int" value="22" postCode="tabelaSalas.getColumnModel().getColumn(5).setMaxWidth(30);&#xa;tabelaSalas.getColumnModel().getColumn(6).setMaxWidth(30);&#xa;tabelaSalas.getColumnModel().getColumn(7).setMaxWidth(30);"/>
                     <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ec" green="ec" red="ec" type="rgb"/>
                     </Property>
@@ -561,7 +576,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="960" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="984" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -593,39 +608,49 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tabelaTurma">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="0">
-                        <Column editable="true" title="Turma" type="java.lang.Object"/>
-                        <Column editable="true" title="Semestre" type="java.lang.Object"/>
-                        <Column editable="true" title="N&#xb0; de alunos" type="java.lang.Object"/>
-                        <Column editable="true" title="Todas as disciplinas alocadas" type="java.lang.Object"/>
-                      </Table>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Turma&quot;, &quot;Semestre&quot;, &quot;N&#xb0; de alunos&quot;, &quot;Todas as disciplinas alocadas&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;&#xa;    }&#xa;){&#xa;    @Override&#xa;    public Class&lt;?&gt; getColumnClass(int column) {&#xa;        switch(column) {&#xa;            case 4: return ImageIcon.class;&#xa;            case 5: return ImageIcon.class;&#xa;            case 6: return ImageIcon.class;&#xa;            default: return Object.class;&#xa;        }&#xa;    }&#xa;}" type="code"/>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Turma"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
-                          <Title value="Semestre"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="true">
-                          <Title value="N&#xb0; de alunos"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Todas as disciplinas alocadas"/>
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                       </TableColumnModel>
                     </Property>
-                    <Property name="rowHeight" type="int" value="22"/>
+                    <Property name="rowHeight" type="int" value="22" postCode="tabelaTurma.getColumnModel().getColumn(4).setMaxWidth(30);&#xa;tabelaTurma.getColumnModel().getColumn(5).setMaxWidth(30);&#xa;tabelaTurma.getColumnModel().getColumn(6).setMaxWidth(30);"/>
                     <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ec" green="ec" red="ec" type="rgb"/>
                     </Property>
@@ -674,12 +699,12 @@
                               <Component id="botaoRadio12h" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="botaoRadio24h" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="300" max="32767" attributes="0"/>
+                              <EmptySpace pref="312" max="32767" attributes="0"/>
                               <Component id="botaoAdicionarHorarios" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="401" max="32767" attributes="0"/>
+                              <EmptySpace pref="413" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jScrollPane5" pref="960" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" pref="984" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           </Group>
                       </Group>
