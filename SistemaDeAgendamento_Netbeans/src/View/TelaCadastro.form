@@ -183,6 +183,9 @@
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1024, 768]"/>
     </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1024, 768]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBarra"/>
@@ -204,12 +207,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="painelComGuiasCadastro" alignment="0" pref="1024" max="32767" attributes="0"/>
+          <Component id="painelComGuiasCadastro" alignment="1" pref="1024" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="painelComGuiasCadastro" alignment="1" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Component id="painelComGuiasCadastro" alignment="1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -237,7 +243,7 @@
               <JTabbedPaneConstraints tabName="Disciplina">
                 <Property name="tabTitle" type="java.lang.String" value="Disciplina"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/Gestao/disciplina_32px.png"/>
+                  <Image iconType="3" name="/Imagens/icone_cadastro.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -253,11 +259,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="botaoEditar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="botaoAdicionarDisciplina" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="botaoExcluir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -265,15 +267,10 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="botaoAdicionarDisciplina" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="botaoEditar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="botaoExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="446" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="botaoAdicionarDisciplina" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -288,26 +285,48 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tabelaDisciplina">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Identifica&#xe7;&#xe3;o&quot;, &quot;Disciplina&quot;, &quot;Semestre&quot;, &quot;Carga Hor&#xe1;ria&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;&#xa;    }&#xa;){&#xa;    @Override&#xa;    public Class&lt;?&gt; getColumnClass(int column) {&#xa;        switch(column) {&#xa;            case 4: return ImageIcon.class;&#xa;            case 5: return ImageIcon.class;&#xa;            case 6: return ImageIcon.class;&#xa;            default: return Object.class;&#xa;        }&#xa;    }&#xa;}" type="code"/>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="5" rowCount="0">
+                        <Column editable="true" title="Disciplina" type="java.lang.Object"/>
+                        <Column editable="true" title="Semestre" type="java.lang.Object"/>
+                        <Column editable="true" title="Carga Hor&#xe1;ria" type="java.lang.Object"/>
+                        <Column editable="true" title="N&#xb0; de Alunos" type="java.lang.Object"/>
+                        <Column editable="true" title="Subturmas" type="java.lang.Object"/>
+                      </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0"/>
-                    </Property>
-                    <Property name="rowHeight" type="int" value="22" postCode="tabelaDisciplina.getColumnModel().getColumn(4).setMaxWidth(30);&#xa;tabelaDisciplina.getColumnModel().getColumn(5).setMaxWidth(30);&#xa;tabelaDisciplina.getColumnModel().getColumn(6).setMaxWidth(30);"/>
-                    <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ec" green="ec" red="ec" type="rgb"/>
-                    </Property>
-                    <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="1" green="1" red="1" type="rgb"/>
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaDisciplinaMousePressed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -317,22 +336,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAdicionarDisciplinaActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="botaoEditar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Editar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEditarActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="botaoExcluir">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Excluir"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -348,7 +351,7 @@
               <JTabbedPaneConstraints tabName="Professor">
                 <Property name="tabTitle" type="java.lang.String" value="Professor"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/Gestao/professor_32px.png"/>
+                  <Image iconType="3" name="/Imagens/icone_professor.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -359,16 +362,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="999" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="984" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="botaoEditarProfessor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="botaoAdicionarProfessor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="botaoExcluirProfessor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -377,13 +376,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" pref="480" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="442" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="botaoAdicionarProfessor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="botaoEditarProfessor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="botaoExcluirProfessor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="botaoAdicionarProfessor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -399,8 +394,13 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tabelaProfessores">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Professor&quot;, &quot;T&#xed;tulo&quot;, &quot;&#xc1;rea de conhecimento&quot;, &quot;Carga hor&#xe1;ria cumprida&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;&#xa;    }&#xa;){&#xa;    @Override&#xa;    public Class&lt;?&gt; getColumnClass(int column) {&#xa;        switch(column) {&#xa;            case 4: return ImageIcon.class;&#xa;            case 5: return ImageIcon.class;&#xa;            case 6: return ImageIcon.class;&#xa;            default: return Object.class;&#xa;        }&#xa;    }&#xa;}" type="code"/>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="true" title="Professor" type="java.lang.Object"/>
+                        <Column editable="true" title="T&#xed;tulo" type="java.lang.Object"/>
+                        <Column editable="true" title="&#xc1;rea de conhecimento" type="java.lang.Object"/>
+                        <Column editable="true" title="Carga hor&#xe1;ria cumprida" type="java.lang.Object"/>
+                      </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
@@ -424,37 +424,12 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                       </TableColumnModel>
-                    </Property>
-                    <Property name="rowHeight" type="int" value="22" postCode="tabelaProfessores.getColumnModel().getColumn(4).setMaxWidth(30);&#xa;tabelaProfessores.getColumnModel().getColumn(5).setMaxWidth(30);&#xa;tabelaProfessores.getColumnModel().getColumn(6).setMaxWidth(30);"/>
-                    <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ec" green="ec" red="ec" type="rgb"/>
-                    </Property>
-                    <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="1" green="1" red="1" type="rgb"/>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaProfessoresMousePressed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -466,22 +441,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAdicionarProfessorActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="botaoEditarProfessor">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Editar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEditarProfessorActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="botaoExcluirProfessor">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Excluir"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirProfessorActionPerformed"/>
-              </Events>
-            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="painelSala">
@@ -490,7 +449,7 @@
               <JTabbedPaneConstraints tabName="Sala">
                 <Property name="tabTitle" type="java.lang.String" value="Sala"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/Gestao/sala_32px.png"/>
+                  <Image iconType="3" name="/Imagens/icone_sala.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -501,12 +460,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="984" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" pref="999" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="botaoAdicionarSala" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="botaoEditar" min="-2" pref="101" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="txtDeletar" min="-2" pref="98" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -517,7 +480,11 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jScrollPane3" pref="455" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                      <Component id="botaoAdicionarSala" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="botaoAdicionarSala" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDeletar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -533,8 +500,14 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tabelaSalas">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Identifica&#xe7;&#xe3;o&quot;, &quot;Capacidade&quot;, &quot;Localiza&#xe7;&#xe3;o&quot;, &quot;Laborat&#xf3;rio&quot;, &quot;Observa&#xe7;&#xe3;o&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;&#xa;    }&#xa;){&#xa;    @Override&#xa;    public Class&lt;?&gt; getColumnClass(int column) {&#xa;        switch(column) {&#xa;            case 5: return ImageIcon.class;&#xa;            case 6: return ImageIcon.class;&#xa;            case 7: return ImageIcon.class;&#xa;            default: return Object.class;&#xa;        }&#xa;    }&#xa;}" type="code"/>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="5" rowCount="0">
+                        <Column editable="true" title="Identifica&#xe7;&#xe3;o" type="java.lang.Object"/>
+                        <Column editable="true" title="Capacidade" type="java.lang.Object"/>
+                        <Column editable="true" title="Localiza&#xe7;&#xe3;o" type="java.lang.Object"/>
+                        <Column editable="true" title="Observa&#xe7;&#xe3;o" type="java.lang.Object"/>
+                        <Column editable="true" title="ID" type="java.lang.Object"/>
+                      </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
@@ -558,42 +531,12 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                       </TableColumnModel>
-                    </Property>
-                    <Property name="rowHeight" type="int" value="22" postCode="tabelaSalas.getColumnModel().getColumn(5).setMaxWidth(30);&#xa;tabelaSalas.getColumnModel().getColumn(6).setMaxWidth(30);&#xa;tabelaSalas.getColumnModel().getColumn(7).setMaxWidth(30);"/>
-                    <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ec" green="ec" red="ec" type="rgb"/>
-                    </Property>
-                    <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="1" green="1" red="1" type="rgb"/>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaSalasMousePressed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -605,6 +548,22 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAdicionarSalaActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="botaoEditar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Editar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEditarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="txtDeletar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Deletar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDeletarActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="painelTurma">
@@ -613,7 +572,7 @@
               <JTabbedPaneConstraints tabName="Turma">
                 <Property name="tabTitle" type="java.lang.String" value="Turma"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/Gestao/turma_32px.png"/>
+                  <Image iconType="3" name="/Imagens/icone_turma.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -624,12 +583,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="984" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="999" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="385" max="-2" attributes="0"/>
                       <Component id="botaoAdicionarTurma" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="botaoEditarTurmas" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="botaoDeletarTurma" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -637,11 +600,15 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane4" pref="455" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                      <Component id="botaoAdicionarTurma" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="446" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="botaoAdicionarTurma" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoEditarTurmas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoDeletarTurma" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -656,62 +623,42 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tabelaTurma">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Turma&quot;, &quot;Semestre&quot;, &quot;N&#xb0; de alunos&quot;, &quot;Todas as disciplinas alocadas&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;&#xa;    }&#xa;){&#xa;    @Override&#xa;    public Class&lt;?&gt; getColumnClass(int column) {&#xa;        switch(column) {&#xa;            case 4: return ImageIcon.class;&#xa;            case 5: return ImageIcon.class;&#xa;            case 6: return ImageIcon.class;&#xa;            default: return Object.class;&#xa;        }&#xa;    }&#xa;}" type="code"/>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="true" title="Turma" type="java.lang.Object"/>
+                        <Column editable="true" title="Semestre" type="java.lang.Object"/>
+                        <Column editable="true" title="N&#xb0; de alunos" type="java.lang.Object"/>
+                        <Column editable="true" title="Todas as disciplinas alocadas" type="java.lang.Object"/>
+                      </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
+                          <Title value="Turma"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
-                          <Title/>
+                          <Title value="Semestre"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="80" resizable="true">
-                          <Title/>
+                          <Title value="N&#xb0; de alunos"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
+                          <Title value="Todas as disciplinas alocadas"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                       </TableColumnModel>
                     </Property>
-                    <Property name="rowHeight" type="int" value="22" postCode="tabelaTurma.getColumnModel().getColumn(4).setMaxWidth(30);&#xa;tabelaTurma.getColumnModel().getColumn(5).setMaxWidth(30);&#xa;tabelaTurma.getColumnModel().getColumn(6).setMaxWidth(30);"/>
-                    <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ec" green="ec" red="ec" type="rgb"/>
-                    </Property>
-                    <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="1" green="1" red="1" type="rgb"/>
-                    </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaTurmaMousePressed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -723,6 +670,22 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAdicionarTurmaActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="botaoEditarTurmas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Editar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEditarTurmasActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="botaoDeletarTurma">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Deletar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoDeletarTurmaActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="painelHorario">
@@ -731,7 +694,7 @@
               <JTabbedPaneConstraints tabName="Hor&#xe1;rio">
                 <Property name="tabTitle" type="java.lang.String" value="Hor&#xe1;rio"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagens/Gestao/horario_32px.png"/>
+                  <Image iconType="3" name="/Imagens/icone_relogio.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -747,12 +710,16 @@
                               <Component id="botaoRadio12h" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="botaoRadio24h" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="312" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="318" max="-2" attributes="0"/>
                               <Component id="botaoAdicionarHorarios" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="413" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="botaoEditarHorario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="botaoDeletarHoarario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jScrollPane5" pref="984" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" pref="999" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -763,12 +730,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane5" pref="455" max="32767" attributes="0"/>
+                      <Component id="jScrollPane5" pref="454" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="botaoAdicionarHorarios" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="botaoRadio12h" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="botaoRadio24h" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoEditarHorario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoDeletarHoarario" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -785,26 +754,42 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tabelaHorarios">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="tabelaHorarios.getColumnModel().getColumn(1).setMaxWidth(30);&#xa;    tabelaHorarios.getColumnModel().getColumn(2).setMaxWidth(30);&#xa;    tabelaHorarios.getColumnModel().getColumn(3).setMaxWidth(30);">
-                      <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Hor&#xe1;rio&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;&#xa;    }&#xa;) {&#xa;    boolean[] canEdit = new boolean [] {&#xa;        false, false, false, false&#xa;    };&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;&#xa;    @Override&#xa;    public Class&lt;?&gt; getColumnClass(int column) {&#xa;        switch(column) {&#xa;            case 1: return ImageIcon.class;&#xa;            case 2: return ImageIcon.class;&#xa;            case 3: return ImageIcon.class;&#xa;            default: return Object.class;&#xa;        }&#xa;    }&#xa;}" type="code"/>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="false" title="Hor&#xe1;rio" type="java.lang.Object"/>
+                        <Column editable="false" title="" type="java.lang.Object"/>
+                        <Column editable="false" title="" type="java.lang.Object"/>
+                        <Column editable="false" title="" type="java.lang.Object"/>
+                      </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0"/>
-                    </Property>
-                    <Property name="rowHeight" type="int" value="22"/>
-                    <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ec" green="ec" red="ec" type="rgb"/>
-                    </Property>
-                    <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="1" green="1" red="1" type="rgb"/>
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="850" resizable="false">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="false">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaHorariosMousePressed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -831,6 +816,22 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="24h"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="botaoEditarHorario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Editar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEditarHorarioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="botaoDeletarHoarario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Deletar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoDeletarHoararioActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

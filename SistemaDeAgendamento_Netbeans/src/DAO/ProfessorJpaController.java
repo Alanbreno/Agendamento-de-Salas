@@ -20,7 +20,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 
 /**
  *
@@ -36,7 +35,18 @@ public class ProfessorJpaController implements Serializable {
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
-    }    
+    }
+    
+    public List<Professor> findProfessorOrdered(){
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "SELECT p FROM Professor p ORDER BY p.professorNome";
+            Query query = em.createQuery(sql);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 
     public void create(Professor professor) {
         if (professor.getHorarioCollection() == null) {
@@ -219,14 +229,6 @@ public class ProfessorJpaController implements Serializable {
         } finally {
             em.close();
         }
-    }
-    
-    public List<Professor> FiltroProfessor(String Professor){
-        EntityManager em = getEntityManager();
-        TypedQuery<Professor> query = em.createQuery("SELECT p FROM Professor p WHERE p.professorNome = :professorNome",Professor.class);
-        query.setParameter("professorNome", Professor);
-      
-      return query.getResultList();
     }
     
 }

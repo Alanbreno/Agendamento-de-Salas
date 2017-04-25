@@ -19,6 +19,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -36,6 +37,16 @@ public class TurmaJpaController implements Serializable {
         return emf.createEntityManager();
     }
     
+    public List<Turma> findTurmaOrdered(){
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "SELECT t FROM Turma t ORDER BY t.turmaCodigo";
+            Query query = em.createQuery(sql);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
     public void create(Turma turma) {
         if (turma.getDisciplinaCollection() == null) {
             turma.setDisciplinaCollection(new ArrayList<Disciplina>());
@@ -179,5 +190,13 @@ public class TurmaJpaController implements Serializable {
             em.close();
         }
     }
+    public List<Turma> FiltroTurma(String turma){
+          EntityManager em = getEntityManager();
+       TypedQuery<Turma> query = em.createQuery("SELECT t FROM Turma t WHERE t.turmaCodigo = :turmaCodigo",Turma.class);
+       query.setParameter("turmaCodigo", turma);
+      
+      return query.getResultList();
+    }
+    
     
 }

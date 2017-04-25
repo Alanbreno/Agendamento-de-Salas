@@ -127,12 +127,13 @@ public class TelaGestao extends javax.swing.JFrame {
         );
         painelTurmasLayout.setVerticalGroup(
             painelTurmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
-            .addComponent(painelRolagemTurmas, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
-
+            .addGroup(painelTurmasLayout.createSequentialGroup()
+                .addComponent(painelScrollTurmas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoAdicionarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        painelComGuiasGestao.addTab("Turmas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/turma_32px.png")), painelTurmas); // NOI18N
+        painelComGuiasGestao.addTab("Turmas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_turma.png")), painelTurmas); // NOI18N
 
         painelSalas.setPreferredSize(new java.awt.Dimension(795, 575));
 
@@ -168,12 +169,13 @@ public class TelaGestao extends javax.swing.JFrame {
         );
         painelSalasLayout.setVerticalGroup(
             painelSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
-            .addComponent(painelRolagemSalas, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
-
+            .addGroup(painelSalasLayout.createSequentialGroup()
+                .addComponent(painelScrollSalas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoAdicionarSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        painelComGuiasGestao.addTab("Salas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/sala_32px.png")), painelSalas); // NOI18N
+        painelComGuiasGestao.addTab("Salas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_sala.png")), painelSalas); // NOI18N
 
         menuTabela.setText("Tabela");
 

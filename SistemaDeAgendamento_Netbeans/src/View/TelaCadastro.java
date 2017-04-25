@@ -1,34 +1,62 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package View;
 
 import DAO.DisciplinaJpaController;
-import DAO.ProfessorJpaController;
+import DAO.HorarioJpaController;
+import DAO.SalaJpaController;
+import DAO.TurmaJpaController;
 import DAO.exceptions.NonexistentEntityException;
 import Entidades.Disciplina;
-import Entidades.Professor;
+import Entidades.Horario;
+import Entidades.Sala;
 import ViewControllers.TelaCadastroController;
-import java.awt.Dimension;
+import java.awt.Component;
+import java.awt.SystemColor;
+import java.sql.DriverManager;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import javax.swing.BorderFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.chart.PieChart;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-
+/**
+ *
+ * @author Alan Breno
+ */
 public class TelaCadastro extends javax.swing.JFrame {
     
-    DefaultTableModel modeloTabela;
     TelaCadastroController control = new TelaCadastroController();
-   
+    DefaultTableModel modeloTabela;
+    
     public TelaCadastro(int indiceDoJTabbed) {
         initComponents();
-        
         painelComGuiasCadastro.setSelectedIndex(indiceDoJTabbed);
-        modeloTabela = (DefaultTableModel) tabelaDisciplina.getModel();
-        control.guiaClicada(0, modeloTabela);
+        modeloTabela = (DefaultTableModel) tabelaProfessores.getModel();
+        control.guiaClicada(1, modeloTabela);
+        
+        
+//        tabelaHorarios.getColumnModel().getColumn(1).setPreferredWidth(20);
+
     }
 
     /**
@@ -46,28 +74,30 @@ public class TelaCadastro extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDisciplina = new javax.swing.JTable();
         botaoAdicionarDisciplina = new javax.swing.JButton();
-        botaoEditar = new javax.swing.JButton();
-        botaoExcluir = new javax.swing.JButton();
         painelProfessor = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaProfessores = new javax.swing.JTable();
         botaoAdicionarProfessor = new javax.swing.JButton();
-        botaoEditarProfessor = new javax.swing.JButton();
-        botaoExcluirProfessor = new javax.swing.JButton();
         painelSala = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaSalas = new javax.swing.JTable();
         botaoAdicionarSala = new javax.swing.JButton();
+        botaoEditar = new javax.swing.JButton();
+        txtDeletar = new javax.swing.JButton();
         painelTurma = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tabelaTurma = new javax.swing.JTable();
         botaoAdicionarTurma = new javax.swing.JButton();
+        botaoEditarTurmas = new javax.swing.JButton();
+        botaoDeletarTurma = new javax.swing.JButton();
         painelHorario = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabelaHorarios = new javax.swing.JTable();
         botaoAdicionarHorarios = new javax.swing.JButton();
         botaoRadio12h = new javax.swing.JRadioButton();
         botaoRadio24h = new javax.swing.JRadioButton();
+        botaoEditarHorario = new javax.swing.JButton();
+        botaoDeletarHoarario = new javax.swing.JButton();
         menuBarra = new javax.swing.JMenuBar();
         menuTabela = new javax.swing.JMenu();
         menuTabelaNovoProjeto = new javax.swing.JMenuItem();
@@ -98,6 +128,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         setTitle("Cadastro");
         setExtendedState(6);
         setMinimumSize(new java.awt.Dimension(1024, 768));
+        setPreferredSize(new java.awt.Dimension(1024, 768));
 
         painelComGuiasCadastro.setPreferredSize(new java.awt.Dimension(100, 600));
         painelComGuiasCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,50 +144,21 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Identificação", "Disciplina", "Semestre", "Carga Horária", "", "", ""
+                "Disciplina", "Semestre", "Carga Horária", "N° de Alunos", "Subturmas"
             }
-        ){
-            @Override
-            public Class<?> getColumnClass(int column) {
-                switch(column) {
-                    case 4: return ImageIcon.class;
-                    case 5: return ImageIcon.class;
-                    case 6: return ImageIcon.class;
-                    default: return Object.class;
-                }
-            }
-        });
-        tabelaDisciplina.setRowHeight(22);
-        tabelaDisciplina.getColumnModel().getColumn(4).setMaxWidth(30);
-        tabelaDisciplina.getColumnModel().getColumn(5).setMaxWidth(30);
-        tabelaDisciplina.getColumnModel().getColumn(6).setMaxWidth(30);
-        tabelaDisciplina.setSelectionBackground(new java.awt.Color(236, 236, 236));
-        tabelaDisciplina.setSelectionForeground(new java.awt.Color(1, 1, 1));
-        tabelaDisciplina.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tabelaDisciplinaMousePressed(evt);
-            }
-        });
+        ));
         jScrollPane1.setViewportView(tabelaDisciplina);
+        if (tabelaDisciplina.getColumnModel().getColumnCount() > 0) {
+            tabelaDisciplina.getColumnModel().getColumn(0).setPreferredWidth(250);
+            tabelaDisciplina.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tabelaDisciplina.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tabelaDisciplina.getColumnModel().getColumn(3).setPreferredWidth(100);
+        }
 
         botaoAdicionarDisciplina.setText("Adicionar disciplina");
         botaoAdicionarDisciplina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAdicionarDisciplinaActionPerformed(evt);
-            }
-        });
-
-        botaoEditar.setText("Editar");
-        botaoEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoEditarActionPerformed(evt);
-            }
-        });
-
-        botaoExcluir.setText("Excluir");
-        botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoExcluirActionPerformed(evt);
             }
         });
 
@@ -166,31 +168,23 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDisciplinaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDisciplinaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoAdicionarDisciplina)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoExcluir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelDisciplinaLayout.setVerticalGroup(
             painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDisciplinaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoAdicionarDisciplina)
-                    .addComponent(botaoEditar)
-                    .addComponent(botaoExcluir))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botaoAdicionarDisciplina))
         );
 
-        painelComGuiasCadastro.addTab("Disciplina", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/disciplina_32px.png")), painelDisciplina); // NOI18N
+        painelComGuiasCadastro.addTab("Disciplina", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_cadastro.png")), painelDisciplina); // NOI18N
 
         painelProfessor.setPreferredSize(new java.awt.Dimension(795, 575));
 
@@ -199,30 +193,9 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Professor", "Título", "Área de conhecimento", "Carga horária cumprida", "", "", ""
+                "Professor", "Título", "Área de conhecimento", "Carga horária cumprida"
             }
-        ){
-            @Override
-            public Class<?> getColumnClass(int column) {
-                switch(column) {
-                    case 4: return ImageIcon.class;
-                    case 5: return ImageIcon.class;
-                    case 6: return ImageIcon.class;
-                    default: return Object.class;
-                }
-            }
-        });
-        tabelaProfessores.setRowHeight(22);
-        tabelaProfessores.getColumnModel().getColumn(4).setMaxWidth(30);
-        tabelaProfessores.getColumnModel().getColumn(5).setMaxWidth(30);
-        tabelaProfessores.getColumnModel().getColumn(6).setMaxWidth(30);
-        tabelaProfessores.setSelectionBackground(new java.awt.Color(236, 236, 236));
-        tabelaProfessores.setSelectionForeground(new java.awt.Color(1, 1, 1));
-        tabelaProfessores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tabelaProfessoresMousePressed(evt);
-            }
-        });
+        ));
         jScrollPane2.setViewportView(tabelaProfessores);
         if (tabelaProfessores.getColumnModel().getColumnCount() > 0) {
             tabelaProfessores.getColumnModel().getColumn(1).setPreferredWidth(150);
@@ -236,81 +209,39 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        botaoEditarProfessor.setText("Editar");
-        botaoEditarProfessor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoEditarProfessorActionPerformed(evt);
-            }
-        });
-
-        botaoExcluirProfessor.setText("Excluir");
-        botaoExcluirProfessor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoExcluirProfessorActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout painelProfessorLayout = new javax.swing.GroupLayout(painelProfessor);
         painelProfessor.setLayout(painelProfessorLayout);
         painelProfessorLayout.setHorizontalGroup(
             painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProfessorLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelProfessorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoEditarProfessor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoAdicionarProfessor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoExcluirProfessor)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelProfessorLayout.setVerticalGroup(
             painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProfessorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoAdicionarProfessor)
-                    .addComponent(botaoEditarProfessor)
-                    .addComponent(botaoExcluirProfessor))
+                .addComponent(botaoAdicionarProfessor)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        painelComGuiasCadastro.addTab("Professor", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/professor_32px.png")), painelProfessor); // NOI18N
+        painelComGuiasCadastro.addTab("Professor", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_professor.png")), painelProfessor); // NOI18N
 
         tabelaSalas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Identificação", "Capacidade", "Localização", "Laboratório", "Observação", "", "", ""
+                "Identificação", "Capacidade", "Localização", "Observação", "ID"
             }
-        ){
-            @Override
-            public Class<?> getColumnClass(int column) {
-                switch(column) {
-                    case 5: return ImageIcon.class;
-                    case 6: return ImageIcon.class;
-                    case 7: return ImageIcon.class;
-                    default: return Object.class;
-                }
-            }
-        });
-        tabelaSalas.setRowHeight(22);
-        tabelaSalas.getColumnModel().getColumn(5).setMaxWidth(30);
-        tabelaSalas.getColumnModel().getColumn(6).setMaxWidth(30);
-        tabelaSalas.getColumnModel().getColumn(7).setMaxWidth(30);
-        tabelaSalas.setSelectionBackground(new java.awt.Color(236, 236, 236));
-        tabelaSalas.setSelectionForeground(new java.awt.Color(1, 1, 1));
-        tabelaSalas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tabelaSalasMousePressed(evt);
-            }
-        });
+        ));
         jScrollPane3.setViewportView(tabelaSalas);
         if (tabelaSalas.getColumnModel().getColumnCount() > 0) {
             tabelaSalas.getColumnModel().getColumn(1).setPreferredWidth(150);
@@ -324,17 +255,35 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        botaoEditar.setText("Editar");
+        botaoEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEditarActionPerformed(evt);
+            }
+        });
+
+        txtDeletar.setText("Deletar");
+        txtDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDeletarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelSalaLayout = new javax.swing.GroupLayout(painelSala);
         painelSala.setLayout(painelSalaLayout);
         painelSalaLayout.setHorizontalGroup(
             painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSalaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelSalaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoAdicionarSala)
+                .addGap(27, 27, 27)
+                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(txtDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelSalaLayout.setVerticalGroup(
@@ -343,45 +292,31 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoAdicionarSala)
+                .addGroup(painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoAdicionarSala)
+                    .addComponent(botaoEditar)
+                    .addComponent(txtDeletar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        painelComGuiasCadastro.addTab("Sala", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/sala_32px.png")), painelSala); // NOI18N
+        painelComGuiasCadastro.addTab("Sala", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_sala.png")), painelSala); // NOI18N
 
         tabelaTurma.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Turma", "Semestre", "N° de alunos", "Todas as disciplinas alocadas", "", "", ""
+                "Turma", "Semestre", "N° de alunos", "Todas as disciplinas alocadas"
             }
-        ){
-            @Override
-            public Class<?> getColumnClass(int column) {
-                switch(column) {
-                    case 4: return ImageIcon.class;
-                    case 5: return ImageIcon.class;
-                    case 6: return ImageIcon.class;
-                    default: return Object.class;
-                }
-            }
-        });
-        tabelaTurma.setRowHeight(22);
-        tabelaTurma.getColumnModel().getColumn(4).setMaxWidth(30);
-        tabelaTurma.getColumnModel().getColumn(5).setMaxWidth(30);
-        tabelaTurma.getColumnModel().getColumn(6).setMaxWidth(30);
-        tabelaTurma.setSelectionBackground(new java.awt.Color(236, 236, 236));
-        tabelaTurma.setSelectionForeground(new java.awt.Color(1, 1, 1));
-        tabelaTurma.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tabelaTurmaMousePressed(evt);
-            }
-        });
+        ));
         jScrollPane4.setViewportView(tabelaTurma);
         if (tabelaTurma.getColumnModel().getColumnCount() > 0) {
+            tabelaTurma.getColumnModel().getColumn(0).setHeaderValue("Turma");
             tabelaTurma.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tabelaTurma.getColumnModel().getColumn(1).setHeaderValue("Semestre");
             tabelaTurma.getColumnModel().getColumn(2).setPreferredWidth(80);
+            tabelaTurma.getColumnModel().getColumn(2).setHeaderValue("N° de alunos");
+            tabelaTurma.getColumnModel().getColumn(3).setHeaderValue("Todas as disciplinas alocadas");
         }
 
         botaoAdicionarTurma.setText("Adicionar turma");
@@ -391,30 +326,51 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        botaoEditarTurmas.setText("Editar");
+        botaoEditarTurmas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEditarTurmasActionPerformed(evt);
+            }
+        });
+
+        botaoDeletarTurma.setText("Deletar");
+        botaoDeletarTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDeletarTurmaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelTurmaLayout = new javax.swing.GroupLayout(painelTurma);
         painelTurma.setLayout(painelTurmaLayout);
         painelTurmaLayout.setHorizontalGroup(
             painelTurmaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelTurmaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelTurmaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(385, 385, 385)
                 .addComponent(botaoAdicionarTurma)
+                .addGap(33, 33, 33)
+                .addComponent(botaoEditarTurmas)
+                .addGap(18, 18, 18)
+                .addComponent(botaoDeletarTurma)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelTurmaLayout.setVerticalGroup(
             painelTurmaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelTurmaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoAdicionarTurma)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(painelTurmaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoAdicionarTurma)
+                    .addComponent(botaoEditarTurmas)
+                    .addComponent(botaoDeletarTurma))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        painelComGuiasCadastro.addTab("Turma", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/turma_32px.png")), painelTurma); // NOI18N
+        painelComGuiasCadastro.addTab("Turma", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_turma.png")), painelTurma); // NOI18N
 
         tabelaHorarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -431,31 +387,18 @@ public class TelaCadastro extends javax.swing.JFrame {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
-
-            @Override
-            public Class<?> getColumnClass(int column) {
-                switch(column) {
-                    case 1: return ImageIcon.class;
-                    case 2: return ImageIcon.class;
-                    case 3: return ImageIcon.class;
-                    default: return Object.class;
-                }
-            }
-        });
-        tabelaHorarios.getColumnModel().getColumn(1).setMaxWidth(30);
-        tabelaHorarios.getColumnModel().getColumn(2).setMaxWidth(30);
-        tabelaHorarios.getColumnModel().getColumn(3).setMaxWidth(30);
-        tabelaHorarios.setRowHeight(22);
-        tabelaHorarios.setSelectionBackground(new java.awt.Color(236, 236, 236));
-        tabelaHorarios.setSelectionForeground(new java.awt.Color(1, 1, 1));
-        tabelaHorarios.getTableHeader().setResizingAllowed(false);
-        tabelaHorarios.getTableHeader().setReorderingAllowed(false);
-        tabelaHorarios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tabelaHorariosMousePressed(evt);
-            }
         });
         jScrollPane5.setViewportView(tabelaHorarios);
+        if (tabelaHorarios.getColumnModel().getColumnCount() > 0) {
+            tabelaHorarios.getColumnModel().getColumn(0).setResizable(false);
+            tabelaHorarios.getColumnModel().getColumn(0).setPreferredWidth(850);
+            tabelaHorarios.getColumnModel().getColumn(1).setResizable(false);
+            tabelaHorarios.getColumnModel().getColumn(1).setPreferredWidth(20);
+            tabelaHorarios.getColumnModel().getColumn(2).setResizable(false);
+            tabelaHorarios.getColumnModel().getColumn(2).setPreferredWidth(20);
+            tabelaHorarios.getColumnModel().getColumn(3).setResizable(false);
+            tabelaHorarios.getColumnModel().getColumn(3).setPreferredWidth(20);
+        }
 
         botaoAdicionarHorarios.setText("Adicionar horário");
         botaoAdicionarHorarios.addActionListener(new java.awt.event.ActionListener() {
@@ -470,6 +413,20 @@ public class TelaCadastro extends javax.swing.JFrame {
         grupoBotaoHora.add(botaoRadio24h);
         botaoRadio24h.setText("24h");
 
+        botaoEditarHorario.setText("Editar");
+        botaoEditarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEditarHorarioActionPerformed(evt);
+            }
+        });
+
+        botaoDeletarHoarario.setText("Deletar");
+        botaoDeletarHoarario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDeletarHoararioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelHorarioLayout = new javax.swing.GroupLayout(painelHorario);
         painelHorario.setLayout(painelHorarioLayout);
         painelHorarioLayout.setHorizontalGroup(
@@ -481,27 +438,33 @@ public class TelaCadastro extends javax.swing.JFrame {
                         .addComponent(botaoRadio12h)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botaoRadio24h)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
+                        .addGap(318, 318, 318)
                         .addComponent(botaoAdicionarHorarios)
-                        .addContainerGap(413, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoEditarHorario)
+                        .addGap(35, 35, 35)
+                        .addComponent(botaoDeletarHoarario)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(painelHorarioLayout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
                         .addGap(10, 10, 10))))
         );
         painelHorarioLayout.setVerticalGroup(
             painelHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelHorarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAdicionarHorarios)
                     .addComponent(botaoRadio12h)
-                    .addComponent(botaoRadio24h))
+                    .addComponent(botaoRadio24h)
+                    .addComponent(botaoEditarHorario)
+                    .addComponent(botaoDeletarHoarario))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        painelComGuiasCadastro.addTab("Horário", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/horario_32px.png")), painelHorario); // NOI18N
+        painelComGuiasCadastro.addTab("Horário", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_relogio.png")), painelHorario); // NOI18N
 
         menuTabela.setText("Tabela");
 
@@ -636,11 +599,13 @@ public class TelaCadastro extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
+            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(painelComGuiasCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -782,115 +747,92 @@ public class TelaCadastro extends javax.swing.JFrame {
         
     }//GEN-LAST:event_painelComGuiasCadastroMousePressed
 
-    private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
-        int valor = tabelaDisciplina.getSelectedRow();
-        String valores = tabelaDisciplina.getModel().getValueAt(valor,0).toString();
-        int resposta = JOptionPane.showConfirmDialog(this,"voçê esta deletando a Disciplina "+valores+ ", Tem certeza disso?", "AVISO", JOptionPane.YES_NO_OPTION);
-        if(resposta == JOptionPane.YES_OPTION){
-        DisciplinaJpaController j = new DisciplinaJpaController();
-        Entidades.Disciplina  p = new Entidades.Disciplina();
-        List<Disciplina>a = j.FiltroDisciplina(valores);
-        p = a.get(0);
-          try {
-                 j.destroy(p.getDisciplinaId());
-                 int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
-                modeloTabela.setNumRows(0);
-
-                //Define o novo modelo da tabela, entrega modelo da nova tabela
-                //para o método 'guiaClicada' da classe de controle.
-                switch(guiaEscolhida){
-                    case 0:
-                        modeloTabela = (DefaultTableModel)tabelaDisciplina.getModel();
-                        control.guiaClicada(guiaEscolhida, modeloTabela);
-                        break;
-                    case 1:
-                        modeloTabela = (DefaultTableModel)tabelaProfessores.getModel();
-                        control.guiaClicada(guiaEscolhida, modeloTabela);
-                        break;
-                    case 2:
-                        modeloTabela = (DefaultTableModel)tabelaSalas.getModel();
-                        control.guiaClicada(guiaEscolhida, modeloTabela);
-                        break;
-                    case 3:
-                        modeloTabela = (DefaultTableModel)tabelaTurma.getModel();
-                        control.guiaClicada(guiaEscolhida, modeloTabela);
-                        break;
-                    case 4:
-                        modeloTabela = (DefaultTableModel)tabelaHorarios.getModel();
-                        control.guiaClicada(guiaEscolhida, modeloTabela);
-                        break;
-                }
-               JOptionPane.showMessageDialog(this, "Deletado com sucesso");
-          } catch (NonexistentEntityException ex) {
-              JOptionPane.showMessageDialog(this, "ERRO: a disciplina nao existe no banco de dados");
-          }
-        }
-    }//GEN-LAST:event_botaoExcluirActionPerformed
-
-    private void botaoExcluirProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirProfessorActionPerformed
-        int valor = tabelaProfessores.getSelectedRow();
-        String valores = tabelaProfessores.getModel().getValueAt(valor,0).toString();
-        int resposta = JOptionPane.showConfirmDialog(this,"voçê esta deletando o professor "+valores+ ", Tem certeza disso?", "AVISO", JOptionPane.YES_NO_OPTION);
-        if(resposta == JOptionPane.YES_OPTION){
-        ProfessorJpaController j = new ProfessorJpaController();
-        Entidades.Professor  p = new Entidades.Professor();
-        List<Professor>a = j.FiltroProfessor(valores);
-        p = a.get(0);
-          try {
-              j.destroy(p.getProfessorId());
-                int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
-                modeloTabela.setNumRows(0);
-
-                //Define o novo modelo da tabela, entrega modelo da nova tabela
-                //para o método 'guiaClicada' da classe de controle.
-                switch(guiaEscolhida){
-                    case 0:
-                        modeloTabela = (DefaultTableModel)tabelaDisciplina.getModel();
-                        control.guiaClicada(guiaEscolhida, modeloTabela);
-                        break;
-                    case 1:
-                        modeloTabela = (DefaultTableModel)tabelaProfessores.getModel();
-                        control.guiaClicada(guiaEscolhida, modeloTabela);
-                        break;
-                    case 2:
-                        modeloTabela = (DefaultTableModel)tabelaSalas.getModel();
-                        control.guiaClicada(guiaEscolhida, modeloTabela);
-                        break;
-                    case 3:
-                        modeloTabela = (DefaultTableModel)tabelaTurma.getModel();
-                        control.guiaClicada(guiaEscolhida, modeloTabela);
-                        break;
-                    case 4:
-                        modeloTabela = (DefaultTableModel)tabelaHorarios.getModel();
-                        control.guiaClicada(guiaEscolhida, modeloTabela);
-                        break;
-                }
-               JOptionPane.showMessageDialog(this, "Deletado com sucesso");
-          } catch (NonexistentEntityException ex) {
-              JOptionPane.showMessageDialog(this, "ERRO: a disciplina nao existe no banco de dados");
-          }
-        }
-    }//GEN-LAST:event_botaoExcluirProfessorActionPerformed
-
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
+        int valor = tabelaSalas.getSelectedRow();
+        String valores = tabelaSalas.getModel().getValueAt(valor,0).toString();
         
-        int valor = tabelaDisciplina.getSelectedRow();
-        String valores = tabelaDisciplina.getModel().getValueAt(valor,0).toString();
-        TelaEditarDisciplina tela = new TelaEditarDisciplina(this,true);
-        tela.editar(valores);
-        tela.setVisible(true);
-        
+        TelaEditarSalas telaeditarsalas = new TelaEditarSalas(this,true);
+     telaeditarsalas.editar(valores);
+     
+     telaeditarsalas.setVisible(true);
+    
     }//GEN-LAST:event_botaoEditarActionPerformed
 
-    private void botaoEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarProfessorActionPerformed
+    private void txtDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeletarActionPerformed
+      int valor = tabelaSalas.getSelectedRow();
+      String valores = tabelaSalas.getModel().getValueAt(valor,0).toString();
+       int resposta = JOptionPane.showConfirmDialog(this,"voçê esta deletando a Sala "+valores+ ", Tem certeza disso?", "AVISO", JOptionPane.YES_NO_OPTION);
+        if(resposta == JOptionPane.YES_OPTION){
+        SalaJpaController j = new SalaJpaController();
+        Entidades.Sala  p = new Entidades.Sala();
+        List<Sala>a = j.FiltroSala(valores);
+        p = a.get(0);
+          try {
+              j.destroy(p.getSalaId());
+             
+               JOptionPane.showMessageDialog(this, "Deletado com sucesso");
+          } catch (NonexistentEntityException ex) {
+              JOptionPane.showMessageDialog(this, "ERRO: o professor nao existe no baco de dados");
+          }
+        }
+    }//GEN-LAST:event_txtDeletarActionPerformed
+
+    private void botaoEditarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarHorarioActionPerformed
+      int valor = tabelaHorarios.getSelectedRow();
+      SimpleDateFormat data = new SimpleDateFormat("HH:mm");
+         TelaEditarHorarios telaeditarhorarios = new TelaEditarHorarios(this,true);
+        try {
+            Date hora = new SimpleDateFormat("HH:mm").parse( tabelaHorarios.getModel().getValueAt(valor, 0).toString());
+            telaeditarhorarios.editar(hora);
+            telaeditarhorarios.setVisible(true);
+            /* try{
+            Date databuscar = data.parse(tabelaHorarios.getModel().getValueAt(valor, 0).toString());
+            String datateste = databuscar.toString();
+            telaeditarhorarios.editar(datateste);
+            } catch (ParseException ex) {
+            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
+            
+            //telaeditarhorarios.editar(horaenviar);
+            //telaeditarhorarios.setVisible(true);
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        int valor = tabelaProfessores.getSelectedRow();
-        String valores = tabelaProfessores.getModel().getValueAt(valor,0).toString();
-        TelaEditarProfessor tela = new TelaEditarProfessor(this, true);
-        tela.editar(valores);
-        tela.setVisible(true);
-        
-    }//GEN-LAST:event_botaoEditarProfessorActionPerformed
+      
+    }//GEN-LAST:event_botaoEditarHorarioActionPerformed
+
+    private void botaoDeletarHoararioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDeletarHoararioActionPerformed
+       
+    }//GEN-LAST:event_botaoDeletarHoararioActionPerformed
+
+    private void botaoEditarTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarTurmasActionPerformed
+        int valor = tabelaTurma.getSelectedRow();
+         String valores = tabelaTurma.getModel().getValueAt(valor,0).toString();
+     
+        TelaEditarTurmas telaeditarturmas = new TelaEditarTurmas(this, true);
+        telaeditarturmas.editar(valores);
+        telaeditarturmas.setVisible(true);
+    }//GEN-LAST:event_botaoEditarTurmasActionPerformed
+
+    private void botaoDeletarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDeletarTurmaActionPerformed
+        int valor = tabelaTurma.getSelectedRow();
+        String valores = tabelaTurma.getModel().getValueAt(valor,0).toString();
+       int resposta = JOptionPane.showConfirmDialog(this,"voçê esta deletando a Turma "+valores+ ", Tem certeza disso?", "AVISO", JOptionPane.YES_NO_OPTION);
+        if(resposta == JOptionPane.YES_OPTION){
+        TurmaJpaController j = new TurmaJpaController();
+        Entidades.Turma  p = new Entidades.Turma();
+        List<Entidades.Turma>a = j.FiltroTurma(valores);
+        p = a.get(0);
+          try {
+              j.destroy(p.getTurmaId());
+             
+               JOptionPane.showMessageDialog(this, "Deletado com sucesso");
+          } catch (NonexistentEntityException ex) {
+              JOptionPane.showMessageDialog(this, "ERRO: o professor nao existe no baco de dados");
+          }
+        }
+    }//GEN-LAST:event_botaoDeletarTurmaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -922,10 +864,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastro(0).setVisible(true);
+                new TelaCadastro(1).setVisible(true);
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdicionarDisciplina;
@@ -933,10 +876,11 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton botaoAdicionarProfessor;
     private javax.swing.JButton botaoAdicionarSala;
     private javax.swing.JButton botaoAdicionarTurma;
+    private javax.swing.JButton botaoDeletarHoarario;
+    private javax.swing.JButton botaoDeletarTurma;
     private javax.swing.JButton botaoEditar;
-    private javax.swing.JButton botaoEditarProfessor;
-    private javax.swing.JButton botaoExcluir;
-    private javax.swing.JButton botaoExcluirProfessor;
+    private javax.swing.JButton botaoEditarHorario;
+    private javax.swing.JButton botaoEditarTurmas;
     private javax.swing.JRadioButton botaoRadio12h;
     private javax.swing.JRadioButton botaoRadio24h;
     private javax.swing.ButtonGroup grupoBotaoHora;
@@ -981,5 +925,6 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JTable tabelaProfessores;
     private javax.swing.JTable tabelaSalas;
     private javax.swing.JTable tabelaTurma;
+    private javax.swing.JButton txtDeletar;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,10 +17,12 @@ import java.util.Collection;
 import Entidades.Disciplina;
 import Entidades.Horario;
 import Entidades.Professor;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -36,6 +38,26 @@ public class HorarioJpaController implements Serializable {
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+    
+    public List<Horario> findHorarioOrdered(){
+        EntityManager em = getEntityManager();
+        try {
+            String sql = "SELECT h FROM Horario h ORDER BY h.horarioInicial";
+            Query query = em.createQuery(sql);
+            return query.getResultList();
+            
+        } finally {
+            em.close();
+        }
+    }
+    public List<Horario> FiltroHora(Date hora){
+          EntityManager em = getEntityManager();
+       TypedQuery<Horario> query = em.createQuery("SELECT h FROM Horario h WHERE h.horarioInicial = :horarioInicial",Horario.class);
+       query.setParameter("horarioInicial", hora);
+      
+      return query.getResultList();
+        
     }
 
     public void create(Horario horario) {
