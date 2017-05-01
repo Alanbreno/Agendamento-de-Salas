@@ -1,10 +1,10 @@
 package ViewControllers;
 
-import DAO.DisciplinaJpaController;
-import DAO.HorarioJpaController;
-import DAO.ProfessorJpaController;
-import DAO.SalaJpaController;
-import DAO.TurmaJpaController;
+import DAO.Controladores.ControladorDisciplina;
+import DAO.Controladores.ControladorHorario;
+import DAO.Controladores.ControladorProfessor;
+import DAO.Controladores.ControladorSala;
+import DAO.Controladores.ControladorTurma;
 import Entidades.Disciplina;
 import Entidades.Horario;
 import Entidades.Professor;
@@ -12,32 +12,39 @@ import Entidades.Sala;
 import Entidades.Turma;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastroController {
+    
+    //Variáveis necessárias para o método de ícones dinâmicos.
+    final ImageIcon lapisIcone = new ImageIcon("src/Imagens/Gestao/pen_16.png");
+    final ImageIcon lupaIcone = new ImageIcon("src/Imagens/Gestao/lupa_16px.png");
+    final ImageIcon xisIcone = new ImageIcon("src/Imagens/Gestao/xis_16px.png");    
+    private int linhaEscolhidaAnter;
     
     public void guiaClicada(int guiaEscolhida, DefaultTableModel model){        
         Object informColuna[];
         
         switch(guiaEscolhida){
             case 0:
-                //Define como 5 o número de informações que serão passadas para a tabela,
-                //onde 5 é o número de colunas na tabela.
-                informColuna = new Object[5];
+                //Define como 4 o número de informações que serão passadas para a tabela,
+                //onde 4 é o número de colunas na tabela.
+                informColuna = new Object[4];
         
                 //Acessa o banco de dados e seleciona todas as disciplinas
-                DisciplinaJpaController discControl = new DisciplinaJpaController();
-                List<Disciplina> disc = discControl.findDisciplinaOrdered();
+                ControladorDisciplina discControl = new ControladorDisciplina();
+                List<Disciplina> disc = discControl.selectDisciplinas();
                 //Para cada disciplina, recebe informações e ao fim adiciona uma nova linha na tabela
                 for (Disciplina disciplina : disc) {
-                    informColuna[0] = disciplina.getDisciplinaNome();
-                    informColuna[1] = disciplina.getDisciplinaSemestre();
-                    informColuna[2] = disciplina.getDisciplinaCargaHoraria();
-                    informColuna[3] = disciplina.getDisciplinaNumAluno();
+                    informColuna[0] = disciplina.getDisciplinaCodigo();
+                    informColuna[1] = disciplina.getDisciplinaNome();
+                    informColuna[2] = disciplina.getDisciplinaSemestre();
                     if(disciplina.getDisciplinaSubTurma())
-                        informColuna[4] = "Sim";
+                        informColuna[3] = "Sim";
                     else
-                        informColuna[4] = "Não";
+                        informColuna[3] = "Não";
                                 
                     model.addRow(informColuna);
                 }
@@ -46,8 +53,8 @@ public class TelaCadastroController {
             case 1:
                 informColuna = new Object[4];
         
-                ProfessorJpaController profControl = new ProfessorJpaController();
-                List<Professor> prof = profControl.findProfessorOrdered();
+                ControladorProfessor profControl = new ControladorProfessor();
+                List<Professor> prof = profControl.selectProfessores();
 
                 for (Professor professor : prof) {
                     informColuna[0] = professor.getProfessorNome();
@@ -65,8 +72,8 @@ public class TelaCadastroController {
             case 2:
                 informColuna = new Object[4];
         
-                SalaJpaController salaControl = new SalaJpaController();
-                List<Sala> sal = salaControl.findSalaOrdered();
+                ControladorSala salaControl = new ControladorSala();
+                List<Sala> sal = salaControl.selectSalas();
 
                 for (Sala sala : sal) {
                     informColuna[0] = sala.getSalaCodigo();
@@ -81,8 +88,8 @@ public class TelaCadastroController {
             case 3:  
                 informColuna = new Object[4];
         
-                TurmaJpaController turmaControl = new TurmaJpaController();
-                List<Turma> turm = turmaControl.findTurmaOrdered();
+                ControladorTurma turmaControl = new ControladorTurma();
+                List<Turma> turm = turmaControl.selectTurmas();
                 
                 for (Turma turma : turm) {
                     informColuna[0] = turma.getTurmaCodigo();
@@ -100,8 +107,8 @@ public class TelaCadastroController {
             case 4:
                 informColuna = new Object[2];
         
-                HorarioJpaController horarioControl = new HorarioJpaController();
-                List<Horario> hora = horarioControl.findHorarioOrdered();
+                ControladorHorario horarioControl = new ControladorHorario();
+                List<Horario> hora = horarioControl.selectHorarios();
 
                 for (Horario horario : hora) {
                     informColuna[0] = horario.getHorarioInicial();
@@ -123,6 +130,49 @@ public class TelaCadastroController {
                 }
                 break;
         }
+    }
+    
+    public void iconesDinamicos(JTable tabela){
+        
+        int linhaEscolhida = tabela.getSelectedRow();
+        
+        //Define as colunas com ações
+        int colunaEditar = tabela.getColumnCount() - 3;
+        int colunaVisual = tabela.getColumnCount() - 2;
+        int colunaApagar = tabela.getColumnCount() - 1;
+        
+        //Caso haja troca de tabelas, com uma tabela de maior número de linhas.
+        if( tabela.getRowCount() <= this.linhaEscolhidaAnter )
+            this.linhaEscolhidaAnter = 0;
+        
+        //Caso usuário escolha a mesma linha duas vezes, na segunda vez realiza uma
+        //ação ao clicar nas colunas de ação. Também adiciona e retira ícones.
+        if (this.linhaEscolhidaAnter == linhaEscolhida){
+            
+            if( tabela.getSelectedColumn() == colunaEditar )
+                JOptionPane.showMessageDialog(null, "Editar item","Editar", JOptionPane.INFORMATION_MESSAGE, lapisIcone);                    
+            else if( tabela.getSelectedColumn() == colunaVisual )
+                JOptionPane.showMessageDialog(null, "Visualizar item", "Visualizar", JOptionPane.INFORMATION_MESSAGE, lupaIcone);
+            else if( tabela.getSelectedColumn() == colunaApagar )
+                JOptionPane.showMessageDialog(null, "Excluir item", "Excluir", JOptionPane.INFORMATION_MESSAGE, xisIcone);    
+            
+        } else{
+            tabela.setValueAt("", this.linhaEscolhidaAnter, colunaEditar);
+            tabela.setValueAt("", this.linhaEscolhidaAnter, colunaVisual);
+            tabela.setValueAt("", this.linhaEscolhidaAnter, colunaApagar);
+            
+            tabela.setValueAt(this.lapisIcone, linhaEscolhida, colunaEditar);
+            tabela.setValueAt(this.lupaIcone, linhaEscolhida, colunaVisual);
+            tabela.setValueAt(this.xisIcone, linhaEscolhida, colunaApagar);
+        } 
+
+        if ( this.linhaEscolhidaAnter == 0 ){
+            tabela.setValueAt(this.lapisIcone, linhaEscolhida, colunaEditar);
+            tabela.setValueAt(this.lupaIcone, linhaEscolhida, colunaVisual);
+            tabela.setValueAt(this.xisIcone, linhaEscolhida, colunaApagar);
+        }
+
+        this.linhaEscolhidaAnter = linhaEscolhida;        
     }
 }
 

@@ -37,17 +37,6 @@ public class SalaJpaController implements Serializable {
         return emf.createEntityManager();
     }
     
-    public List<Sala> findSalaOrdered(){
-        EntityManager em = getEntityManager();
-        try {
-            String sql = "SELECT s FROM Sala s ORDER BY s.salaCodigo";
-            Query query = em.createQuery(sql);
-            return query.getResultList();
-        } finally {
-            em.close();
-        }
-    }
-
     public void create(Sala sala) {
         if (sala.getHorarioCollection() == null) {
             sala.setHorarioCollection(new ArrayList<Horario>());

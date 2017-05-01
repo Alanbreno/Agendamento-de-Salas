@@ -103,7 +103,7 @@ public class TelaGestao extends javax.swing.JFrame {
         );
         painelTurmasScrollLayout.setVerticalGroup(
             painelTurmasScrollLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
+            .addGap(0, 523, Short.MAX_VALUE)
         );
 
         painelScrollTurmas.setViewportView(painelTurmasScroll);
@@ -133,7 +133,7 @@ public class TelaGestao extends javax.swing.JFrame {
                 .addComponent(botaoAdicionarTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        painelComGuiasGestao.addTab("Turmas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_turma.png")), painelTurmas); // NOI18N
+        painelComGuiasGestao.addTab("Turmas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/turma_32px.png")), painelTurmas); // NOI18N
 
         painelSalas.setPreferredSize(new java.awt.Dimension(795, 575));
 
@@ -145,7 +145,7 @@ public class TelaGestao extends javax.swing.JFrame {
         );
         painelSalasScrollLayout.setVerticalGroup(
             painelSalasScrollLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
+            .addGap(0, 523, Short.MAX_VALUE)
         );
 
         painelScrollSalas.setViewportView(painelSalasScroll);
@@ -175,7 +175,7 @@ public class TelaGestao extends javax.swing.JFrame {
                 .addComponent(botaoAdicionarSalas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        painelComGuiasGestao.addTab("Salas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/icone_sala.png")), painelSalas); // NOI18N
+        painelComGuiasGestao.addTab("Salas", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/sala_32px.png")), painelSalas); // NOI18N
 
         menuTabela.setText("Tabela");
 

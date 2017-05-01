@@ -36,16 +36,6 @@ public class TurmaJpaController implements Serializable {
         return emf.createEntityManager();
     }
     
-    public List<Turma> findTurmaOrdered(){
-        EntityManager em = getEntityManager();
-        try {
-            String sql = "SELECT t FROM Turma t ORDER BY t.turmaCodigo";
-            Query query = em.createQuery(sql);
-            return query.getResultList();
-        } finally {
-            em.close();
-        }
-    }
     public void create(Turma turma) {
         if (turma.getDisciplinaCollection() == null) {
             turma.setDisciplinaCollection(new ArrayList<Disciplina>());

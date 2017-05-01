@@ -23,10 +23,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author jnts
- */
 public class DisciplinaJpaController implements Serializable {
 
     private EntityManagerFactory emf = null;
@@ -39,16 +35,6 @@ public class DisciplinaJpaController implements Serializable {
         return emf.createEntityManager();
     }
     
-    public List<Disciplina> findDisciplinaOrdered(){
-        EntityManager em = getEntityManager();
-        try {
-            String sql = "SELECT d FROM Disciplina d ORDER BY d.disciplinaNome";
-            Query query = em.createQuery(sql);
-            return query.getResultList();
-        } finally {
-            em.close();
-        }
-    }
     public void create(Disciplina disciplina) {
         if (disciplina.getTurmaCollection() == null) {
             disciplina.setTurmaCollection(new ArrayList<Turma>());
