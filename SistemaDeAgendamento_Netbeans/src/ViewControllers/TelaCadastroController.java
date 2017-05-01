@@ -164,7 +164,13 @@ public class TelaCadastroController {
             tabela.setValueAt(this.lapisIcone, linhaEscolhida, colunaEditar);
             tabela.setValueAt(this.lupaIcone, linhaEscolhida, colunaVisual);
             tabela.setValueAt(this.xisIcone, linhaEscolhida, colunaApagar);
-        }        
+        } 
+
+        if ( this.linhaEscolhidaAnter == 0 ){
+            tabela.setValueAt(this.lapisIcone, linhaEscolhida, colunaEditar);
+            tabela.setValueAt(this.lupaIcone, linhaEscolhida, colunaVisual);
+            tabela.setValueAt(this.xisIcone, linhaEscolhida, colunaApagar);
+        }
 
         this.linhaEscolhidaAnter = linhaEscolhida;        
     }
