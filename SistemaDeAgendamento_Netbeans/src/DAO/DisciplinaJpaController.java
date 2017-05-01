@@ -23,10 +23,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author jnts
- */
 public class DisciplinaJpaController implements Serializable {
 
     private EntityManagerFactory emf = null;

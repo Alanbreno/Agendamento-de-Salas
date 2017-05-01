@@ -1,16 +1,10 @@
 package View;
 
 import ViewControllers.TelaCadastroController;
-import java.awt.Dimension;
-import javax.swing.BorderFactory;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-
 
 public class TelaCadastro extends javax.swing.JFrame {
     
