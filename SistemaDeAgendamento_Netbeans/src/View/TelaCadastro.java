@@ -1,9 +1,14 @@
 package View;
 
+import DAO.SalaJpaController;
+import DAO.exceptions.NonexistentEntityException;
+import Entidades.Sala;
 import ViewControllers.TelaCadastroController;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastro extends javax.swing.JFrame {
@@ -42,6 +47,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaSalas = new javax.swing.JTable();
         botaoAdicionarSala = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         painelTurma = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tabelaTurma = new javax.swing.JTable();
@@ -136,7 +143,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDisciplinaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDisciplinaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -146,11 +153,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         painelDisciplinaLayout.setVerticalGroup(
             painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDisciplinaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 35, Short.MAX_VALUE)
                 .addComponent(botaoAdicionarDisciplina)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         painelComGuiasCadastro.addTab("Disciplina", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/disciplina_32px.png")), painelDisciplina); // NOI18N
@@ -266,17 +273,35 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Editar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Excluir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelSalaLayout = new javax.swing.GroupLayout(painelSala);
         painelSala.setLayout(painelSalaLayout);
         painelSalaLayout.setHorizontalGroup(
             painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSalaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelSalaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
                 .addComponent(botaoAdicionarSala)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelSalaLayout.setVerticalGroup(
@@ -285,7 +310,10 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoAdicionarSala)
+                .addGroup(painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoAdicionarSala)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -753,6 +781,39 @@ public class TelaCadastro extends javax.swing.JFrame {
         control.iconesDinamicos(tabelaSalas);
     }//GEN-LAST:event_tabelaSalasMousePressed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+        int valor = tabelaSalas.getSelectedRow();
+        String valores = tabelaSalas.getModel().getValueAt(valor,0).toString();
+        int resposta = JOptionPane.showConfirmDialog(this,"voçê esta deletando a Sala "+valores+ ", Tem certeza disso?", "AVISO", JOptionPane.YES_NO_OPTION);
+        if(resposta == JOptionPane.YES_OPTION){
+        SalaJpaController j = new SalaJpaController();
+        Entidades.Sala  p = new Entidades.Sala();
+        List<Sala>a = j.FiltroSala(valores);
+        p = a.get(0);
+          try {
+              j.destroy(p.getSalaId());
+             
+               JOptionPane.showMessageDialog(this, "Deletado com sucesso");
+          } catch (NonexistentEntityException ex) {
+              JOptionPane.showMessageDialog(this, "ERRO: o professor nao existe no baco de dados");
+          }
+        }
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        int valor = tabelaSalas.getSelectedRow();
+        String valores = tabelaSalas.getModel().getValueAt(valor,0).toString();
+        
+        TelaEditarSalas telaeditarsalas = new TelaEditarSalas(this,true);
+        telaeditarsalas.editar(valores);
+     
+        telaeditarsalas.setVisible(true);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -797,6 +858,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JRadioButton botaoRadio12h;
     private javax.swing.JRadioButton botaoRadio24h;
     private javax.swing.ButtonGroup grupoBotaoHora;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
