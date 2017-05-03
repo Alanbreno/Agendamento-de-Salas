@@ -12,16 +12,17 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaCadastro extends javax.swing.JFrame {
-    
+
     DefaultTableModel modeloTabela;
     TelaCadastroController control = new TelaCadastroController();
-   
+
     public TelaCadastro(int indiceDoJTabbed) {
         initComponents();
-        
+
         painelComGuiasCadastro.setSelectedIndex(indiceDoJTabbed);
         modeloTabela = (DefaultTableModel) tabelaDisciplina.getModel();
         control.guiaClicada(0, modeloTabela);
+        
     }
 
     /**
@@ -236,7 +237,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Identificação", "Capacidade", "Localização", "Laboratório", "Observação", "", "", ""
+                "Sala", "Capacidade", "Localização", "Laboratório", "Observação", "", "", ""
             }
         ){
             @Override
@@ -261,10 +262,6 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(tabelaSalas);
-        if (tabelaSalas.getColumnModel().getColumnCount() > 0) {
-            tabelaSalas.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tabelaSalas.getColumnModel().getColumn(2).setPreferredWidth(80);
-        }
 
         botaoAdicionarSala.setText("Adicionar sala");
         botaoAdicionarSala.addActionListener(new java.awt.event.ActionListener() {
@@ -618,38 +615,38 @@ public class TelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoAdicionarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProfessorActionPerformed
-       
-        TelaAdicionarProfessores telaAdicionarProfessores = new TelaAdicionarProfessores(this,true);
+
+        TelaAdicionarProfessores telaAdicionarProfessores = new TelaAdicionarProfessores(this, true);
         telaAdicionarProfessores.setVisible(true);
-        
+
     }//GEN-LAST:event_botaoAdicionarProfessorActionPerformed
 
     private void botaoAdicionarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarSalaActionPerformed
-        
-        TelaAdicionarSalas telaAdicionarSalas = new TelaAdicionarSalas(this,true);
+
+        TelaAdicionarSalas telaAdicionarSalas = new TelaAdicionarSalas(this, true);
         telaAdicionarSalas.setVisible(true);
-        
+
     }//GEN-LAST:event_botaoAdicionarSalaActionPerformed
 
     private void botaoAdicionarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarTurmaActionPerformed
-        
-        TelaAdicionarTurmas telaAdicionarTurmas = new TelaAdicionarTurmas(this,true);
+
+        TelaAdicionarTurmas telaAdicionarTurmas = new TelaAdicionarTurmas(this, true);
         telaAdicionarTurmas.setVisible(true);
-        
+
     }//GEN-LAST:event_botaoAdicionarTurmaActionPerformed
 
     private void botaoAdicionarHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarHorariosActionPerformed
-        
-        TelaAdicionarHorarios telaAdicionarHorarios = new TelaAdicionarHorarios(this,true);
+
+        TelaAdicionarHorarios telaAdicionarHorarios = new TelaAdicionarHorarios(this, true);
         telaAdicionarHorarios.setVisible(true);
-        
+
     }//GEN-LAST:event_botaoAdicionarHorariosActionPerformed
 
     private void botaoAdicionarDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarDisciplinaActionPerformed
         //Realiza a troca de telas    
-        TelaAdicionarDisciplinas telaAdicionar = new TelaAdicionarDisciplinas(this,true);
+        TelaAdicionarDisciplinas telaAdicionar = new TelaAdicionarDisciplinas(this, true);
         telaAdicionar.setVisible(true);
-        
+
     }//GEN-LAST:event_botaoAdicionarDisciplinaActionPerformed
 
     private void menuTabelaNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTabelaNovoProjetoActionPerformed
@@ -676,7 +673,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         JFrame telaCadastro = new TelaCadastro(0);
         telaCadastro.setVisible(true);
-        dispose(); 
+        dispose();
 
     }//GEN-LAST:event_menuCadastroDisciplinaActionPerformed
 
@@ -724,36 +721,36 @@ public class TelaCadastro extends javax.swing.JFrame {
         //Recebe o número da guia que foi clicada e limpa a última tabela usada.
         int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
         modeloTabela.setNumRows(0);
-        
+
         //Define o novo modelo da tabela, entrega modelo da nova tabela
         //para o método 'guiaClicada' da classe de controle.
-        switch(guiaEscolhida){
+        switch (guiaEscolhida) {
             case 0:
-                modeloTabela = (DefaultTableModel)tabelaDisciplina.getModel();
+                modeloTabela = (DefaultTableModel) tabelaDisciplina.getModel();
                 control.guiaClicada(guiaEscolhida, modeloTabela);
                 break;
             case 1:
-                modeloTabela = (DefaultTableModel)tabelaProfessores.getModel();
+                modeloTabela = (DefaultTableModel) tabelaProfessores.getModel();
                 control.guiaClicada(guiaEscolhida, modeloTabela);
                 break;
             case 2:
-                modeloTabela = (DefaultTableModel)tabelaSalas.getModel();
+                modeloTabela = (DefaultTableModel) tabelaSalas.getModel();
                 control.guiaClicada(guiaEscolhida, modeloTabela);
                 break;
             case 3:
-                modeloTabela = (DefaultTableModel)tabelaTurma.getModel();
+                modeloTabela = (DefaultTableModel) tabelaTurma.getModel();
                 control.guiaClicada(guiaEscolhida, modeloTabela);
                 break;
             case 4:
-                modeloTabela = (DefaultTableModel)tabelaHorarios.getModel();
+                modeloTabela = (DefaultTableModel) tabelaHorarios.getModel();
                 control.guiaClicada(guiaEscolhida, modeloTabela);
                 break;
         }
-        
+
     }//GEN-LAST:event_painelComGuiasCadastroMousePressed
 
     private void tabelaDisciplinaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaDisciplinaMousePressed
-        control.iconesDinamicos(tabelaDisciplina);        
+        control.iconesDinamicos(tabelaDisciplina);
     }//GEN-LAST:event_tabelaDisciplinaMousePressed
 
     private void tabelaProfessoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProfessoresMousePressed
@@ -766,12 +763,11 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void tabelaHorariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaHorariosMousePressed
         control.iconesDinamicos(tabelaHorarios);
-        
+
 //        Testes com bordas                  
 //        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
 //        renderer.setPreferredSize(new Dimension(0, 0));        
 //        tabelaHorarios.getColumnModel().getColumn(3).
-
 //       JLabel la = (JLabel) tabelaHorarios.getColumnModel().getColumn(2).getHeaderRenderer()
 //       la.setBorder(BorderFactory.createCompoundBorder(la.getBorder(), 
 //                      BorderFactory.createEmptyBorder(0, 5, 0, 0)));
@@ -782,36 +778,20 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaSalasMousePressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-        int valor = tabelaSalas.getSelectedRow();
-        String valores = tabelaSalas.getModel().getValueAt(valor,0).toString();
-        int resposta = JOptionPane.showConfirmDialog(this,"voçê esta deletando a Sala "+valores+ ", Tem certeza disso?", "AVISO", JOptionPane.YES_NO_OPTION);
-        if(resposta == JOptionPane.YES_OPTION){
-        SalaJpaController j = new SalaJpaController();
-        Entidades.Sala  p = new Entidades.Sala();
-        List<Sala>a = j.FiltroSala(valores);
-        p = a.get(0);
-          try {
-              j.destroy(p.getSalaId());
-             
-               JOptionPane.showMessageDialog(this, "Deletado com sucesso");
-          } catch (NonexistentEntityException ex) {
-              JOptionPane.showMessageDialog(this, "ERRO: o professor nao existe no baco de dados");
-          }
-        }
-        
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+
         int valor = tabelaSalas.getSelectedRow();
-        String valores = tabelaSalas.getModel().getValueAt(valor,0).toString();
-        
-        TelaEditarSalas telaeditarsalas = new TelaEditarSalas(this,true);
+        String valores = tabelaSalas.getModel().getValueAt(valor, 0).toString();
+
+        TelaEditarSalas telaeditarsalas = new TelaEditarSalas(this, true);
         telaeditarsalas.editar(valores);
-     
+
         telaeditarsalas.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

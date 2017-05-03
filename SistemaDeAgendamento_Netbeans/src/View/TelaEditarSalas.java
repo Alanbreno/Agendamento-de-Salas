@@ -8,11 +8,9 @@ package View;
 import DAO.SalaJpaController;
 import Entidades.Sala;
 import ViewControllers.TelaCadastroController;
-import com.sun.jmx.snmp.SnmpDataTypeEnums;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,35 +19,34 @@ import javax.swing.table.DefaultTableModel;
  * @author sedepti
  */
 public class TelaEditarSalas extends javax.swing.JFrame {
-DefaultTableModel modeloTabela;
-TelaCadastroController control = new TelaCadastroController();    
-/**
+
+    DefaultTableModel modeloTabela;
+    TelaCadastroController control = new TelaCadastroController();
+
+    /**
      * Creates new form TelaEditarSalas
      */
     public TelaEditarSalas(java.awt.Frame parent, boolean modal) {
-        
+
         initComponents();
         txtId.setVisible(false);
-        
-        
+
     }
-public void editar(String  valores){
+
+    public void editar(String valores) {
         SalaJpaController j = new SalaJpaController();
         String sala = valores;
-         Entidades.Sala  p = new Entidades.Sala();
-         
-        List<Sala> a = j.FiltroSala(sala);
-         p = a.get(1);
-        
-         txtNome.setText(p.getSalaCodigo());
-         txtCapacidade.setText(String.valueOf(p.getSalaNumAluno()));
-         txtBloco.setText(p.getSalaLocalizacao());
-         txtObservação.setText(p.getSalaObservacao());
-       txtId.setText(p.getSalaId().toString());
-}
-    
+        Entidades.Sala p = new Entidades.Sala();
 
-  
+        List<Sala> a = j.FiltroSala(sala);
+        p = a.get(0);
+
+        txtNome.setText(p.getSalaCodigo());
+        txtCapacidade.setText(String.valueOf(p.getSalaNumAluno()));
+        txtBloco.setText(p.getSalaLocalizacao());
+        txtObservação.setText(p.getSalaObservacao());
+        txtId.setText(p.getSalaId().toString());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -209,41 +206,36 @@ public void editar(String  valores){
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botãoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botãoSalvarActionPerformed
-       if (!"".equals(txtNome.getText()) && !"".equals(txtBloco.getText()) && !"".equals(txtCapacidade.getText()) && !"".equals(txtObservação.getText())){
+        if (!"".equals(txtNome.getText()) && !"".equals(txtBloco.getText()) && !"".equals(txtCapacidade.getText()) && !"".equals(txtObservação.getText())) {
             Entidades.Sala s = new Entidades.Sala();
-            
-           
-            
+
 //faltou o campo bloco
             SalaJpaController j = new SalaJpaController();
-            
+
             s = j.findSala(Integer.parseInt(txtId.getText()));
-         
-         
-         //  s.setSalaId(Integer.parseInt(txtId.getText()));
-             s.setSalaNumAluno((short)Integer.parseInt(txtCapacidade.getText()));
+
+            //  s.setSalaId(Integer.parseInt(txtId.getText()));
+            s.setSalaNumAluno((short) Integer.parseInt(txtCapacidade.getText()));
             s.setSalaObservacao(txtObservação.getText());
             s.setSalaCodigo(txtNome.getText());
             s.setSalaLocalizacao(txtBloco.getText());
-           // s.setSalaId(Integer.parseInt(txtId.getText()));
-            
-           try {
-               j.edit(s);
-                txtCapacidade.setText("");
-            txtNome.setText("");
-            txtBloco.setText("");
-            txtObservação.setText("");
-            txtId.setText("");
-            JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
-           } catch (Exception ex) {
-               Logger.getLogger(TelaEditarSalas.class.getName()).log(Level.SEVERE, null, ex);
-           }
+            // s.setSalaId(Integer.parseInt(txtId.getText()));
 
-           
-        } 
-            
-         
-         
+            try {
+                j.edit(s);
+                txtCapacidade.setText("");
+                txtNome.setText("");
+                txtBloco.setText("");
+                txtObservação.setText("");
+                txtId.setText("");
+                JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+            } catch (Exception ex) {
+                Logger.getLogger(TelaEditarSalas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+
     }//GEN-LAST:event_botãoSalvarActionPerformed
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
@@ -285,18 +277,18 @@ public void editar(String  valores){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaEditarSalas dialog = new TelaEditarSalas(new javax.swing.JFrame(), true  );
+                TelaEditarSalas dialog = new TelaEditarSalas(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
-                dialog.setVisible(true);
-                  }
-                });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
