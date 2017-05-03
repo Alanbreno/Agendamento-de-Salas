@@ -125,8 +125,6 @@ public class TelaCadastroController {
                     //Passa as novas Strings para a tabela.
                     model.addRow(new Object[]{inicialStringCort + " - " + finalStringCort});
                     
-                   
-                    
                 }
                 break;
         }
@@ -150,11 +148,11 @@ public class TelaCadastroController {
         if (this.linhaEscolhidaAnter == linhaEscolhida){
             
             if( tabela.getSelectedColumn() == colunaEditar )
-                JOptionPane.showMessageDialog(null, "Editar item","Editar", JOptionPane.INFORMATION_MESSAGE, lapisIcone);                    
+                editarDados();
             else if( tabela.getSelectedColumn() == colunaVisual )
-                JOptionPane.showMessageDialog(null, "Visualizar item", "Visualizar", JOptionPane.INFORMATION_MESSAGE, lupaIcone);
+                visualizarDados();
             else if( tabela.getSelectedColumn() == colunaApagar )
-                JOptionPane.showMessageDialog(null, "Excluir item", "Excluir", JOptionPane.INFORMATION_MESSAGE, xisIcone);    
+                excluirDados();
             
         } else{
             tabela.setValueAt("", this.linhaEscolhidaAnter, colunaEditar);
@@ -173,6 +171,18 @@ public class TelaCadastroController {
         }
 
         this.linhaEscolhidaAnter = linhaEscolhida;        
+    }
+    
+    public void editarDados(){
+        
+    }
+    
+    public void visualizarDados(){
+    
+    }
+    
+    public void excluirDados(){
+    
     }
 }
 
