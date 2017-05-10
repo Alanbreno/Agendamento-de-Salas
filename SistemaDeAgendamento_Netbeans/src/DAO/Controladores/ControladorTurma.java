@@ -5,6 +5,7 @@ import Entidades.Turma;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 public class ControladorTurma extends TurmaJpaController{
     
@@ -17,6 +18,13 @@ public class ControladorTurma extends TurmaJpaController{
         } finally {
             em.close();
         }
+    }
+     public List<Turma> FiltroTurma(String turma){
+          EntityManager em = getEntityManager();
+       TypedQuery<Turma> query = em.createQuery("SELECT t FROM Turma t WHERE t.turmaCodigo = :turmaCodigo",Turma.class);
+       query.setParameter("turmaCodigo", turma);
+      
+      return query.getResultList();
     }
     
 }
