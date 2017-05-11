@@ -20,6 +20,13 @@ public class ControladorTurma extends TurmaJpaController{
             em.close();
         }
     }
+     public List<Turma> FiltroTurma(String turma){
+          EntityManager em = getEntityManager();
+       TypedQuery<Turma> query = em.createQuery("SELECT t FROM Turma t WHERE t.turmaCodigo = :turmaCodigo",Turma.class);
+       query.setParameter("turmaCodigo", turma);
+      
+      return query.getResultList();
+    }
     
     public List<Turma> FiltroTurma(String turma){
           EntityManager em = getEntityManager();

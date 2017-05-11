@@ -5,16 +5,26 @@ import DAO.Controladores.ControladorHorario;
 import DAO.Controladores.ControladorProfessor;
 import DAO.Controladores.ControladorSala;
 import DAO.Controladores.ControladorTurma;
+<<<<<<< HEAD
 
+=======
+import DAO.SalaJpaController;
+import DAO.TurmaJpaController;
+>>>>>>> 8a6f26ddcb42a7c6c123757d03278c586760e840
 import DAO.exceptions.NonexistentEntityException;
 import Entidades.Disciplina;
 import Entidades.Horario;
 import Entidades.Professor;
 import Entidades.Sala;
 import Entidades.Turma;
+<<<<<<< HEAD
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+=======
+import View.TelaEditarSalas;
+import View.TelaEditarTurmas;
+>>>>>>> 8a6f26ddcb42a7c6c123757d03278c586760e840
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -157,7 +167,7 @@ public class TelaCadastroController {
         if (this.linhaEscolhidaAnter == linhaEscolhida) {
 
             if (tabela.getSelectedColumn() == colunaEditar) {
-                editarDados();
+                editarDados(tabela);
             } else if (tabela.getSelectedColumn() == colunaVisual) {
                 visualizarDados();
             } else if (tabela.getSelectedColumn() == colunaApagar) {
@@ -184,9 +194,33 @@ public class TelaCadastroController {
     }
 
     //Cruds
-    
-    public void editarDados() {
+    public void editarDados(JTable tabela) {
+        String tabelaUsada = tabela.getModel().getColumnName(0);
+        int valor = tabela.getSelectedRow();
+        String valores = tabela.getValueAt(valor, 0).toString();
+        switch (tabelaUsada) {
+            case "Identificação":
 
+                break;
+            case "Professor":
+
+                break;
+
+            case "Sala":
+                TelaEditarSalas telaeditarsalas = new TelaEditarSalas(null, true);
+                telaeditarsalas.editar(valores);
+                telaeditarsalas.setVisible(true);
+                //Adicionar refresh na tabela.
+                break;
+            case "Turma":
+                TelaEditarTurmas telaeditarturmas = new TelaEditarTurmas(null, true);
+                telaeditarturmas.editarTurma(valores);
+                telaeditarturmas.setVisible(true);
+                break;
+            case "Horário":
+
+                break;
+        }
     }
 
     public void visualizarDados() {
@@ -203,7 +237,7 @@ public class TelaCadastroController {
         if (resposta == JOptionPane.YES_OPTION) {
 
             switch (tabelaUsada) {
-                
+
                 case "Identificação":
                     ControladorDisciplina controlDisciplina = new ControladorDisciplina();
                     List<Disciplina> listaDisciplina = controlDisciplina.FiltroDisciplina(valores);
@@ -241,10 +275,11 @@ public class TelaCadastroController {
                     } catch (NonexistentEntityException ex) {
                         JOptionPane.showMessageDialog(null, "ERRO: A sala nao existe no baco de dados");
                     }
-                    
+
                     //Adicionar refresh na tabela.
                     break;
                 case "Turma":
+<<<<<<< HEAD
                     ControladorTurma controlTurma = new ControladorTurma();
                     List<Turma> listaTurma = controlTurma.FiltroTurma(valores);
                     try {
@@ -257,6 +292,18 @@ public class TelaCadastroController {
                     
                     //Adicionar refresh na tabela
                     
+=======
+                    ControladorTurma jpaControlTurma = new ControladorTurma();
+                    Turma turma = new Turma();
+                    List<Turma> listarTurma = jpaControlTurma.FiltroTurma(valores);
+                    turma = listarTurma.get(0);
+                    try {
+                        jpaControlTurma.destroy(turma.getTurmaId());
+                        JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+                    } catch (NonexistentEntityException ex) {
+                        JOptionPane.showMessageDialog(null, "ERRO: A Turma nao existe no baco de dados");
+                    }
+>>>>>>> 8a6f26ddcb42a7c6c123757d03278c586760e840
                     break;
                 case "Horário":
                     Date hora = (Date) new SimpleDateFormat("HH:mm").parse( tabela.getModel().getValueAt(valor, 0).toString().substring(1, 5));
@@ -273,7 +320,7 @@ public class TelaCadastroController {
                     //Adicionar refresh na tabela
                     
                     break;
-                    
+
             }
 
         }
