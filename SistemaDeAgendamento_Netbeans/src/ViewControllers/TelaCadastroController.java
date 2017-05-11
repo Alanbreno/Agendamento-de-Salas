@@ -5,13 +5,16 @@ import DAO.Controladores.ControladorHorario;
 import DAO.Controladores.ControladorProfessor;
 import DAO.Controladores.ControladorSala;
 import DAO.Controladores.ControladorTurma;
-import DAO.SalaJpaController;
+
 import DAO.exceptions.NonexistentEntityException;
 import Entidades.Disciplina;
 import Entidades.Horario;
 import Entidades.Professor;
 import Entidades.Sala;
 import Entidades.Turma;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -135,7 +138,7 @@ public class TelaCadastroController {
         }
     }
 
-    public void iconesDinamicos(JTable tabela) {
+    public void iconesDinamicos(JTable tabela) throws ParseException {
 
         int linhaEscolhida = tabela.getSelectedRow();
 
@@ -190,7 +193,7 @@ public class TelaCadastroController {
 
     }
 
-    public void excluirDados(JTable tabela) {
+    public void excluirDados(JTable tabela) throws ParseException {
 
         String tabelaUsada = tabela.getModel().getColumnName(0);
 
@@ -202,32 +205,73 @@ public class TelaCadastroController {
             switch (tabelaUsada) {
                 
                 case "Identificação":
+                    ControladorDisciplina controlDisciplina = new ControladorDisciplina();
+                    List<Disciplina> listaDisciplina = controlDisciplina.FiltroDisciplina(valores);
+                    try {
+                        controlDisciplina.destroy(listaDisciplina.get(0).getDisciplinaId());
 
+                        JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+                    } catch (NonexistentEntityException ex) {
+                        JOptionPane.showMessageDialog(null, "ERRO: A disciplina nao existe no baco de dados");
+                    }                  
+                    
+                    //Adicionar refresh na tabela.
                     break;
                 case "Professor":
-
-                    break;
-
-                case "Sala":
-                    SalaJpaController jpaControl = new SalaJpaController();
-                    Sala sala = new Sala();
-                    List<Sala> lista = jpaControl.FiltroSala(valores);
-                    sala = lista.get(0);
+                    ControladorProfessor controlProfessor = new ControladorProfessor();
+                    List<Professor> listaProfessor = controlProfessor.FiltroProfessor(valores);
                     try {
-                        jpaControl.destroy(sala.getSalaId());
+                        controlProfessor.destroy(listaProfessor.get(0).getProfessorId());
 
                         JOptionPane.showMessageDialog(null, "Deletado com sucesso");
                     } catch (NonexistentEntityException ex) {
                         JOptionPane.showMessageDialog(null, "ERRO: O professor nao existe no baco de dados");
+                    }                  
+                    
+                    //Adicionar refresh na tabela.
+                    break;
+
+                case "Sala":
+                    ControladorSala controlSala = new ControladorSala();
+                    List<Sala> listaSala = controlSala.FiltroSala(valores);
+                    try {
+                        controlSala.destroy(listaSala.get(0).getSalaId());
+
+                        JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+                    } catch (NonexistentEntityException ex) {
+                        JOptionPane.showMessageDialog(null, "ERRO: A sala nao existe no baco de dados");
                     }
                     
                     //Adicionar refresh na tabela.
                     break;
                 case "Turma":
+                    ControladorTurma controlTurma = new ControladorTurma();
+                    List<Turma> listaTurma = controlTurma.FiltroTurma(valores);
+                    try {
+                        controlTurma.destroy(listaTurma.get(0).getTurmaId());
 
+                        JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+                    } catch (NonexistentEntityException ex) {
+                        JOptionPane.showMessageDialog(null, "ERRO: A turma nao existe no baco de dados");
+                    }                  
+                    
+                    //Adicionar refresh na tabela
+                    
                     break;
                 case "Horário":
+                    Date hora = (Date) new SimpleDateFormat("HH:mm").parse( tabela.getModel().getValueAt(valor, 0).toString().substring(1, 5));
+                    ControladorHorario controlHorario = new ControladorHorario();
+                    List<Horario> listaHorario = controlHorario.FiltroHora(hora);
+                    try {
+                        controlHorario.destroy(listaHorario.get(0).getHorarioId());
 
+                        JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+                    } catch (NonexistentEntityException ex) {
+                        JOptionPane.showMessageDialog(null, "ERRO: A turma nao existe no baco de dados");
+                    }                  
+                    
+                    //Adicionar refresh na tabela
+                    
                     break;
                     
             }
