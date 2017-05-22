@@ -7,10 +7,13 @@ package View;
 
 import DAO.Controladores.ControladorTurma;
 import Entidades.Turma;
+import ViewControllers.TelaCadastroController;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -21,9 +24,18 @@ public class TelaEditarTurmas extends javax.swing.JFrame {
     /**
      * Creates new form TelaEditarTurmas
      */
-    public TelaEditarTurmas(java.awt.Frame parent, boolean modal) {
+    JTable tabela1;
+    
+    public TelaEditarTurmas(java.awt.Frame parent, boolean modal, JTable tabela) {
         initComponents();
         txtEditarID.setVisible(false);
+        botaoFechar.setVisible(false);
+        tabela1 = tabela;
+        
+    }
+
+    private TelaEditarTurmas(JFrame jFrame, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
     
@@ -43,6 +55,24 @@ public class TelaEditarTurmas extends javax.swing.JFrame {
              botaoRadioNao.setSelected(true);
          }
          
+    }
+    
+    public void mostrarDados(String valores){
+        this.editarTurma(valores);
+        txtEditarAlunos.setEditable(false);
+        txtEditarIdentificação.setEditable(false);
+        txtEditarSemestre.setEditable(false);
+        txtEditarTurno.setEditable(false);
+        
+        botaoRadioNao.setEnabled(false);
+        botaoRadioSim.setEnabled(false);
+        
+        botaoCancelar.setVisible(false);
+        botaoSalvar.setVisible(false);
+        
+        botaoFechar.setVisible(true);
+        
+        
     }
 
     /**
@@ -70,8 +100,9 @@ public class TelaEditarTurmas extends javax.swing.JFrame {
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
         txtEditarID = new javax.swing.JTextField();
+        botaoFechar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelInformaçõesTurma.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInformaçõesTurma.setText("Informações da Turma");
@@ -113,6 +144,13 @@ public class TelaEditarTurmas extends javax.swing.JFrame {
             }
         });
 
+        botaoFechar.setText("Fechar");
+        botaoFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoFecharActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,11 +161,6 @@ public class TelaEditarTurmas extends javax.swing.JFrame {
                         .addGap(141, 141, 141)
                         .addComponent(labelInformaçõesTurma))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(botaoCancelar)
-                        .addGap(84, 84, 84)
-                        .addComponent(botaoSalvar))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
@@ -137,23 +170,30 @@ public class TelaEditarTurmas extends javax.swing.JFrame {
                                     .addComponent(labelEditarSemestreTurma)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(79, 79, 79)
-                                .addComponent(labelEditarTurno)))
+                                .addComponent(labelEditarTurno))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(79, 79, 79)
+                                .addComponent(labelEditarStatus)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEditarID, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botaoRadioSim)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botaoRadioNao))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtEditarID, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                                 .addComponent(txtEditarIdentificação)
                                 .addComponent(txtEditarSemestre)
                                 .addComponent(txtEditarAlunos)
                                 .addComponent(txtEditarTurno, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(labelEditarStatus)
-                        .addGap(18, 18, 18)
-                        .addComponent(botaoRadioSim)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botaoRadioNao)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                        .addContainerGap(118, Short.MAX_VALUE)
+                        .addComponent(botaoCancelar)
+                        .addGap(5, 5, 5)
+                        .addComponent(botaoFechar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoSalvar)))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,14 +223,16 @@ public class TelaEditarTurmas extends javax.swing.JFrame {
                     .addComponent(labelEditarStatus)
                     .addComponent(botaoRadioSim)
                     .addComponent(botaoRadioNao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
-                    .addComponent(botaoSalvar))
-                .addGap(20, 20, 20))
+                    .addComponent(botaoSalvar)
+                    .addComponent(botaoFechar))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
@@ -218,7 +260,15 @@ public class TelaEditarTurmas extends javax.swing.JFrame {
                 Logger.getLogger(TelaEditarTurmas.class.getName()).log(Level.SEVERE, null, ex);
             }
        }
+       TelaCadastroController control = new TelaCadastroController();
+       
+       control.refreshTable(tabela1, 3); 
+       
     }//GEN-LAST:event_botaoSalvarActionPerformed
+
+    private void botaoFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFecharActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoFecharActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,6 +314,7 @@ public class TelaEditarTurmas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
+    private javax.swing.JButton botaoFechar;
     private javax.swing.JRadioButton botaoRadioNao;
     private javax.swing.JRadioButton botaoRadioSim;
     private javax.swing.JButton botaoSalvar;

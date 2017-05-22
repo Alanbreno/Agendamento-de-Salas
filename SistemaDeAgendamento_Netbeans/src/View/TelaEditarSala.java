@@ -6,6 +6,7 @@
 package View;
 
 import DAO.Controladores.ControladorProfessor;
+import DAO.Controladores.ControladorSala;
 import DAO.SalaJpaController;
 import Entidades.Professor;
 import Entidades.Sala;
@@ -22,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author sedepti
  */
-public class TelaEditarProfessor extends javax.swing.JFrame {
+public class TelaEditarSala extends javax.swing.JFrame {
 
     DefaultTableModel modeloTabela;
     JTable tabela1;
@@ -31,44 +32,46 @@ public class TelaEditarProfessor extends javax.swing.JFrame {
     /**
      * Creates new form TelaEditarSalas
      */
-    public TelaEditarProfessor(java.awt.Frame parent, boolean modal, JTable tabela) {
+    public TelaEditarSala(java.awt.Frame parent, boolean modal, JTable tabela) {
 
         initComponents();
         txtId.setVisible(false);
         botaoFechar.setVisible(false);
         tabela1 = tabela;
+
     }
 
-    private TelaEditarProfessor(JFrame jFrame, boolean b) {
+    private TelaEditarSala(JFrame jFrame, boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void editar(String valores) {
-        ControladorProfessor j = new ControladorProfessor();
+        ControladorSala j = new ControladorSala();
         String sala = valores;
-        Entidades.Professor p = new Entidades.Professor();
+        Entidades.Sala p = new Entidades.Sala();
 
-        List<Professor> a = j.FiltroProfessor(sala);
+        List<Sala> a = j.FiltroSala(sala);
         p = a.get(0);
 
-        txtNome.setText(p.getProfessorNome());
-        txtTítulo.setText(p.getProfessorTitulo());
-        txtCargaHoraria.setText(String.valueOf(p.getProfessorCargaHoraria()));
-        txtEspecializacao.setText(p.getProfessorEspecializacao());
-        txtId.setText(p.getProfessorId().toString());
+        txtCodigo.setText(p.getSalaCodigo());
+        txtLocalização.setText(p.getSalaLocalizacao());
+        txtNumeroDeAlunos.setText(String.valueOf(p.getSalaNumAluno()));
+        txtObservação.setText(p.getSalaObservacao());
+        txtId.setText(p.getSalaId().toString());
     }
     
     public void mostrarDados(String valores){
         this.editar(valores);
         
-        txtCargaHoraria.setEditable(false);
-        txtEspecializacao.setEditable(false);
-        txtNome.setEditable(false);
-        txtTítulo.setEditable(false);
+        txtCodigo.setEditable(false);
+        txtLocalização.setEditable(false);
+        txtNumeroDeAlunos.setEditable(false);
+        txtObservação.setEditable(false);
         
         botaoCancelar.setVisible(false);
         botaoSalvar.setVisible(false);
         botaoFechar.setVisible(true);
+        
     }
 
     /**
@@ -83,16 +86,16 @@ public class TelaEditarProfessor extends javax.swing.JFrame {
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
         labelInformações = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
-        txtTítulo = new javax.swing.JTextField();
-        txtEspecializacao = new javax.swing.JTextField();
-        txtCargaHoraria = new javax.swing.JTextField();
-        labelNome = new javax.swing.JLabel();
-        labelTítulo = new javax.swing.JLabel();
-        labelCargaHoraria = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        txtLocalização = new javax.swing.JTextField();
+        txtObservação = new javax.swing.JTextField();
+        txtNumeroDeAlunos = new javax.swing.JTextField();
+        labelCodigo = new javax.swing.JLabel();
+        labelLocalização = new javax.swing.JLabel();
+        labelNumeroDeAlunos = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
-        labelEspecialização = new javax.swing.JLabel();
+        labelObservação = new javax.swing.JLabel();
         botaoFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -112,28 +115,28 @@ public class TelaEditarProfessor extends javax.swing.JFrame {
         });
 
         labelInformações.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelInformações.setText("Informações Professor");
+        labelInformações.setText("Informações Sala");
 
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
+                txtCodigoActionPerformed(evt);
             }
         });
 
-        txtCargaHoraria.addActionListener(new java.awt.event.ActionListener() {
+        txtNumeroDeAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCargaHorariaActionPerformed(evt);
+                txtNumeroDeAlunosActionPerformed(evt);
             }
         });
 
-        labelNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelNome.setText("Nome");
+        labelCodigo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelCodigo.setText("Codigo");
 
-        labelTítulo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelTítulo.setText("Título");
+        labelLocalização.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelLocalização.setText("Localização");
 
-        labelCargaHoraria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelCargaHoraria.setText("Carga Horaria");
+        labelNumeroDeAlunos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelNumeroDeAlunos.setText("Numero de Alunos");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -151,8 +154,8 @@ public class TelaEditarProfessor extends javax.swing.JFrame {
             }
         });
 
-        labelEspecialização.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelEspecialização.setText("Especialização");
+        labelObservação.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelObservação.setText("Observação");
 
         botaoFechar.setText("Fechar");
         botaoFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -175,20 +178,20 @@ public class TelaEditarProfessor extends javax.swing.JFrame {
                         .addGap(101, 101, 101)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelCargaHoraria)
+                                .addComponent(labelNumeroDeAlunos)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4))
-                            .addComponent(labelNome)
-                            .addComponent(labelTítulo)
-                            .addComponent(labelEspecialização))
+                            .addComponent(labelCodigo)
+                            .addComponent(labelLocalização)
+                            .addComponent(labelObservação))
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtTítulo, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtEspecializacao, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCargaHoraria, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtLocalização, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtObservação, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,21 +211,21 @@ public class TelaEditarProfessor extends javax.swing.JFrame {
                 .addComponent(labelInformações)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNome))
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCodigo))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTítulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelTítulo))
+                    .addComponent(txtLocalização, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLocalização))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEspecializacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelEspecialização))
+                    .addComponent(txtObservação, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelObservação))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(labelCargaHoraria))
+                    .addComponent(labelNumeroDeAlunos))
                 .addGap(18, 18, 18)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
@@ -238,49 +241,48 @@ public class TelaEditarProfessor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
-    private void txtCargaHorariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCargaHorariaActionPerformed
+    private void txtNumeroDeAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroDeAlunosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCargaHorariaActionPerformed
+    }//GEN-LAST:event_txtNumeroDeAlunosActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        if (!"".equals(txtNome.getText()) && !"".equals(txtEspecializacao.getText()) && !"".equals(txtTítulo.getText()) && !"".equals(txtCargaHoraria.getText())) {
-            Entidades.Professor s = new Entidades.Professor();
+        if (!"".equals(txtCodigo.getText()) && !"".equals(txtObservação.getText()) && !"".equals(txtLocalização.getText()) && !"".equals(txtNumeroDeAlunos.getText())) {
+            Entidades.Sala s = new Entidades.Sala();
 
 
-            ControladorProfessor j = new ControladorProfessor();
+            ControladorSala j = new ControladorSala();
 
-            s = j.findProfessor(Integer.parseInt(txtId.getText()));
+            s = j.findSala(Integer.parseInt(txtId.getText()));
 
-            s.setProfessorNome(txtNome.getText());
-            s.setProfessorTitulo(txtTítulo.getText());
-            s.setProfessorCargaHoraria((short)Integer.parseInt(txtCargaHoraria.getText()));
-            s.setProfessorEspecializacao(txtEspecializacao.getText());
+            s.setSalaCodigo(txtCodigo.getText());
+            s.setSalaLocalizacao(txtLocalização.getText());
+            s.setSalaNumAluno((short)Integer.parseInt(txtNumeroDeAlunos.getText()));
+            s.setSalaObservacao(txtObservação.getText());
             
             
 
             try {
                 j.edit(s);
-                txtTítulo.setText("");
-                txtNome.setText("");
-                txtEspecializacao.setText("");
-                txtCargaHoraria.setText("");
+                txtLocalização.setText("");
+                txtCodigo.setText("");
+                txtObservação.setText("");
+                txtNumeroDeAlunos.setText("");
                 txtId.setText("");
                 JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
             } catch (Exception ex) {
-                Logger.getLogger(TelaEditarProfessor.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaEditarSala.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
             TelaCadastroController control = new TelaCadastroController();
        
-            control.refreshTable(tabela1, 1);
+            control.refreshTable(tabela1, 2);
 
         }
 
@@ -316,14 +318,18 @@ public class TelaEditarProfessor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarSala.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarSala.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarSala.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarSala.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -332,7 +338,7 @@ public class TelaEditarProfessor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaEditarProfessor dialog = new TelaEditarProfessor(new javax.swing.JFrame(), true);
+                TelaEditarSala dialog = new TelaEditarSala(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -350,15 +356,15 @@ public class TelaEditarProfessor extends javax.swing.JFrame {
     private javax.swing.JButton botaoFechar;
     private javax.swing.JButton botaoSalvar;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel labelCargaHoraria;
-    private javax.swing.JLabel labelEspecialização;
+    private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelInformações;
-    private javax.swing.JLabel labelNome;
-    private javax.swing.JLabel labelTítulo;
-    private javax.swing.JTextField txtCargaHoraria;
-    private javax.swing.JTextField txtEspecializacao;
+    private javax.swing.JLabel labelLocalização;
+    private javax.swing.JLabel labelNumeroDeAlunos;
+    private javax.swing.JLabel labelObservação;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtTítulo;
+    private javax.swing.JTextField txtLocalização;
+    private javax.swing.JTextField txtNumeroDeAlunos;
+    private javax.swing.JTextField txtObservação;
     // End of variables declaration//GEN-END:variables
 }

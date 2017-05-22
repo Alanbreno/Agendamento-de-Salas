@@ -26,7 +26,7 @@ public class ControladorHorario extends HorarioJpaController{
           EntityManager em = getEntityManager();
        TypedQuery<Horario> query = em.createQuery("SELECT h FROM Horario h WHERE h.horarioInicial = :horarioInicial",Horario.class);
        query.setParameter("horarioInicial", hora);
-      
+        
       return query.getResultList();
         
     }

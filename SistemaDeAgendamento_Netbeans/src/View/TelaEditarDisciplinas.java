@@ -5,47 +5,85 @@
  */
 package View;
 
+import DAO.Controladores.ControladorDisciplina;
+import DAO.DisciplinaJpaController;
 import DAO.SalaJpaController;
+import Entidades.Disciplina;
 import Entidades.Sala;
 import ViewControllers.TelaCadastroController;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author sedepti
  */
-public class TelaEditarDisciplina extends javax.swing.JFrame {
+public class TelaEditarDisciplinas extends javax.swing.JFrame {
 
     DefaultTableModel modeloTabela;
+    JTable tabela1;
     TelaCadastroController control = new TelaCadastroController();
+    
 
     /**
      * Creates new form TelaEditarSalas
      */
-    public TelaEditarDisciplina(java.awt.Frame parent, boolean modal) {
+    public TelaEditarDisciplinas(java.awt.Frame parent, boolean modal, JTable tabela) {
 
         initComponents();
         txtId.setVisible(false);
+        botaoFechar.setVisible(false);
+        tabela1 = tabela;
 
     }
 
+    private TelaEditarDisciplinas(JFrame jFrame, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void editar(String valores) {
-        SalaJpaController j = new SalaJpaController();
+        ControladorDisciplina j = new ControladorDisciplina();
         String sala = valores;
-        Entidades.Sala p = new Entidades.Sala();
+        Entidades.Disciplina p = new Entidades.Disciplina();
 
-//        List<Sala> a = j.FiltroSala(sala);
-       // p = a.get(0);
+        List<Disciplina> a = j.FiltroDisciplina(sala);
+        p = a.get(0);
 
-      //  txtNome.setText(p.getSalaCodigo());
-        //txtCapacidade.setText(String.valueOf(p.getSalaNumAluno()));
-        //txtBloco.setText(p.getSalaLocalizacao());
-        //txtObservação.setText(p.getSalaObservacao());
-        //txtId.setText(p.getSalaId().toString());
+        txtNome.setText(p.getDisciplinaNome());
+        txtCodigo.setText(p.getDisciplinaCodigo());
+        txtCargaHoraria.setText(String.valueOf(p.getDisciplinaCargaHoraria()));
+        txtNumeroDeAlunos.setText(String.valueOf(p.getDisciplinaNumAluno()));
+        txtSemestre.setText(String.valueOf(p.getDisciplinaSemestre()));
+        
+        txtId.setText(p.getDisciplinaId().toString());
+        
+        if(p.getDisciplinaSubTurma() == true){
+            botaoRadioSim.setSelected(true);
+        }else {
+            botaoRadioNao.setSelected(true);
+        }
+    }
+    
+    public void mostrarDados(String valores){
+        this.editar(valores);
+        txtNome.setEditable(false);
+        txtCodigo.setEditable(false);
+        txtNumeroDeAlunos.setEditable(false);
+        txtCargaHoraria.setEditable(false);
+        txtSemestre.setEditable(false);
+        
+        botaoRadioSim.setEnabled(false);
+        botaoRadioNao.setEnabled(false);
+        
+        botaoSalvar.setVisible(false);
+        botaoCancelar.setVisible(false);
+        botaoFechar.setVisible(true);
+        
     }
 
     /**
@@ -57,22 +95,27 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         botaoCancelar = new javax.swing.JButton();
-        botãoSalvar = new javax.swing.JButton();
+        botaoSalvar = new javax.swing.JButton();
         labelInformações = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtCargaHoraria = new javax.swing.JTextField();
         txtSemestre = new javax.swing.JTextField();
         txtNumeroDeAlunos = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        labelNome = new javax.swing.JLabel();
         labelCargaHoraria = new javax.swing.JLabel();
         labelSemestre = new javax.swing.JLabel();
         labelNumeroDeAlunos = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         labelCodigo = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        labelSubTurma = new javax.swing.JLabel();
+        botaoRadioSim = new javax.swing.JRadioButton();
+        botaoRadioNao = new javax.swing.JRadioButton();
+        botaoFechar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         botaoCancelar.setText("Cancelar");
         botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,10 +124,10 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
             }
         });
 
-        botãoSalvar.setText("Salvar");
-        botãoSalvar.addActionListener(new java.awt.event.ActionListener() {
+        botaoSalvar.setText("Salvar");
+        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botãoSalvarActionPerformed(evt);
+                botaoSalvarActionPerformed(evt);
             }
         });
 
@@ -109,8 +152,8 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Nome");
+        labelNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelNome.setText("Nome");
 
         labelCargaHoraria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelCargaHoraria.setText("Carga Horária");
@@ -144,6 +187,22 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
             }
         });
 
+        labelSubTurma.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelSubTurma.setText("Subturma");
+
+        buttonGroup1.add(botaoRadioSim);
+        botaoRadioSim.setText("Sim");
+
+        buttonGroup1.add(botaoRadioNao);
+        botaoRadioNao.setText("Não");
+
+        botaoFechar.setText("Fechar");
+        botaoFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoFecharActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,23 +210,15 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(botaoCancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(botãoSalvar))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(labelCargaHoraria)
-                                    .addComponent(labelSemestre)
-                                    .addComponent(labelNumeroDeAlunos))
-                                .addGap(34, 34, 34))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelCodigo)
-                                .addGap(97, 97, 97)))
+                            .addComponent(labelCodigo)
+                            .addComponent(labelSubTurma)
+                            .addComponent(labelNome)
+                            .addComponent(labelCargaHoraria)
+                            .addComponent(labelSemestre)
+                            .addComponent(labelNumeroDeAlunos))
+                        .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -175,11 +226,26 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
                                 .addComponent(txtCargaHoraria, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtSemestre, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botaoRadioSim)
+                                .addGap(18, 18, 18)
+                                .addComponent(botaoRadioNao))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
-                        .addComponent(labelInformações)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addComponent(labelInformações))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botaoCancelar)
+                                .addGap(18, 18, 18)
+                                .addComponent(botaoSalvar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(botaoFechar)
+                                .addGap(35, 35, 35)))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,35 +253,44 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(labelInformações)
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(labelNome))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelSemestre))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelNumeroDeAlunos)))
                     .addComponent(labelCargaHoraria))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelSemestre))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNumeroDeAlunos))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelCodigo))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSubTurma)
+                    .addComponent(botaoRadioSim)
+                    .addComponent(botaoRadioNao))
+                .addGap(18, 18, 18)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
-                    .addComponent(botãoSalvar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botaoSalvar))
+                .addGap(2, 2, 2)
+                .addComponent(botaoFechar)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -230,22 +305,27 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
-    private void botãoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botãoSalvarActionPerformed
-        if (!"".equals(txtNome.getText()) && !"".equals(txtSemestre.getText()) && !"".equals(txtCargaHoraria.getText()) && !"".equals(txtNumeroDeAlunos.getText())) {
-            Entidades.Sala s = new Entidades.Sala();
+    private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
+        if (!"".equals(txtNome.getText()) && !"".equals(txtSemestre.getText()) && !"".equals(txtCargaHoraria.getText()) && !"".equals(txtNumeroDeAlunos.getText()) && !"".equals(txtCodigo.getText()) && (botaoRadioNao.isSelected() || botaoRadioSim.isSelected())) {
+            Entidades.Disciplina s = new Entidades.Disciplina();
 
-//faltou o campo bloco
-            SalaJpaController j = new SalaJpaController();
 
-            s = j.findSala(Integer.parseInt(txtId.getText()));
+            ControladorDisciplina j = new ControladorDisciplina();
 
-            //  s.setSalaId(Integer.parseInt(txtId.getText()));
-            s.setSalaNumAluno((short) Integer.parseInt(txtCargaHoraria.getText()));
-            s.setSalaObservacao(txtNumeroDeAlunos.getText());
-            s.setSalaCodigo(txtNome.getText());
-            s.setSalaLocalizacao(txtSemestre.getText());
-            // s.setSalaId(Integer.parseInt(txtId.getText()));
+            s = j.findDisciplina(Integer.parseInt(txtId.getText()));
 
+            
+            s.setDisciplinaNome(txtNome.getText());
+            s.setDisciplinaCodigo(txtCodigo.getText());
+            s.setDisciplinaCargaHoraria((short)Integer.parseInt(txtCargaHoraria.getText()));
+            s.setDisciplinaNumAluno((short)Integer.parseInt(txtNumeroDeAlunos.getText()));
+            s.setDisciplinaSemestre((short)Integer.parseInt(txtSemestre.getText()));
+            if(botaoRadioSim.isSelected()){
+                s.setDisciplinaSubTurma(true);
+            }else if (botaoRadioNao.isSelected()){
+                s.setDisciplinaSubTurma(false);
+            }
+            
             try {
                 j.edit(s);
                 txtCargaHoraria.setText("");
@@ -253,15 +333,21 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
                 txtSemestre.setText("");
                 txtNumeroDeAlunos.setText("");
                 txtId.setText("");
+                txtCodigo.setText("");
                 JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
             } catch (Exception ex) {
-                Logger.getLogger(TelaEditarDisciplina.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TelaEditarDisciplinas.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            TelaCadastroController control = new TelaCadastroController();
+            
+       
+            control.refreshTable(tabela1, 0);
 
         }
 
 
-    }//GEN-LAST:event_botãoSalvarActionPerformed
+    }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
@@ -278,6 +364,10 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
     private void txtSemestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSemestreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSemestreActionPerformed
+
+    private void botaoFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFecharActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoFecharActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,14 +386,18 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaEditarDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEditarDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -312,7 +406,7 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaEditarDisciplina dialog = new TelaEditarDisciplina(new javax.swing.JFrame(), true);
+                TelaEditarDisciplinas dialog = new TelaEditarDisciplinas(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -327,13 +421,18 @@ public class TelaEditarDisciplina extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
-    private javax.swing.JButton botãoSalvar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton botaoFechar;
+    private javax.swing.JRadioButton botaoRadioNao;
+    private javax.swing.JRadioButton botaoRadioSim;
+    private javax.swing.JButton botaoSalvar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel labelCargaHoraria;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelInformações;
+    private javax.swing.JLabel labelNome;
     private javax.swing.JLabel labelNumeroDeAlunos;
     private javax.swing.JLabel labelSemestre;
+    private javax.swing.JLabel labelSubTurma;
     private javax.swing.JTextField txtCargaHoraria;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtId;

@@ -34,25 +34,25 @@
                       <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelCargaHoraria" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelNumeroDeAlunos" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="labelNome" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelTítulo" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelEspecialização" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelCodigo" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelLocalização" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelObservação" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtId" pref="175" max="32767" attributes="0"/>
-                          <Component id="txtNome" alignment="1" max="32767" attributes="0"/>
-                          <Component id="txtTítulo" alignment="1" max="32767" attributes="0"/>
-                          <Component id="txtEspecializacao" alignment="1" max="32767" attributes="0"/>
-                          <Component id="txtCargaHoraria" alignment="0" pref="175" max="32767" attributes="0"/>
+                          <Component id="txtCodigo" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtLocalização" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtObservação" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtNumeroDeAlunos" alignment="0" pref="175" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -78,24 +78,24 @@
               <Component id="labelInformações" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtTítulo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelTítulo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtLocalização" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelLocalização" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtEspecializacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelEspecialização" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtObservação" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelObservação" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtCargaHoraria" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNumeroDeAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelCargaHoraria" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelNumeroDeAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="txtId" min="-2" max="-2" attributes="0"/>
@@ -133,45 +133,45 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es Professor"/>
+        <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es Sala"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNome">
+    <Component class="javax.swing.JTextField" name="txtCodigo">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodigoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtT&#xed;tulo">
+    <Component class="javax.swing.JTextField" name="txtLocaliza&#xe7;&#xe3;o">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtEspecializacao">
+    <Component class="javax.swing.JTextField" name="txtObserva&#xe7;&#xe3;o">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCargaHoraria">
+    <Component class="javax.swing.JTextField" name="txtNumeroDeAlunos">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCargaHorariaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumeroDeAlunosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelNome">
+    <Component class="javax.swing.JLabel" name="labelCodigo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Nome"/>
+        <Property name="text" type="java.lang.String" value="Codigo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelT&#xed;tulo">
+    <Component class="javax.swing.JLabel" name="labelLocaliza&#xe7;&#xe3;o">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="T&#xed;tulo"/>
+        <Property name="text" type="java.lang.String" value="Localiza&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelCargaHoraria">
+    <Component class="javax.swing.JLabel" name="labelNumeroDeAlunos">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Carga Horaria"/>
+        <Property name="text" type="java.lang.String" value="Numero de Alunos"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -192,12 +192,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelEspecializa&#xe7;&#xe3;o">
+    <Component class="javax.swing.JLabel" name="labelObserva&#xe7;&#xe3;o">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Especializa&#xe7;&#xe3;o"/>
+        <Property name="text" type="java.lang.String" value="Observa&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="botaoFechar">
