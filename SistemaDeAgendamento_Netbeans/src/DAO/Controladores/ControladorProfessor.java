@@ -46,7 +46,7 @@ public class ControladorProfessor extends ProfessorJpaController {
         return query.getResultList();
     }
 
-    public List<Professor> filtroConhecimentoProfessor(String area) {
+    public List<Professor> filtroEspecializaçaoProfessor(String area) {
         EntityManager em = getEntityManager();
         TypedQuery<Professor> query = em.createQuery("SELECT p FROM Professor p WHERE p.professorEspecializacao LIKE :professorEspecializacao ORDER By p.professorEspecializacao ASC", Professor.class);
         query.setParameter("professorEspecializacao", area + "%");

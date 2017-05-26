@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Action;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -239,6 +240,12 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        txtFiltroProfessor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroProfessorKeyTyped(evt);
+            }
+        });
+
         boxProfessor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Professor", "Título", "Área de conhecimento", "Carga horária cumprida" }));
 
         javax.swing.GroupLayout painelProfessorLayout = new javax.swing.GroupLayout(painelProfessor);
@@ -312,6 +319,12 @@ public class TelaCadastro extends javax.swing.JFrame {
         botaoAdicionarSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAdicionarSalaActionPerformed(evt);
+            }
+        });
+
+        txtFiltroSala.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroSalaKeyTyped(evt);
             }
         });
 
@@ -868,6 +881,44 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_txtFiltroDisciplinaKeyTyped
+
+    private void txtFiltroProfessorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroProfessorKeyTyped
+       txtFiltroProfessor.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+              int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
+              modeloTabela = (DefaultTableModel) tabelaProfessores.getModel();
+              if(boxProfessor.getSelectedItem().toString().equals("Professor")){
+                  filtro.FiltroControllerProfessorNome(modeloTabela, txtFiltroProfessor.getText());
+              }if(boxProfessor.getSelectedItem().toString().equals("Título")){
+                   filtro.FiltroControllerProfessorTitulo(modeloTabela, txtFiltroProfessor.getText());
+              }if(boxProfessor.getSelectedItem().toString().equals("Área de conhecimento")){
+                   filtro.FiltroControllerProfessorEspecializaçao(modeloTabela, txtFiltroProfessor.getText());
+              }if(boxProfessor.getSelectedItem().toString().equals("Carga Horária")){
+                   filtro.FiltroControllerProfessorStatus(modeloTabela, Boolean.parseBoolean(txtFiltroProfessor.getText()));
+              }
+           }
+       });
+    }//GEN-LAST:event_txtFiltroProfessorKeyTyped
+
+    private void txtFiltroSalaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroSalaKeyTyped
+       txtFiltroSala.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+             int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
+             modeloTabela = (DefaultTableModel) tabelaSalas.getModel();
+             if(boxSala.getSelectedItem().toString().equals("Sala")){
+                 filtro.FiltroControllerSalaNome(modeloTabela, txtFiltroSala.getText());
+             }if(boxSala.getSelectedItem().toString().equals("Capacidade")){
+                 filtro.FiltroControllerSalaNumeroAlunos(modeloTabela, Short.parseShort(txtFiltroSala.getText()));
+             }if(boxSala.getSelectedItem().toString().equals("Localização")){
+                 filtro.FiltroControllerSalaLocalizaçao(modeloTabela, txtFiltroSala.getText());
+             }if(boxSala.getSelectedItem().toString().equals("Observação")){
+                 filtro.FiltroControllerSalaObservaçao(modeloTabela, txtFiltroSala.getText());
+             }
+           }
+       });
+    }//GEN-LAST:event_txtFiltroSalaKeyTyped
 
     /**
      * @param args the command line arguments
