@@ -29,10 +29,10 @@ public class ControladorTurma extends TurmaJpaController {
         return query.getResultList();
     }
 
-    public List<Turma> FiltroTurnoTurma(String turma) {
+    public List<Turma> FiltroCodigoTurma(String codigo) {
         EntityManager em = getEntityManager();
-        TypedQuery<Turma> query = em.createQuery("SELECT t FROM Turma t WHERE t.turmaTurno LIKE :turmaTurno ORDER By t.turmaTurno ASC", Turma.class);
-        query.setParameter("turmaTurno", turma + "%");
+        TypedQuery<Turma> query = em.createQuery("SELECT t FROM Turma t WHERE t.turmaCodigo LIKE :turmaCodigo ORDER By t.turmaCodigo ASC", Turma.class);
+        query.setParameter("turmaCodigo", codigo + "%");
 
         return query.getResultList();
     }

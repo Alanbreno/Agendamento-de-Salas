@@ -410,6 +410,12 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        txtFiltroTurma.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroTurmaKeyTyped(evt);
+            }
+        });
+
         boxTurma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Turma", "Semestre", "N° de alunos", "Todas as disciplinas alocadas" }));
 
         javax.swing.GroupLayout painelTurmaLayout = new javax.swing.GroupLayout(painelTurma);
@@ -919,6 +925,25 @@ public class TelaCadastro extends javax.swing.JFrame {
            }
        });
     }//GEN-LAST:event_txtFiltroSalaKeyTyped
+
+    private void txtFiltroTurmaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroTurmaKeyTyped
+       txtFiltroTurma.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
+               modeloTabela =  (DefaultTableModel) tabelaTurma.getModel();
+               if(boxTurma.getSelectedItem().toString().equals("Turma")){
+                   filtro.FiltroControllerTurmaNome(modeloTabela, txtFiltroTurma.getText());
+               }if(boxTurma.getSelectedItem().toString().equals("Semestre")){
+                   filtro.FiltroControllerTurmaSemestre(modeloTabela, Short.parseShort(txtFiltroTurma.getText()));
+               }if(boxTurma.getSelectedItem().toString().equals("N° de alunos")){
+                   filtro.FiltroControllerTurmaAlunos(modeloTabela, Short.parseShort(txtFiltroTurma.getText()));
+               }if(boxTurma.getSelectedItem().toString().equals("Todas as disciplinas alocadas")){
+                   filtro.FiltroControllerTurmaAlocadas(modeloTabela, Boolean.parseBoolean(txtFiltroTurma.getText()));
+               }
+           }
+       });
+    }//GEN-LAST:event_txtFiltroTurmaKeyTyped
 
     /**
      * @param args the command line arguments

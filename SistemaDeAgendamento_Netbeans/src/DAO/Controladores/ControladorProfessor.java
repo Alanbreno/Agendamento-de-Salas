@@ -33,7 +33,7 @@ public class ControladorProfessor extends ProfessorJpaController {
     public List<Professor> filtroNomeProfessor(String nome) {
         EntityManager em = getEntityManager();
         TypedQuery<Professor> query = em.createQuery("SELECT p FROM Professor p WHERE p.professorNome LIKE :professorNome ORDER By p.professorNome ASC", Professor.class);
-        query.setParameter("professorNome", nome + "%");
+        query.setParameter("professorNome","%" + nome + "%");
 
         return query.getResultList();
     }

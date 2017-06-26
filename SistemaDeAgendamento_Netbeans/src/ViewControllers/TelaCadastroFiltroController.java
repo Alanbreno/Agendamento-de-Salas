@@ -8,9 +8,11 @@ package ViewControllers;
 import DAO.Controladores.ControladorDisciplina;
 import DAO.Controladores.ControladorProfessor;
 import DAO.Controladores.ControladorSala;
+import DAO.Controladores.ControladorTurma;
 import Entidades.Disciplina;
 import Entidades.Professor;
 import Entidades.Sala;
+import Entidades.Turma;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -248,6 +250,88 @@ public class TelaCadastroFiltroController {
 
         }
     }
+    public void FiltroControllerTurmaNome(DefaultTableModel model, String palavra ){
+        Object informColuna[];
+        informColuna = new Object[4];
+        ControladorTurma discControl = new ControladorTurma();
+        List<Turma> Alguem = discControl.FiltroCodigoTurma(palavra);
+        model.setNumRows(0);
+        for (Turma turma : Alguem) {
+            informColuna[0] = turma.getTurmaCodigo();
+            informColuna[1] = turma.getTurmaSemestre();
+            informColuna[2] = turma.getTurmaNumAluno();
+            if (turma.getTurmaStatus()) {
+                        informColuna[3] = "Sim";
+                    } else {
+                        informColuna[3] = "Não";
+                    }
+
+                    model.addRow(informColuna);
+
+        }
+    }
+    public void FiltroControllerTurmaSemestre(DefaultTableModel model, short palavra ){
+        Object informColuna[];
+        informColuna = new Object[4];
+        ControladorTurma discControl = new ControladorTurma();
+        List<Turma> Alguem = discControl.FiltroSemestreTurma(palavra);
+        model.setNumRows(0);
+        for (Turma turma : Alguem) {
+            informColuna[0] = turma.getTurmaCodigo();
+            informColuna[1] = turma.getTurmaSemestre();
+            informColuna[2] = turma.getTurmaNumAluno();
+            if (turma.getTurmaStatus()) {
+                        informColuna[3] = "Sim";
+                    } else {
+                        informColuna[3] = "Não";
+                    }
+
+                    model.addRow(informColuna);
+
+        }
+    }
+    public void FiltroControllerTurmaAlunos(DefaultTableModel model, short palavra ){
+        Object informColuna[];
+        informColuna = new Object[4];
+        ControladorTurma discControl = new ControladorTurma();
+        List<Turma> Alguem = discControl.FiltroNumeroAlunosTurma(palavra);
+        model.setNumRows(0);
+        for (Turma turma : Alguem) {
+            informColuna[0] = turma.getTurmaCodigo();
+            informColuna[1] = turma.getTurmaSemestre();
+            informColuna[2] = turma.getTurmaNumAluno();
+            if (turma.getTurmaStatus()) {
+                        informColuna[3] = "Sim";
+                    } else {
+                        informColuna[3] = "Não";
+                    }
+
+                    model.addRow(informColuna);
+
+        }
+    }
+    
+    public void FiltroControllerTurmaAlocadas(DefaultTableModel model, boolean palavra ){
+        Object informColuna[];
+        informColuna = new Object[4];
+        ControladorTurma discControl = new ControladorTurma();
+        List<Turma> Alguem = discControl.FiltroSalaStatusTurma(palavra);
+        model.setNumRows(0);
+        for (Turma turma : Alguem) {
+            informColuna[0] = turma.getTurmaCodigo();
+            informColuna[1] = turma.getTurmaSemestre();
+            informColuna[2] = turma.getTurmaNumAluno();
+            if (turma.getTurmaStatus()) {
+                        informColuna[3] = "Sim";
+                    } else {
+                        informColuna[3] = "Não";
+                    }
+
+                    model.addRow(informColuna);
+
+        }
+    }
+    
     
 
 }
