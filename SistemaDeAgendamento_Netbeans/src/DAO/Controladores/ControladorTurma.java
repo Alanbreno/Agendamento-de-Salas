@@ -32,7 +32,7 @@ public class ControladorTurma extends TurmaJpaController {
     public List<Turma> FiltroCodigoTurma(String codigo) {
         EntityManager em = getEntityManager();
         TypedQuery<Turma> query = em.createQuery("SELECT t FROM Turma t WHERE t.turmaCodigo LIKE :turmaCodigo ORDER By t.turmaCodigo ASC", Turma.class);
-        query.setParameter("turmaCodigo", codigo + "%");
+        query.setParameter("turmaCodigo","%" + codigo + "%");
 
         return query.getResultList();
     }

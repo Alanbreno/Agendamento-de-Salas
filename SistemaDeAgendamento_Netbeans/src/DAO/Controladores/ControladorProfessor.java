@@ -41,7 +41,7 @@ public class ControladorProfessor extends ProfessorJpaController {
     public List<Professor> filtroTituloProfessor(String titulo) {
         EntityManager em = getEntityManager();
         TypedQuery<Professor> query = em.createQuery("SELECT p FROM Professor p WHERE p.professorTitulo LIKE :professorTitulo ORDER By p.professorTitulo ASC", Professor.class);
-        query.setParameter("professorTitulo", titulo + "%");
+        query.setParameter("professorTitulo","%"+ titulo + "%");
 
         return query.getResultList();
     }
@@ -49,7 +49,7 @@ public class ControladorProfessor extends ProfessorJpaController {
     public List<Professor> filtroEspecializaçaoProfessor(String area) {
         EntityManager em = getEntityManager();
         TypedQuery<Professor> query = em.createQuery("SELECT p FROM Professor p WHERE p.professorEspecializacao LIKE :professorEspecializacao ORDER By p.professorEspecializacao ASC", Professor.class);
-        query.setParameter("professorEspecializacao", area + "%");
+        query.setParameter("professorEspecializacao","%"+ area + "%");
 
         return query.getResultList();
     }

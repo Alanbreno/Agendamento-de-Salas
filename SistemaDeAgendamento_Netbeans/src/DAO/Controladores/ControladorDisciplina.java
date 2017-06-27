@@ -33,7 +33,7 @@ public class ControladorDisciplina extends DisciplinaJpaController {
     public List<Disciplina> filtroNomeDisciplina(String nome) {
         EntityManager em = getEntityManager();
         TypedQuery<Disciplina> query = em.createQuery("SELECT d FROM Disciplina d WHERE d.disciplinaNome LIKE :disciplinaNome ORDER By d.disciplinaNome ASC", Disciplina.class);
-        query.setParameter("disciplinaNome",nome + "%");
+        query.setParameter("disciplinaNome","%"+ nome + "%");
 
         return query.getResultList();
     }
@@ -73,7 +73,7 @@ public class ControladorDisciplina extends DisciplinaJpaController {
     public List<Disciplina> FiltroCodigoDisciplina(String codigo) {
         EntityManager em = getEntityManager();
         TypedQuery<Disciplina> query = em.createQuery("SELECT d FROM Disciplina d WHERE d.disciplinaCodigo LIKE :disciplinaCodigo ORDER By d.disciplinaCodigo ASC", Disciplina.class);
-        query.setParameter("disciplinaCodigo", codigo + "%");
+        query.setParameter("disciplinaCodigo", "%"+ codigo + "%");
 
         return query.getResultList();
     }

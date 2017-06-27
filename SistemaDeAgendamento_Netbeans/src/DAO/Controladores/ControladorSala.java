@@ -31,14 +31,14 @@ public class ControladorSala extends SalaJpaController {
     public List<Sala> filtroNomeSala(String sala) {
         EntityManager em = getEntityManager();
         TypedQuery<Sala> query = em.createQuery("SELECT s FROM Sala s WHERE s.salaCodigo LIKE :salaCodigo ORDER By s.salaCodigo ASC", Sala.class);
-        query.setParameter("salaCodigo", sala + "%");
+        query.setParameter("salaCodigo","%"+ sala + "%");
         return query.getResultList();
     }
 
     public List<Sala> filtroObservacaoSala(String obser) {
         EntityManager em = getEntityManager();
         TypedQuery<Sala> query = em.createQuery("SELECT s FROM Sala s WHERE s.salaObservacao LIKE :salaObservacao ORDER By s.salaObservacao ASC", Sala.class);
-        query.setParameter("salaObservacao", obser + "%");
+        query.setParameter("salaObservacao","%"+ obser + "%");
 
         return query.getResultList();
     }
@@ -54,7 +54,7 @@ public class ControladorSala extends SalaJpaController {
     public List<Sala> filtroLocalizaçaoSala(String local) {
         EntityManager em = getEntityManager();
         TypedQuery<Sala> query = em.createQuery("SELECT s FROM Sala s WHERE s.salaLocalizacao LIKE :salaLocalizacao ORDER By s.salaLocalizacao ASC", Sala.class);
-        query.setParameter("salaLocalizacao", local + "%");
+        query.setParameter("salaLocalizacao","%"+ local + "%");
 
         return query.getResultList();
     }
