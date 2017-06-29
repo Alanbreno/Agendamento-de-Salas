@@ -5,13 +5,20 @@ import DAO.Controladores.ControladorHorario;
 import DAO.Controladores.ControladorProfessor;
 import DAO.Controladores.ControladorSala;
 import DAO.Controladores.ControladorTurma;
-import DAO.SalaJpaController;
 import DAO.exceptions.NonexistentEntityException;
 import Entidades.Disciplina;
 import Entidades.Horario;
 import Entidades.Professor;
 import Entidades.Sala;
 import Entidades.Turma;
+import View.TelaEditarDisciplinas;
+import View.TelaEditarHorario;
+import View.TelaEditarProfessor;
+import View.TelaEditarSala;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import View.TelaEditarTurmas;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -28,7 +35,7 @@ public class TelaCadastroController {
 
     public void guiaClicada(int guiaEscolhida, DefaultTableModel model) {
         Object informColuna[];
-
+        
         switch (guiaEscolhida) {
             case 0:
                 //Define como 4 o número de informações que serão passadas para a tabela,
@@ -50,6 +57,7 @@ public class TelaCadastroController {
                     }
 
                     model.addRow(informColuna);
+                    
                 }
                 break;
 
@@ -58,7 +66,7 @@ public class TelaCadastroController {
 
                 ControladorProfessor profControl = new ControladorProfessor();
                 List<Professor> prof = profControl.selectProfessores();
-
+                
                 for (Professor professor : prof) {
                     informColuna[0] = professor.getProfessorNome();
                     informColuna[1] = professor.getProfessorTitulo();
@@ -68,8 +76,10 @@ public class TelaCadastroController {
                     } else {
                         informColuna[3] = "Não";
                     }
-
+                    
+                    
                     model.addRow(informColuna);
+                    
                 }
                 break;
 
@@ -135,7 +145,7 @@ public class TelaCadastroController {
         }
     }
 
-    public void iconesDinamicos(JTable tabela) {
+    public void iconesDinamicos(JTable tabela) throws ParseException {
 
         int linhaEscolhida = tabela.getSelectedRow();
 
@@ -154,9 +164,9 @@ public class TelaCadastroController {
         if (this.linhaEscolhidaAnter == linhaEscolhida) {
 
             if (tabela.getSelectedColumn() == colunaEditar) {
-                editarDados();
+                editarDados(tabela);
             } else if (tabela.getSelectedColumn() == colunaVisual) {
-                visualizarDados();
+                visualizarDados(tabela);
             } else if (tabela.getSelectedColumn() == colunaApagar) {
                 excluirDados(tabela);
             }
@@ -181,16 +191,78 @@ public class TelaCadastroController {
     }
 
     //Cruds
-    
-    public void editarDados() {
+    public void editarDados(JTable tabela) throws ParseException {
+        String tabelaUsada = tabela.getModel().getColumnName(0);
+        int valor = tabela.getSelectedRow();
+        String valores = tabela.getValueAt(valor, 0).toString();
+        switch (tabelaUsada) {
+            case "Identificação":
+                TelaEditarDisciplinas telaEditarDisciplina = new TelaEditarDisciplinas(null, true, tabela);
+                telaEditarDisciplina.editar(valores);
+                telaEditarDisciplina.setVisible(true);
+                break;
+            case "Professor":
+                TelaEditarProfessor telaEditarProfessor = new TelaEditarProfessor(null, true, tabela);
+                telaEditarProfessor.editar(valores);
+                telaEditarProfessor.setVisible(true);
+                break;
 
+            case "Sala":
+                TelaEditarSala telaeditarsalas = new TelaEditarSala(null, true, tabela);
+                telaeditarsalas.editar(valores);
+                telaeditarsalas.setVisible(true);
+                
+                break;
+            case "Turma":
+                TelaEditarTurmas telaeditarturmas = new TelaEditarTurmas(null, true, tabela);
+                telaeditarturmas.editarTurma(valores);
+                telaeditarturmas.setVisible(true);
+                break;
+            case "Horário":
+                TelaEditarHorario telaVizualizarHorario = new TelaEditarHorario(null, true, tabela);
+                telaVizualizarHorario.editar(valores);
+                telaVizualizarHorario.setVisible(true);
+                
+                break;
+        }
     }
 
-    public void visualizarDados() {
+    public void visualizarDados(JTable tabela) throws ParseException {
+        String tabelaUsada = tabela.getModel().getColumnName(0);
+        int valor = tabela.getSelectedRow();
+        String valores = tabela.getValueAt(valor, 0).toString();
+        switch (tabelaUsada) {
+            case "Identificação":
+                TelaEditarDisciplinas telaEditarDisciplina2 = new TelaEditarDisciplinas(null, true, tabela);
+                telaEditarDisciplina2.mostrarDados(valores);
+                telaEditarDisciplina2.setVisible(true);
+                break;
+            case "Professor":
+                TelaEditarProfessor telaEditarProfessor2 = new TelaEditarProfessor(null, true, tabela);
+                telaEditarProfessor2.mostrarDados(valores);
+                telaEditarProfessor2.setVisible(true);
+                break;
 
+            case "Sala":
+                TelaEditarSala telaeditarsalas2 = new TelaEditarSala(null, true, tabela);
+                telaeditarsalas2.mostrarDados(valores);
+                telaeditarsalas2.setVisible(true);
+                
+                break;
+            case "Turma":
+                TelaEditarTurmas telaeditarturmas2 = new TelaEditarTurmas(null, true, tabela);
+                telaeditarturmas2.mostrarDados(valores);
+                telaeditarturmas2.setVisible(true);
+                break;
+            case "Horário":
+                TelaEditarHorario telaVizualizarHorario = new TelaEditarHorario(null, true, tabela);
+                telaVizualizarHorario.mostrarDados(valores);
+                telaVizualizarHorario.setVisible(true);
+                break;
+        }
     }
 
-    public void excluirDados(JTable tabela) {
+    public void excluirDados(JTable tabela) throws ParseException {
 
         String tabelaUsada = tabela.getModel().getColumnName(0);
 
@@ -200,38 +272,92 @@ public class TelaCadastroController {
         if (resposta == JOptionPane.YES_OPTION) {
 
             switch (tabelaUsada) {
-                
-                case "Identificação":
 
+                case "Identificação":
+                    ControladorDisciplina controlDisciplina = new ControladorDisciplina();
+                    List<Disciplina> listaDisciplina = controlDisciplina.FiltroDisciplina(valores);
+                    try {
+                        controlDisciplina.destroy(listaDisciplina.get(0).getDisciplinaId());
+                        this.refreshTable(tabela, 0);
+                        
+                        
+                        JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+                    } catch (NonexistentEntityException ex) {
+                        JOptionPane.showMessageDialog(null, "ERRO: A disciplina nao existe no baco de dados");
+                    }                  
+                                      
                     break;
                 case "Professor":
-
-                    break;
-
-                case "Sala":
-                    SalaJpaController jpaControl = new SalaJpaController();
-                    Sala sala = new Sala();
-                    List<Sala> lista = jpaControl.FiltroSala(valores);
-                    sala = lista.get(0);
+                    ControladorProfessor controlProfessor = new ControladorProfessor();
+                    List<Professor> listaProfessor = controlProfessor.FiltroProfessor(valores);
                     try {
-                        jpaControl.destroy(sala.getSalaId());
+                        controlProfessor.destroy(listaProfessor.get(0).getProfessorId());
 
                         JOptionPane.showMessageDialog(null, "Deletado com sucesso");
                     } catch (NonexistentEntityException ex) {
                         JOptionPane.showMessageDialog(null, "ERRO: O professor nao existe no baco de dados");
-                    }
+                    }                  
                     
-                    //Adicionar refresh na tabela.
+                    this.refreshTable(tabela, 1);
+                    break;
+
+                case "Sala":
+                    ControladorSala controlSala = new ControladorSala();
+                    List<Sala> listaSala = controlSala.FiltroSala(valores);
+                    try {
+                        controlSala.destroy(listaSala.get(0).getSalaId());
+
+                        JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+                    } catch (NonexistentEntityException ex) {
+                        JOptionPane.showMessageDialog(null, "ERRO: A sala nao existe no baco de dados");
+                    }
+
+                    this.refreshTable(tabela, 2);
                     break;
                 case "Turma":
 
+                    ControladorTurma controlTurma = new ControladorTurma();
+                    List<Turma> listaTurma = controlTurma.FiltroTurma(valores);
+                    try {
+                        controlTurma.destroy(listaTurma.get(0).getTurmaId());
+
+                        JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+                    } catch (NonexistentEntityException ex) {
+                        JOptionPane.showMessageDialog(null, "ERRO: A turma nao existe no baco de dados");
+                    }                  
+                    
+                    this.refreshTable(tabela, 3);
+                    
                     break;
                 case "Horário":
-
-                    break;
+                    Date hora = (Date) new SimpleDateFormat("HH:mm").parse( tabela.getModel().getValueAt(valor, 0).toString().substring(0, 5));
+                    ControladorHorario controlHorario = new ControladorHorario();
+                    List<Horario> listaHorario = controlHorario.FiltroHora(hora);
                     
+                    try {
+                        controlHorario.destroy(listaHorario.get(0).getHorarioId());
+
+                        JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+                    } catch (NonexistentEntityException ex) {
+                        JOptionPane.showMessageDialog(null, "ERRO: A turma nao existe no baco de dados");
+                    }                  
+                    
+                    this.refreshTable(tabela, 4);
+                    
+                    break;
+
             }
 
         }
+    }
+    
+    public void refreshTable(JTable tabela, int guiaEscolhida){
+        
+        DefaultTableModel modeloTabela = (DefaultTableModel) tabela.getModel();
+        while (modeloTabela.getRowCount() > 0){
+            modeloTabela.removeRow(0);
+        }
+            
+        this.guiaClicada(guiaEscolhida, modeloTabela);
     }
 }

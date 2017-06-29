@@ -4,7 +4,15 @@ import DAO.SalaJpaController;
 import DAO.exceptions.NonexistentEntityException;
 import Entidades.Sala;
 import ViewControllers.TelaCadastroController;
+import ViewControllers.TelaCadastroFiltroController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Action;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -15,6 +23,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     DefaultTableModel modeloTabela;
     TelaCadastroController control = new TelaCadastroController();
+    TelaCadastroFiltroController filtro = new TelaCadastroFiltroController();
 
     public TelaCadastro(int indiceDoJTabbed) {
         initComponents();
@@ -22,7 +31,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         painelComGuiasCadastro.setSelectedIndex(indiceDoJTabbed);
         modeloTabela = (DefaultTableModel) tabelaDisciplina.getModel();
         control.guiaClicada(0, modeloTabela);
-        
+
     }
 
     /**
@@ -40,20 +49,26 @@ public class TelaCadastro extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDisciplina = new javax.swing.JTable();
         botaoAdicionarDisciplina = new javax.swing.JButton();
+        txtFiltroDisciplina = new javax.swing.JTextField();
+        boxDisciplina = new javax.swing.JComboBox<>();
         painelProfessor = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaProfessores = new javax.swing.JTable();
         botaoAdicionarProfessor = new javax.swing.JButton();
+        txtFiltroProfessor = new javax.swing.JTextField();
+        boxProfessor = new javax.swing.JComboBox<>();
         painelSala = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelaSalas = new javax.swing.JTable();
         botaoAdicionarSala = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        txtFiltroSala = new javax.swing.JTextField();
+        boxSala = new javax.swing.JComboBox<>();
         painelTurma = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tabelaTurma = new javax.swing.JTable();
         botaoAdicionarTurma = new javax.swing.JButton();
+        txtFiltroTurma = new javax.swing.JTextField();
+        boxTurma = new javax.swing.JComboBox<>();
         painelHorario = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabelaHorarios = new javax.swing.JTable();
@@ -138,6 +153,14 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        txtFiltroDisciplina.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroDisciplinaKeyTyped(evt);
+            }
+        });
+
+        boxDisciplina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Identificação", "Disciplina", "Semestre", "Carga Horária" }));
+
         javax.swing.GroupLayout painelDisciplinaLayout = new javax.swing.GroupLayout(painelDisciplina);
         painelDisciplina.setLayout(painelDisciplinaLayout);
         painelDisciplinaLayout.setHorizontalGroup(
@@ -150,15 +173,25 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoAdicionarDisciplina)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(painelDisciplinaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtFiltroDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(boxDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelDisciplinaLayout.setVerticalGroup(
             painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDisciplinaLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 35, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(painelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFiltroDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(botaoAdicionarDisciplina)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         painelComGuiasCadastro.addTab("Disciplina", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/disciplina_32px.png")), painelDisciplina); // NOI18N
@@ -207,27 +240,46 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        txtFiltroProfessor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroProfessorKeyTyped(evt);
+            }
+        });
+
+        boxProfessor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Professor", "Título", "Área de conhecimento", "Carga horária cumprida" }));
+
         javax.swing.GroupLayout painelProfessorLayout = new javax.swing.GroupLayout(painelProfessor);
         painelProfessor.setLayout(painelProfessorLayout);
         painelProfessorLayout.setHorizontalGroup(
             painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProfessorLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(painelProfessorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoAdicionarProfessor)
+                .addGroup(painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelProfessorLayout.createSequentialGroup()
+                        .addGap(447, 447, 447)
+                        .addComponent(botaoAdicionarProfessor))
+                    .addGroup(painelProfessorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtFiltroProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(boxProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelProfessorLayout.setVerticalGroup(
             painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelProfessorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(painelProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFiltroProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(botaoAdicionarProfessor)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         painelComGuiasCadastro.addTab("Professor", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/professor_32px.png")), painelProfessor); // NOI18N
@@ -270,48 +322,48 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Editar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        txtFiltroSala.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroSalaKeyTyped(evt);
             }
         });
 
-        jButton4.setText("Excluir");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        boxSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sala", "Capacidade", "Localização", "Observação" }));
 
         javax.swing.GroupLayout painelSalaLayout = new javax.swing.GroupLayout(painelSala);
         painelSala.setLayout(painelSalaLayout);
         painelSalaLayout.setHorizontalGroup(
             painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSalaLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-            .addGroup(painelSalaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(botaoAdicionarSala)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelSalaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE))
+                    .addGroup(painelSalaLayout.createSequentialGroup()
+                        .addGroup(painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelSalaLayout.createSequentialGroup()
+                                .addGap(460, 460, 460)
+                                .addComponent(botaoAdicionarSala))
+                            .addGroup(painelSalaLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(txtFiltroSala, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(boxSala, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         painelSalaLayout.setVerticalGroup(
             painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSalaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(painelSalaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoAdicionarSala)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtFiltroSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botaoAdicionarSala)
+                .addGap(21, 21, 21))
         );
 
         painelComGuiasCadastro.addTab("Sala", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/sala_32px.png")), painelSala); // NOI18N
@@ -358,27 +410,45 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        txtFiltroTurma.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroTurmaKeyTyped(evt);
+            }
+        });
+
+        boxTurma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Turma", "Semestre", "N° de alunos", "Todas as disciplinas alocadas" }));
+
         javax.swing.GroupLayout painelTurmaLayout = new javax.swing.GroupLayout(painelTurma);
         painelTurma.setLayout(painelTurmaLayout);
         painelTurmaLayout.setHorizontalGroup(
             painelTurmaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelTurmaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1009, Short.MAX_VALUE))
             .addGroup(painelTurmaLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-            .addGroup(painelTurmaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoAdicionarTurma)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(painelTurmaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelTurmaLayout.createSequentialGroup()
+                        .addGap(452, 452, 452)
+                        .addComponent(botaoAdicionarTurma))
+                    .addGroup(painelTurmaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtFiltroTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(boxTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         painelTurmaLayout.setVerticalGroup(
             painelTurmaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelTurmaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addGroup(painelTurmaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFiltroTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(botaoAdicionarTurma)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         painelComGuiasCadastro.addTab("Turma", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/turma_32px.png")), painelTurma); // NOI18N
@@ -448,24 +518,24 @@ public class TelaCadastro extends javax.swing.JFrame {
                         .addComponent(botaoRadio12h)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botaoRadio24h)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 354, Short.MAX_VALUE)
                         .addComponent(botaoAdicionarHorarios)
-                        .addContainerGap(413, Short.MAX_VALUE))
+                        .addContainerGap(454, Short.MAX_VALUE))
                     .addGroup(painelHorarioLayout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
                         .addGap(10, 10, 10))))
         );
         painelHorarioLayout.setVerticalGroup(
             painelHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelHorarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(67, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(painelHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAdicionarHorarios)
                     .addComponent(botaoRadio12h)
                     .addComponent(botaoRadio24h))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         painelComGuiasCadastro.addTab("Horário", new javax.swing.ImageIcon(getClass().getResource("/Imagens/Gestao/horario_32px.png")), painelHorario); // NOI18N
@@ -750,49 +820,130 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_painelComGuiasCadastroMousePressed
 
     private void tabelaDisciplinaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaDisciplinaMousePressed
-        control.iconesDinamicos(tabelaDisciplina);
+        try {
+            control.iconesDinamicos(tabelaDisciplina);
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tabelaDisciplinaMousePressed
 
     private void tabelaProfessoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProfessoresMousePressed
-        control.iconesDinamicos(tabelaProfessores);
+        try {
+            control.iconesDinamicos(tabelaProfessores);
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tabelaProfessoresMousePressed
 
     private void tabelaTurmaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaTurmaMousePressed
-        control.iconesDinamicos(tabelaTurma);
+        try {
+            control.iconesDinamicos(tabelaTurma);
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tabelaTurmaMousePressed
 
     private void tabelaHorariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaHorariosMousePressed
-        control.iconesDinamicos(tabelaHorarios);
+        try {
+            control.iconesDinamicos(tabelaHorarios);
 
-//        Testes com bordas                  
+//        Testes com bordas
 //        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
 //        renderer.setPreferredSize(new Dimension(0, 0));        
 //        tabelaHorarios.getColumnModel().getColumn(3).
 //       JLabel la = (JLabel) tabelaHorarios.getColumnModel().getColumn(2).getHeaderRenderer()
 //       la.setBorder(BorderFactory.createCompoundBorder(la.getBorder(), 
 //                      BorderFactory.createEmptyBorder(0, 5, 0, 0)));
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tabelaHorariosMousePressed
 
     private void tabelaSalasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaSalasMousePressed
-        control.iconesDinamicos(tabelaSalas);
+        try {
+            control.iconesDinamicos(tabelaSalas);
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tabelaSalasMousePressed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void txtFiltroDisciplinaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroDisciplinaKeyTyped
+        txtFiltroDisciplina.addActionListener(new ActionListener() {
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
+                modeloTabela = (DefaultTableModel) tabelaDisciplina.getModel();
+                if(boxDisciplina.getSelectedItem().toString().equals("Disciplina")){
+                    filtro.filtroControllerDisciplina(modeloTabela, txtFiltroDisciplina.getText());
+                }if(boxDisciplina.getSelectedItem().toString().equals("Semestre")){
+                    filtro.FiltroControllerDisciplinaSemestre(modeloTabela, Short.parseShort(txtFiltroDisciplina.getText()));
+                }if(boxDisciplina.getSelectedItem().toString().equals("Carga Horária")){
+                    filtro.FiltroControllerDisciplinaCargaHoraria(modeloTabela, Boolean.parseBoolean(txtFiltroDisciplina.getText()));
+                }if(boxDisciplina.getSelectedItem().toString().equals("Identificação")){
+                    filtro.filtroControllerDisciplinaIdentificaçao(modeloTabela, txtFiltroDisciplina.getText());
+                }
+                
+            }
+        });
+    }//GEN-LAST:event_txtFiltroDisciplinaKeyTyped
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void txtFiltroProfessorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroProfessorKeyTyped
+       txtFiltroProfessor.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+              int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
+              modeloTabela = (DefaultTableModel) tabelaProfessores.getModel();
+              if(boxProfessor.getSelectedItem().toString().equals("Professor")){
+                  filtro.FiltroControllerProfessorNome(modeloTabela, txtFiltroProfessor.getText());
+              }if(boxProfessor.getSelectedItem().toString().equals("Título")){
+                   filtro.FiltroControllerProfessorTitulo(modeloTabela, txtFiltroProfessor.getText());
+              }if(boxProfessor.getSelectedItem().toString().equals("Área de conhecimento")){
+                   filtro.FiltroControllerProfessorEspecializaçao(modeloTabela, txtFiltroProfessor.getText());
+              }if(boxProfessor.getSelectedItem().toString().equals("Carga Horária")){
+                   filtro.FiltroControllerProfessorStatus(modeloTabela, Boolean.parseBoolean(txtFiltroProfessor.getText()));
+              }
+           }
+       });
+    }//GEN-LAST:event_txtFiltroProfessorKeyTyped
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void txtFiltroSalaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroSalaKeyTyped
+       txtFiltroSala.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+             int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
+             modeloTabela = (DefaultTableModel) tabelaSalas.getModel();
+             if(boxSala.getSelectedItem().toString().equals("Sala")){
+                 filtro.FiltroControllerSalaNome(modeloTabela, txtFiltroSala.getText());
+             }if(boxSala.getSelectedItem().toString().equals("Capacidade")){
+                 filtro.FiltroControllerSalaNumeroAlunos(modeloTabela, Short.parseShort(txtFiltroSala.getText()));
+             }if(boxSala.getSelectedItem().toString().equals("Localização")){
+                 filtro.FiltroControllerSalaLocalizaçao(modeloTabela, txtFiltroSala.getText());
+             }if(boxSala.getSelectedItem().toString().equals("Observação")){
+                 filtro.FiltroControllerSalaObservaçao(modeloTabela, txtFiltroSala.getText());
+             }
+           }
+       });
+    }//GEN-LAST:event_txtFiltroSalaKeyTyped
 
-        int valor = tabelaSalas.getSelectedRow();
-        String valores = tabelaSalas.getModel().getValueAt(valor, 0).toString();
-
-        TelaEditarSalas telaeditarsalas = new TelaEditarSalas(this, true);
-        telaeditarsalas.editar(valores);
-
-        telaeditarsalas.setVisible(true);
-
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void txtFiltroTurmaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroTurmaKeyTyped
+       txtFiltroTurma.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               int guiaEscolhida = painelComGuiasCadastro.getSelectedIndex();
+               modeloTabela =  (DefaultTableModel) tabelaTurma.getModel();
+               if(boxTurma.getSelectedItem().toString().equals("Turma")){
+                   filtro.FiltroControllerTurmaNome(modeloTabela, txtFiltroTurma.getText());
+               }if(boxTurma.getSelectedItem().toString().equals("Semestre")){
+                   filtro.FiltroControllerTurmaSemestre(modeloTabela, Short.parseShort(txtFiltroTurma.getText()));
+               }if(boxTurma.getSelectedItem().toString().equals("N° de alunos")){
+                   filtro.FiltroControllerTurmaAlunos(modeloTabela, Short.parseShort(txtFiltroTurma.getText()));
+               }if(boxTurma.getSelectedItem().toString().equals("Todas as disciplinas alocadas")){
+                   filtro.FiltroControllerTurmaAlocadas(modeloTabela, Boolean.parseBoolean(txtFiltroTurma.getText()));
+               }
+           }
+       });
+    }//GEN-LAST:event_txtFiltroTurmaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -837,9 +988,11 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton botaoAdicionarTurma;
     private javax.swing.JRadioButton botaoRadio12h;
     private javax.swing.JRadioButton botaoRadio24h;
+    private javax.swing.JComboBox<String> boxDisciplina;
+    private javax.swing.JComboBox<String> boxProfessor;
+    private javax.swing.JComboBox<String> boxSala;
+    private javax.swing.JComboBox<String> boxTurma;
     private javax.swing.ButtonGroup grupoBotaoHora;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -881,5 +1034,9 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JTable tabelaProfessores;
     private javax.swing.JTable tabelaSalas;
     private javax.swing.JTable tabelaTurma;
+    private javax.swing.JTextField txtFiltroDisciplina;
+    private javax.swing.JTextField txtFiltroProfessor;
+    private javax.swing.JTextField txtFiltroSala;
+    private javax.swing.JTextField txtFiltroTurma;
     // End of variables declaration//GEN-END:variables
 }

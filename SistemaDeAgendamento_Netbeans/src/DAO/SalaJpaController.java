@@ -221,12 +221,6 @@ public class SalaJpaController implements Serializable {
         }
     }
     
-    public List<Sala> FiltroSala(String sala){
-        EntityManager em = getEntityManager();
-        TypedQuery<Sala> query = em.createQuery("SELECT s FROM Sala s WHERE s.salaCodigo = :salaCodigo",Sala.class);
-        query.setParameter("salaCodigo", sala);
-      
-      return query.getResultList();
-    }
+    
     
 }
