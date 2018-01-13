@@ -2,3 +2,8 @@
 /SistemaDeAgendamento_Netbeans/build/*
 /SistemaDeAgendamento_Netbeans/dist/
 /SistemaDeAgendamento_Netbeans/src/META-INF/persistence.xml
+
+SistemaDeAgendamento_Netbeans/nbproject/*
+SistemaDeAgendamento_Netbeans/build/*
+SistemaDeAgendamento_Netbeans/dist/
+SistemaDeAgendamento_Netbeans/src/META-INF/persistence.xml
