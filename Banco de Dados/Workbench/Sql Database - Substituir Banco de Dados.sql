@@ -229,7 +229,7 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
---Realiza inserção de informações no banco.
+-- Realiza inserção de informações no banco.
 INSERT INTO disciplina VALUES (1, 'Estrutura de Dados', 60, 2, 1, 45, 0, 'Est01');
 INSERT INTO disciplina VALUES (2, 'Cálculo 1', 90, 1, 0, 60, 0, 'Calc01');
 INSERT INTO disciplina VALUES (3, 'Cálculo 2', 90, 2, 0, 60, 0, 'Calc02');
