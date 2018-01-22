@@ -38,14 +38,11 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
         labelNome = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         labelEspecializacao = new javax.swing.JLabel();
-        labeloCargaHorariaCumprida = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JTextField();
         txtEspecializacao = new javax.swing.JTextField();
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
-        botaoRadioNao = new javax.swing.JRadioButton();
-        botaoRadioSim = new javax.swing.JRadioButton();
         labelCargaHoraria = new javax.swing.JLabel();
         txtCargaHoraria = new javax.swing.JFormattedTextField();
 
@@ -54,7 +51,7 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
         setResizable(false);
 
         labelInformacoes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelInformacoes.setText("Informações Professores");
+        labelInformacoes.setText("Adicionar novo Professor");
 
         labelNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelNome.setText("Nome");
@@ -64,9 +61,6 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
 
         labelEspecializacao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelEspecializacao.setText("Especialização");
-
-        labeloCargaHorariaCumprida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labeloCargaHorariaCumprida.setText("Carga horária cumprida");
 
         txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,19 +82,6 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
             }
         });
 
-        grupoBotoesCargaHoraria.add(botaoRadioNao);
-        botaoRadioNao.setText("Não");
-        botaoRadioNao.setBorderPainted(true);
-        botaoRadioNao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoRadioNaoActionPerformed(evt);
-            }
-        });
-
-        grupoBotoesCargaHoraria.add(botaoRadioSim);
-        botaoRadioSim.setText("Sim");
-        botaoRadioSim.setBorderPainted(true);
-
         labelCargaHoraria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelCargaHoraria.setText("Carga horária");
 
@@ -114,7 +95,11 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
                 .addGroup(painelAdicionarProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelAdicionarProfessoresLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addGroup(painelAdicionarProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelAdicionarProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(painelAdicionarProfessoresLayout.createSequentialGroup()
+                                .addComponent(botaoCancelar)
+                                .addGap(99, 99, 99)
+                                .addComponent(botaoSalvar))
                             .addGroup(painelAdicionarProfessoresLayout.createSequentialGroup()
                                 .addGroup(painelAdicionarProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelEspecializacao)
@@ -126,30 +111,18 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
                                     .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                                     .addComponent(txtTitulo)
                                     .addComponent(txtEspecializacao)
-                                    .addComponent(txtCargaHoraria)))
-                            .addGroup(painelAdicionarProfessoresLayout.createSequentialGroup()
-                                .addComponent(labeloCargaHorariaCumprida)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botaoRadioSim)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(botaoRadioNao))))
+                                    .addComponent(txtCargaHoraria)))))
                     .addGroup(painelAdicionarProfessoresLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(botaoCancelar)
-                        .addGap(99, 99, 99)
-                        .addComponent(botaoSalvar)))
-                .addContainerGap(112, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAdicionarProfessoresLayout.createSequentialGroup()
-                .addGap(0, 142, Short.MAX_VALUE)
-                .addComponent(labelInformacoes)
-                .addGap(139, 139, 139))
+                        .addGap(140, 140, 140)
+                        .addComponent(labelInformacoes)))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         painelAdicionarProfessoresLayout.setVerticalGroup(
             painelAdicionarProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelAdicionarProfessoresLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(48, 48, 48)
                 .addComponent(labelInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(painelAdicionarProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -165,16 +138,11 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
                 .addGroup(painelAdicionarProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCargaHoraria)
                     .addComponent(txtCargaHoraria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(painelAdicionarProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labeloCargaHorariaCumprida, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoRadioSim)
-                    .addComponent(botaoRadioNao))
-                .addGap(81, 81, 81)
+                .addGap(56, 56, 56)
                 .addGroup(painelAdicionarProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
                     .addComponent(botaoSalvar))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,7 +153,7 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelAdicionarProfessores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelAdicionarProfessores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -198,19 +166,13 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         
-        if (!"".equals(txtNome.getText()) && !"".equals(txtTitulo.getText()) && !"".equals(txtEspecializacao.getText()) && !"".equals(txtCargaHoraria.getText() ) && (botaoRadioSim.isSelected() == true || botaoRadioNao.isSelected() == true)){
+        if (!"".equals(txtNome.getText()) && !"".equals(txtTitulo.getText()) && !"".equals(txtEspecializacao.getText()) && !"".equals(txtCargaHoraria.getText() ) ){
             Entidades.Professor p = new Entidades.Professor();
             p.setProfessorNome(txtNome.getText());
             p.setProfessorTitulo(txtTitulo.getText());
             p.setProfessorEspecializacao(txtEspecializacao.getText());
             p.setProfessorCargaHoraria((short) Integer.parseInt(txtCargaHoraria.getText()));
-            if(botaoRadioSim.isSelected()){
-                p.setProfessorStatus(true);
-               
-            }else{
-                p.setProfessorStatus(false);
-            }
-            
+            p.setProfessorStatus(false);
             
             ProfessorJpaController j = new ProfessorJpaController();
             j.create(p);
@@ -223,13 +185,8 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
         }else{
             JOptionPane.showMessageDialog(null, "Erro - Preencha todos os campos!");
-            
         } 
     }//GEN-LAST:event_botaoSalvarActionPerformed
-
-    private void botaoRadioNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioNaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoRadioNaoActionPerformed
 
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         this.dispose();
@@ -279,8 +236,6 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
-    private javax.swing.JRadioButton botaoRadioNao;
-    private javax.swing.JRadioButton botaoRadioSim;
     private javax.swing.JButton botaoSalvar;
     private javax.swing.ButtonGroup grupoBotoesCargaHoraria;
     private javax.swing.JLabel labelCargaHoraria;
@@ -288,7 +243,6 @@ public class TelaAdicionarProfessores extends javax.swing.JDialog {
     private javax.swing.JLabel labelInformacoes;
     private javax.swing.JLabel labelNome;
     private javax.swing.JLabel labelTitulo;
-    private javax.swing.JLabel labeloCargaHorariaCumprida;
     private javax.swing.JPanel painelAdicionarProfessores;
     private javax.swing.JFormattedTextField txtCargaHoraria;
     private javax.swing.JTextField txtEspecializacao;
