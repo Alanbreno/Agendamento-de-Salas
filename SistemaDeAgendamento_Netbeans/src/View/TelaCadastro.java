@@ -289,7 +289,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Sala", "Capacidade", "Localização", "Laboratório", "Observação", "", "", ""
+                "Sala", "Capacidade", "Localização", "É laboratório?", "Observação", "", "", ""
             }
         ){
             @Override

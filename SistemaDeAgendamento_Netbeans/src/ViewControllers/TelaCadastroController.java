@@ -84,7 +84,7 @@ public class TelaCadastroController {
                 break;
 
             case 2:
-                informColuna = new Object[4];
+                informColuna = new Object[5];
 
                 ControladorSala salaControl = new ControladorSala();
                 List<Sala> sal = salaControl.selectSalas();
@@ -93,7 +93,12 @@ public class TelaCadastroController {
                     informColuna[0] = sala.getSalaCodigo();
                     informColuna[1] = sala.getSalaNumAluno();
                     informColuna[2] = sala.getSalaLocalizacao();
-                    informColuna[3] = sala.getSalaObservacao();
+                    if (sala.getSalaLaboratorio()) {
+                        informColuna[3] = "Sim";
+                    } else {
+                        informColuna[3] = "Não";
+                    }
+                    informColuna[4] = sala.getSalaObservacao();
 
                     model.addRow(informColuna);
                 }
