@@ -36,6 +36,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sala.findBySalaObservacao", query = "SELECT s FROM Sala s WHERE s.salaObservacao = :salaObservacao")})
 public class Sala implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "sala_laboratorio")
+    private boolean salaLaboratorio;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -153,6 +157,14 @@ public class Sala implements Serializable {
     @Override
     public String toString() {
         return "Entidades.Sala[ salaId=" + salaId + " ]";
+    }
+
+    public boolean getSalaLaboratorio() {
+        return salaLaboratorio;
+    }
+
+    public void setSalaLaboratorio(boolean salaLaboratorio) {
+        this.salaLaboratorio = salaLaboratorio;
     }
     
 }

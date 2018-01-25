@@ -192,6 +192,11 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
             s.setSalaObservacao(txtObservacao.getText());
             s.setSalaCodigo(txtNome.getText());
             s.setSalaLocalizacao(txtBloco.getText());
+            if (botaoRadioSim.isSelected() == true){
+                s.setSalaLaboratorio(true);
+            }else{
+                s.setSalaLaboratorio(false);
+            }
             
             SalaJpaController j = new SalaJpaController();
             j.create(s);
@@ -200,10 +205,11 @@ public class TelaAdicionarSalas extends javax.swing.JDialog {
             txtNome.setText("");
             txtBloco.setText("");
             txtObservacao.setText("");
+            botaoRadioSim.setSelected(false);
+            botaoRadioNao.setSelected(false);
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
         }else{
-            JOptionPane.showMessageDialog(null, "Erro - Preencha todos os campos!");
-            
+            JOptionPane.showMessageDialog(null, "Erro - Preencha todos os campos!");            
         }   
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
