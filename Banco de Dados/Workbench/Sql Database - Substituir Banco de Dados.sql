@@ -1,7 +1,7 @@
--- MySQL Workbench Forward Engineering
-
 USE sistema_alocacao_bd;
 DROP DATABASE sistema_alocacao_bd;
+
+-- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `sistema_alocacao_bd`.`sala` (
   `sala_codigo` TINYTEXT NOT NULL,
   `sala_num_aluno` SMALLINT(3) UNSIGNED NOT NULL,
   `sala_localizacao` TINYTEXT NOT NULL,
+  `sala_laboratorio` TINYINT(1) NOT NULL,
   `sala_observacao` TINYTEXT NULL,
   PRIMARY KEY (`sala_id`),
   UNIQUE INDEX `idSala_UNIQUE` (`sala_id` ASC))
@@ -236,9 +237,9 @@ INSERT INTO disciplina VALUES (3, 'Cálculo 2', 90, 2, 0, 60, 0, 'Calc02');
 INSERT INTO professor VALUES (1, 'Fulano Ciclano', '', 100, 'mic', 0);
 INSERT INTO professor VALUES (2, 'Chefe Thiago', 'Chefão', 40, 'Tudo', 0);
 
-INSERT INTO sala VALUES (1, 'Sala01', 45, 'Bloco A', '');
-INSERT INTO sala VALUES (2, 'Sala02', 30, 'Bloco A', 'Ar condicionado com problemas');
-INSERT INTO sala VALUES (3, 'Sala03', 30, 'Bloco B', 'Ar condicionado com problemas, sem cadeiras, ninguém limpa, sala completamente parada');
+INSERT INTO sala VALUES (1, 'Sala01', 45, 'Bloco A', true ,'');
+INSERT INTO sala VALUES (2, 'Sala02', 30, 'Bloco A', false, 'Ar condicionado com problemas');
+INSERT INTO sala VALUES (3, 'Sala03', 30, 'Bloco B', true, 'Ar condicionado com problemas, sem cadeiras, ninguém limpa, sala completamente parada');
 
 INSERT INTO turma VALUES (1, 'turm01', 45, 0, 'Matutino', 01);
 INSERT INTO turma VALUES (2, 'turm02', 60, 0, 'Vespertino', 01);

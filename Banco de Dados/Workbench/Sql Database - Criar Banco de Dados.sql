@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `sistema_alocacao_bd`.`sala` (
   `sala_codigo` TINYTEXT NOT NULL,
   `sala_num_aluno` SMALLINT(3) UNSIGNED NOT NULL,
   `sala_localizacao` TINYTEXT NOT NULL,
+  `sala_laboratorio` TINYINT(1) NOT NULL,
   `sala_observacao` TINYTEXT NULL,
   PRIMARY KEY (`sala_id`),
   UNIQUE INDEX `idSala_UNIQUE` (`sala_id` ASC))
@@ -223,6 +224,7 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 
 -- Realiza inserção de informações no banco.
