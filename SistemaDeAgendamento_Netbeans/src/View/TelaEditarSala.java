@@ -57,7 +57,14 @@ public class TelaEditarSala extends javax.swing.JFrame {
         txtLocalização.setText(p.getSalaLocalizacao());
         txtNumeroDeAlunos.setText(String.valueOf(p.getSalaNumAluno()));
         txtObservação.setText(p.getSalaObservacao());
+        
         txtId.setText(p.getSalaId().toString());
+        
+        if(p.getSalaLaboratorio()){
+            botaoRadioSim.setSelected(true);
+        }else {
+            botaoRadioNao.setSelected(true);
+        }
     }
     
     public void mostrarDados(String valores){
@@ -83,6 +90,7 @@ public class TelaEditarSala extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoBotao = new javax.swing.ButtonGroup();
         botaoCancelar = new javax.swing.JButton();
         botaoSalvar = new javax.swing.JButton();
         labelInformações = new javax.swing.JLabel();
@@ -97,6 +105,9 @@ public class TelaEditarSala extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         labelObservação = new javax.swing.JLabel();
         botaoFechar = new javax.swing.JButton();
+        labelLaboratorio = new javax.swing.JLabel();
+        botaoRadioSim = new javax.swing.JRadioButton();
+        botaoRadioNao = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -164,36 +175,26 @@ public class TelaEditarSala extends javax.swing.JFrame {
             }
         });
 
+        labelLaboratorio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelLaboratorio.setText("Laboratório");
+
+        grupoBotao.add(botaoRadioSim);
+        botaoRadioSim.setText("Sim");
+
+        grupoBotao.add(botaoRadioNao);
+        botaoRadioNao.setText("Não");
+        botaoRadioNao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRadioNaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(labelInformações)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelNumeroDeAlunos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4))
-                            .addComponent(labelCodigo)
-                            .addComponent(labelLocalização)
-                            .addComponent(labelObservação))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtLocalização, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtObservação, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))))
-                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 137, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(botaoCancelar)
@@ -203,6 +204,34 @@ public class TelaEditarSala extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(botaoFechar)
                         .addGap(184, 184, 184))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelNumeroDeAlunos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4))
+                            .addComponent(labelCodigo)
+                            .addComponent(labelLocalização)
+                            .addComponent(labelObservação)
+                            .addComponent(labelLaboratorio))
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtLocalização, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtObservação, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNumeroDeAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botaoRadioSim)
+                                .addGap(32, 32, 32)
+                                .addComponent(botaoRadioNao))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(labelInformações, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,14 +256,19 @@ public class TelaEditarSala extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(labelNumeroDeAlunos))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelLaboratorio)
+                    .addComponent(botaoRadioSim)
+                    .addComponent(botaoRadioNao))
+                .addGap(76, 76, 76)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoFechar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCancelar)
                     .addComponent(botaoSalvar))
-                .addGap(27, 27, 27))
+                .addContainerGap())
         );
 
         pack();
@@ -254,9 +288,8 @@ public class TelaEditarSala extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        if (!"".equals(txtCodigo.getText()) && !"".equals(txtObservação.getText()) && !"".equals(txtLocalização.getText()) && !"".equals(txtNumeroDeAlunos.getText())) {
+        if (!"".equals(txtCodigo.getText()) && !"".equals(txtObservação.getText()) && !"".equals(txtLocalização.getText()) && !"".equals(txtNumeroDeAlunos.getText()) && (botaoRadioNao.isSelected() || botaoRadioSim.isSelected()) ) {
             Entidades.Sala s = new Entidades.Sala();
-
 
             ControladorSala j = new ControladorSala();
 
@@ -266,6 +299,11 @@ public class TelaEditarSala extends javax.swing.JFrame {
             s.setSalaLocalizacao(txtLocalização.getText());
             s.setSalaNumAluno((short)Integer.parseInt(txtNumeroDeAlunos.getText()));
             s.setSalaObservacao(txtObservação.getText());
+            if(botaoRadioSim.isSelected()){
+                s.setSalaLaboratorio(true);
+            } else {
+                s.setSalaLaboratorio(false);
+            }
             
             
 
@@ -282,12 +320,17 @@ public class TelaEditarSala extends javax.swing.JFrame {
             }
             TelaCadastroController control = new TelaCadastroController();
        
-            control.refreshTable(tabela1, 2);
-
+            control.refreshTable(tabela1, 2);            
+            
+            this.dispose();
         }
 
 
     }//GEN-LAST:event_botaoSalvarActionPerformed
+
+    private void botaoFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFecharActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoFecharActionPerformed
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
@@ -297,9 +340,9 @@ public class TelaEditarSala extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdComponentHidden
 
-    private void botaoFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFecharActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_botaoFecharActionPerformed
+    private void botaoRadioNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRadioNaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoRadioNaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -354,10 +397,14 @@ public class TelaEditarSala extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCancelar;
     private javax.swing.JButton botaoFechar;
+    private javax.swing.JRadioButton botaoRadioNao;
+    private javax.swing.JRadioButton botaoRadioSim;
     private javax.swing.JButton botaoSalvar;
+    private javax.swing.ButtonGroup grupoBotao;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelInformações;
+    private javax.swing.JLabel labelLaboratorio;
     private javax.swing.JLabel labelLocalização;
     private javax.swing.JLabel labelNumeroDeAlunos;
     private javax.swing.JLabel labelObservação;
